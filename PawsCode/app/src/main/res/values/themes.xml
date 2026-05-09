@@ -1,8 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Paws" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- 1. Diciamo ad Android di fare la barra di stato BIANCA -->
+        <item name="android:statusBarColor">#FFFFFF</item>
+
+        <!-- 2. Diciamo ad Android che, essendo lo sfondo bianco,
+             l'ora e le icone della batteria devono diventare SCURE,
+             altrimenti non le leggeresti! -->
+        <item name="android:windowLightStatusBar">true</item>
+
     </style>
 
     <style name="Theme.Paws" parent="Base.Theme.Paws" />

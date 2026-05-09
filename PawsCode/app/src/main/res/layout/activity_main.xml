@@ -5,24 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="48dp"
+    android:paddingStart="48dp"
+    android:paddingEnd="48dp"
+    android:paddingTop="120dp"
     android:gravity="center_horizontal"
     android:background="#FFFFFF">
 
+    <!-- Logo -->
     <ImageView
         android:id="@+id/logo_Xa"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
         android:src="@drawable/ic_logo_paws"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="40dp"
         android:scaleType="fitCenter"/>
 
+    <!-- Menu SIGN IN / SIGN UP -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="32dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -72,6 +75,7 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!-- Campi di Input -->
     <EditText
         android:id="@+id/username_Xa"
         android:layout_width="match_parent"
@@ -97,8 +101,9 @@
         android:drawablePadding="12dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="24dp" />
 
+    <!-- Bottone -->
     <Button
         android:id="@+id/btnLogin_Xa"
         android:layout_width="match_parent"
@@ -109,9 +114,9 @@
         android:textSize="14sp"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
 
+    <!-- Testo Dimenticato -->
     <TextView
         android:id="@+id/forgotPassword_Xa"
         android:layout_width="wrap_content"
