@@ -1,0 +1,269 @@
+\documentclass[a4paper]{report}
+
+\input{config}
+
+% Document title and author
+\title{\huge \textbf{\textcolor{black}{Template_latex}}\\}
+\author{Tarek Naja Sara Vaccaro - 2026}
+\date{}
+
+\begin{document}
+
+\thispagestyle{empty} % rimuove intestazione/piede pagina
+
+% decorative thin left band (1.2cm) drawn in overlay so it doesn't change layout
+\begin{tikzpicture}[remember picture,overlay]
+    % extend a couple millimetres below the page bottom to avoid any tiny gap
+    \fill[myColor] (current page.north west) rectangle ($(current page.south west)+(1.4cm,0)$);
+\end{tikzpicture}
+
+\begin{center}
+    % Titolo Università
+    \vphantom{space} \\[0.5cm]
+    {\Large \textbf{\textcolor{myColor}{TITOLO}}}\\[0.3cm]
+    
+    % Corso di Laurea
+    {\normalsize Corso di Laurea Triennale in Ingegneria Informatica e dell’Automazione}\\[2cm]
+    
+    % Logo
+    \includegraphics[width=0.35\textwidth]{univpm_logo.png}\\[2cm]
+    
+    % Titolo progetto
+    {\large \textbf{\textcolor{myColor}{UNIVERSITÀ POLITECNICA DELLE MARCHE}}}\\ [0.3cm]
+    % Corso di Laurea
+    {\normalsize Corso di Laurea Triennale in Ingegneria Informatica e dell’Automazione}\\[2cm]
+    
+    % Relatori e Tesina
+    \begin{minipage}{0.45\textwidth}
+        \begin{flushleft}
+        \textbf{\textcolor{myColor}{RELATORI:}}\\[0.2cm]
+         Emanuele Storti
+        \end{flushleft}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \begin{flushright}
+        \textbf{\textcolor{myColor}{TESINA DI:}}\\[0.2cm]
+        Tarek Naja
+        \\
+        Sara Vaccaro
+        \end{flushright}
+    \end{minipage}\\[5.5cm]
+    
+    % Anno accademico
+    {\normalsize A.A 2024/2025}
+\end{center}
+
+% Include the table of contents
+\tableofcontents
+% Remove page number from table of contents page
+\thispagestyle{empty}
+
+\setcounter{page}{0}
+\newchapter{Descrizione del Progetto}
+PAWS è un’app che si occupa di facilitare la scoperta e l'eventuale adozione di animali, proponendo un'interfaccia dinamica e interattiva che mostra a schermo un animale alla volta. L'utente, se interessato, può effettuare uno swipe per salvare l'animale in una lista dedicata ai preferiti, altrimenti può semplicemente scorrere per passare al prossimo. Un’ulteriore funzionalità è la “Scheda Dettaglio”, una particolare visualizzazione che si attiva con un tap sulla foto: il suo scopo è quello di fornire informazioni approfondite sull'animale, come l'età, la razza, la storia clinica e la posizione geografica. Infine, la sezione "Preferiti" prevede un'area di gestione in cui gli utenti possono consultare in qualsiasi momento gli animali salvati e utilizzare un pulsante dedicato per contattare direttamente il rifugio, l'associazione o l'attuale proprietario.
+
+L’accesso al sistema deve avvenire attraverso delle credenziali che comprendono un indirizzo email e una password di almeno 6 caratteri. Gli animali salvati vengono visualizzati all'interno dei Preferiti in una lista in cui è visibile la foto in miniatura, il nome dell'animale, la razza e la data in cui è stato aggiunto alla lista.
+
+L’app quindi risulta intuitiva e diretta nel proprio utilizzo a seconda delle particolari preferenze e necessità dell'utente; le macro categorie di utilizzo sono:
+
+Esplorazione dinamica e interattiva tramite meccanica di swipe per scoprire nuovi animali.
+
+Consultazione informativa attraverso schede dettaglio pensate per conoscere a fondo le caratteristiche e i bisogni di ogni animale.
+
+Gestione dei Preferiti e contatti, in cui gli utenti possono tenere traccia degli animali di loro interesse e avviare comunicazioni dirette per l'adozione o la richiesta di informazioni.
+\clearpage
+\newsection*{Sezione}
+La gestione dei dati rappresenta un elemento centrale del progetto. 
+Il sistema è stato progettato per garantire un’organizzazione chiara e strutturata delle informazioni, supportata da procedure di aggiornamento e validazione che ne assicurano l’affidabilità nel tempo.
+\\
+Particolare attenzione è rivolta ai principi di integrità e consistenza, così da mantenere i dati coerenti e privi di ridondanze inutili.
+\\
+In questo modo, la piattaforma garantisce un flusso informativo ordinato, sicuro e facilmente consultabile, a beneficio sia degli operatori interni sia dei clienti.	
+
+\newsection*{Architettura del Sistema}
+L’architettura di GESTRI è concepita secondo un approccio modulare, così da favorire la scalabilità, la manutenzione e l’evoluzione futura della piattaforma. I principali componenti possono essere riassunti come segue:
+\begin{itemize}
+    \item \textbf{Interfaccia Utente (Front-end):} fornisce un ambiente semplice e intuitivo per l’interazione degli utenti, adattato alle diverse tipologie di attori (Operatori, Staff, Clienti). 
+    È progettata per garantire chiarezza, usabilità e accesso rapido alle funzionalità principali.
+    \item \textbf{Logica Applicativa (Back-end):} rappresenta il cuore del sistema, gestisce i processi interni e applica le regole di business. 
+    Qui risiedono i meccanismi come quelli di registrazione, monitoraggio delle attività, generazione dei documenti e gestione dei permessi degli utenti.
+    \item \textbf{Gestione dei Dati (Database):} si occupa della memorizzazione strutturata delle informazioni. 
+    La progettazione segue criteri di integrità e consistenza, sfruttando relazioni tra entità per ridurre ridondanze e facilitare le operazioni di ricerca e consultazione.
+    \item \textbf{Servizi di Supporto:} includono funzionalità trasversali come autenticazione, controlli di sicurezza e strumenti di reportistica.
+\end{itemize}
+Questa architettura a più livelli permette di separare in modo chiaro presentazione, logica e dati, garantendo così robustezza, flessibilità e una più agevole gestione del sistema nel tempo.
+
+\newsection*{Accesso}
+La gestione delle credenziali assicura una netta distinzione tra i profili e rafforza il livello di sicurezza, prevenendo usi impropri e garantendo che ciascun utente operi esclusivamente nell’ambito delle proprie competenze.
+
+
+\newchapter{Glossario dei Termini}
+
+\begin{longtable}{ >{\raggedright\arraybackslash}p{1.5cm} >{\raggedright\arraybackslash}p{5.5cm} >{\raggedright\arraybackslash}p{2cm} >{\raggedright\arraybackslash}p{2.97cm}}
+\toprule
+\textbf{TERMINE} & \textbf{DESCRIZIONE} & \textbf{TIPO} & \textbf{SINONIMI} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\endlastfoot
+Account & Area personale dell'utente. & TECNICO & Profilo \\
+Login & Processo con cui un utente viene identificato e entra nella piattaforma. & TECNICO & Accesso \\
+Sistema & Insieme organizzato di componenti interconnessi che lavorano insieme per svolgere una o più funzioni definite. & TECNICO & Gestionale, Programma, Sito \\
+Utente & Ruolo generico da cui derivano Cliente e Operatore. Ha la capacità di accedere al sistema. & TECNICO & - \\
+Cliente & Soggetto che commissiona il servizio e consulta documenti e stato delle attività. & BUSINESS & - \\
+
+\end{longtable}
+
+\newchapter{Gestione dei requisiti}
+
+CIAO SARA Nella presente sezione si analizzano in modo approfondito i requisiti del sistema, procedendo alla loro suddivisione secondo le seguenti categorie:
+\begin{itemize}
+    \item Requisiti funzionali, che definiscono le specifiche funzionalità che il sistema è tenuto a fornire.
+    \item Requisiti non funzionali, che individuano i vincoli e le qualità che il sistema deve soddisfare, quali ad esempio l'usabilità, la sicurezza e le prestazioni.
+\end{itemize}
+
+\newsection{Requisiti Funzionali}
+
+% Requisiti funzionali (testo inserito automaticamente)
+\newsubsection*{Area: Gestione Utente}
+
+\newsubsubsection*{RF1: Registrazione Utente}
+
+Il sistema dovrà permettere la registrazione di nuovi utenti (Clienti, Operatori, Staff) inserendo i dati necessari.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{RequisitiFunzionali}
+\end{figure}
+\clearpage
+
+
+\newsection{Requisiti Non Funzionali}
+
+% Requisiti non funzionali (testo inserito automaticamente)
+\newsubsection*{Area: Gestione Tecnologie}
+
+\newsubsubsection*{RNF1: Implementazione in Python 3}
+
+Il sistema dovrà essere implementato utilizzando Python 3.
+
+
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{RequisitiNonFunzionali}
+\end{figure*}
+
+
+\clearpage
+\newsection{Tabella MoSCoW dei Requisiti}
+
+Di seguito la matrice MoSCoW che classifica i requisiti del sistema secondo le priorità: M (Must-have), S (Should-have), C (Could-have), W (Want-have).
+
+\begin{longtable}{|p{4.5cm}|p{6.25cm}|p{2cm}|}
+\hline
+	\textbf{Area} & \textbf{Requisito} & \textbf{Priorità MoSCoW} \\
+\hline
+\endhead
+
+Gestione Utente & RF1: Registrazione Utente & Must \\
+\hline
+Gestione Utente & RF2: Login Utente & Must \\
+\hline
+\end{longtable}
+
+\clearpage
+\newsection{Diagrammi dei Casi d'Uso}
+
+\newsubsection*{Diagramma degli Attori}
+Il diagramma individua gli attori coinvolti nel sistema e visualizza le connessioni di ereditarietà tra di essi.
+
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=1\textwidth]{Attori}
+\end{figure*}
+
+\clearpage
+
+\begin{table}[H]
+\vspace*{-0cm}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|p{3.9cm}|p{9.9cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: RegistrazioneUtente}} \\ \hline
+\textbf{ID} & 1 \\ \hline
+\textbf{Breve descrizione} & Lo Staff o il Cliente si registra nel sistema, con un ruolo che dipende dal punto di accesso \\ \hline
+\textbf{Attori primari} & Cliente, Staff \\ \hline
+\textbf{Attori secondari} & Nessuno \\ \hline
+\textbf{Precondizioni} & Nessuna \\ \hline
+\textbf{Sequenza degli eventi principale} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item \texttt{If} l'Utente è un Cliente che accede alla pagina di registrazione pubblica, allora
+    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+        \item Il sistema mostra il modulo di registrazione
+        \item Il Cliente inserisce le proprie informazioni (nome, cognome, email, password)
+        \item \texttt{While} le credenziali inserite del Cliente non sono valide
+        \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+        \item Il sistema richiede al Cliente di inserire le sue informazioni
+    \end{enumerate}
+        \item Il sistema valida i dati inseriti
+        \item Il sistema crea un nuovo account con il ruolo di Cliente
+    \end{enumerate}
+\end{enumerate}\\ \hline
+\textbf{Postcondizioni} & 
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+\item È stato creato un nuovo account Utente con ruolo Cliente
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item \texttt{If} l'Utente è un membro dello Staff che accede alla pagina di gestione utenti interna, allora
+    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+        \item Il sistema mostra un modulo di creazione Utente
+        \item Il membro dello Staff inserisce le informazioni del nuovo Utente (nome, cognome, email, password) e seleziona il ruolo desiderato (Operatore o Staff)
+        \item \texttt{While} le credenziali inserite dell'Utente non sono valide
+        \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+        \item Il sistema richiede allo Staff di inserire le sue informazioni
+    \end{enumerate}
+        \item Il sistema valida i dati inseriti
+        \item Il sistema crea un nuovo account con il ruolo specificato (Operatore o Staff)
+    \end{enumerate}
+\end{enumerate}\\ \hline
+\end{tabular}
+\end{table}
+
+\clearpage
+\newsection{Mockup}
+Il mockup dell’applicativo GESTRi è stato realizzato con Figma, uno strumento per la progettazione e la prototipazione di interfacce utente. Ogni mockup rappresenta la versione progettuale dell’interfaccia, definendo struttura, elementi grafici e funzionalità prima della fase di sviluppo.
+
+\vspace{1cm}
+\begin{figure*}[ht!]
+    \includegraphics[width=1\textwidth]{MockupLogin.png}
+    \caption{Mockup login}
+
+\end{figure*}
+
+
+\clearpage
+\newsection{Verifica e Validazione del Software: Unit Tests}
+I seguenti test rappresentano l’insieme delle attività di verifica implementate per garantire il corretto funzionamento del progetto. Sono stati adottati due approcci complementari: test automatici lato codice e test manuali delle API.
+
+\newsubsection{Test Manuali} 
+Per verificare le API è stata utilizzata l’applicazione Postman, uno strumento che consente di inviare richieste HTTP e analizzare le risposte. Questi test non rientrano nel diagramma degli Unit Test, ma rappresentano un'importante componente di validazione dell’integrazione e del comportamento delle API lato client-server.
+
+\newsubsection{Unit Test} 
+La sezione presenta i test unitari eseguiti sul modulo Attività di GESTRi, con l’obiettivo di verificarne la correttezza funzionale e assicurare l’affidabilità del relativo codice.
+\begin{scriptsize}
+\estiloPython
+\begin{lstlisting}[caption={Attivita}, label=lst:javacode]
+class AttivitaIntegrationTests(TestCase):
+   def setUp(self):
+       self.client = Client()
+       # create users
+       self.staff = Utente.objects.create(email='staff@example.com', ruolo=Ruolo.STAFF)
+       self.staff.set_password('pass')
+       self.staff.save()
+
+\end{lstlisting}
+\end{scriptsize}
+
+\end{document}

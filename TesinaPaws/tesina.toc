@@ -1,0 +1,14 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {chapter}{Descrizione del Progetto}{1}{chapter*.3}%
+\contentsline {chapter}{Glossario dei Termini}{3}{chapter*.8}%
+\contentsline {chapter}{Gestione dei requisiti}{4}{chapter*.10}%
+\contentsline {section}{Requisiti Funzionali}{4}{section*.11}%
+\contentsline {section}{Requisiti Non Funzionali}{5}{section*.15}%
+\contentsline {section}{Tabella MoSCoW dei Requisiti}{6}{section*.19}%
+\contentsline {section}{Diagrammi dei Casi d'Uso}{7}{section*.20}%
+\contentsline {section}{Mockup}{9}{section*.24}%
+\contentsline {section}{Verifica e Validazione del Software: Unit Tests}{10}{section*.26}%
+\contentsline {subsection}{Test Manuali}{10}{section*.27}%
+\contentsline {subsection}{Unit Test}{10}{section*.28}%
+\contentsfinish 
