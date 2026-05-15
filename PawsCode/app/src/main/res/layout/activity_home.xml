@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Area contenuto (vuota per ora) -->
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_nav" />
+
+    <!-- Barra di Navigazione Inferiore Personalizzata -->
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:baselineAligned="false">
+
+        <!-- Home Item -->
+        <FrameLayout
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true">
+            <View
+                android:id="@+id/bg_home"
+                android:layout_width="64dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/home_bg_nav_selector"
+                android:duplicateParentState="true" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/home_ic_home_selector"
+                android:duplicateParentState="true"
+                android:contentDescription="Home" />
+        </FrameLayout>
+
+        <!-- Plus Item -->
+        <FrameLayout
+            android:id="@+id/nav_plus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/home_ic_plus"
+                android:contentDescription="Add" />
+        </FrameLayout>
+
+        <!-- Heart Item -->
+        <FrameLayout
+            android:id="@+id/nav_heart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true">
+            <View
+                android:id="@+id/bg_heart"
+                android:layout_width="64dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/home_bg_nav_selector"
+                android:duplicateParentState="true" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/home_ic_heart_selector"
+                android:duplicateParentState="true"
+                android:contentDescription="Favorites" />
+        </FrameLayout>
+
+        <!-- Profile Item -->
+        <FrameLayout
+            android:id="@+id/nav_profile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true">
+            <View
+                android:id="@+id/bg_profile"
+                android:layout_width="64dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/home_bg_nav_selector"
+                android:duplicateParentState="true" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/home_ic_profile_selector"
+                android:duplicateParentState="true"
+                android:contentDescription="Profile" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- Linea divisoria sopra la barra -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/bottom_nav"
+        android:background="#EEEEEE" />
+
+</RelativeLayout>

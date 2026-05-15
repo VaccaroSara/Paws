@@ -16,9 +16,10 @@
         android:id="@+id/logo_Xa"
         android:layout_width="120dp"
         android:layout_height="60dp"
-        android:src="@drawable/ic_logo_paws"
+        android:src="@drawable/sign_ic_logo"
         android:layout_marginBottom="40dp"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter"
+        android:transitionName="logo_transition"/>
 
     <!-- Menu SIGN IN / SIGN UP -->
     <LinearLayout
@@ -42,13 +43,15 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="#4A3B32"
-                android:paddingBottom="4dp" />
+                android:paddingBottom="4dp"
+                android:transitionName="tab_signin_transition" />
 
             <View
                 android:id="@+id/lineSignIn_Xa"
                 android:layout_width="50dp"
                 android:layout_height="3dp"
-                android:background="#F09B42" />
+                android:background="#F09B42"
+                android:transitionName="line_signin_transition" />
         </LinearLayout>
 
         <LinearLayout
@@ -65,56 +68,60 @@
                 android:text="SIGN UP"
                 android:textSize="14sp"
                 android:textColor="#4A3B32"
-                android:paddingBottom="4dp" />
+                android:paddingBottom="4dp"
+                android:transitionName="tab_signup_transition" />
 
             <View
                 android:id="@+id/lineSignUp_Xa"
                 android:layout_width="50dp"
                 android:layout_height="3dp"
-                android:background="#00000000" />
+                android:background="#00000000"
+                android:transitionName="line_signup_transition" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Campi di Input -->
     <EditText
         android:id="@+id/username_Xa"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/bg_input_xa"
+        android:background="@drawable/sign_bg_input"
         android:hint="Username"
         android:textSize="14sp"
-        android:drawableStart="@drawable/ic_user_xa"
+        android:drawableStart="@drawable/sign_ic_user"
         android:drawablePadding="12dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="12dp"
+        android:transitionName="username_transition" />
 
     <EditText
         android:id="@+id/password_Xa"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/bg_input_xa"
+        android:background="@drawable/sign_bg_input"
         android:hint="Password"
         android:inputType="textPassword"
         android:textSize="14sp"
-        android:drawableStart="@drawable/ic_lock_xa"
+        android:drawableStart="@drawable/sign_ic_lock"
         android:drawablePadding="12dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="24dp"
+        android:transitionName="password_transition" />
 
     <!-- Bottone -->
     <Button
         android:id="@+id/btnLogin_Xa"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/bg_button_xa"
+        android:background="@drawable/sign_bg_button"
         app:backgroundTint="@null"
         android:text="SIGN IN"
         android:textSize="14sp"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:transitionName="button_transition" />
 
     <!-- Testo Dimenticato -->
     <TextView
