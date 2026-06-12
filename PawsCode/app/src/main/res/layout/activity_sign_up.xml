@@ -1,188 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingStart="48dp"
-    android:paddingEnd="48dp"
-    android:paddingTop="120dp"
-    android:gravity="center_horizontal"
-    android:background="#FFFFFF">
-
-    <ImageView
-        android:id="@+id/logo_Xb"
-        android:layout_width="120dp"
-        android:layout_height="60dp"
-        android:src="@drawable/sign_ic_logo"
-        android:layout_marginBottom="40dp"
-        android:scaleType="fitCenter"
-        android:transitionName="logo_transition" />
+    android:background="#FFFFFF"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="32dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/tabSignIn_Xb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SIGN IN"
-                android:textSize="14sp"
-                android:textColor="#4A3B32"
-                android:paddingBottom="4dp"
-                android:transitionName="tab_signin_transition" />
-
-            <View
-                android:id="@+id/lineSignIn_Xb"
-                android:layout_width="50dp"
-                android:layout_height="3dp"
-                android:background="#00000000"
-                android:transitionName="line_signin_transition" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tabSignUp_Xb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="4dp"
-                android:text="SIGN UP"
-                android:textSize="14sp"
-                android:textColor="#4A3B32"
-                android:textStyle="bold"
-                android:transitionName="tab_signup_transition" />
-
-            <View
-                android:id="@+id/lineSignUp_Xb"
-                android:layout_width="50dp"
-                android:layout_height="3dp"
-                android:background="#F09B42"
-                android:transitionName="line_signup_transition" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/username_Xb"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/sign_bg_input"
-        android:hint="Username"
-        android:textSize="14sp"
-        android:drawableStart="@drawable/sign_ic_user"
-        android:drawablePadding="12dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:layout_marginBottom="12dp"
-        android:transitionName="username_transition" />
-
-    <EditText
-        android:id="@+id/email_Xb"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/sign_bg_input"
-        android:hint="Email"
-        android:textSize="14sp"
-        android:drawableStart="@drawable/sign_ic_mail"
-        android:drawablePadding="12dp"
-        android:inputType="textEmailAddress"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:layout_marginBottom="12dp" />
-
-    <EditText
-        android:id="@+id/password_Xb"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/sign_bg_input"
-        android:hint="Password"
-        android:textSize="14sp"
-        android:inputType="textPassword"
-        android:drawableStart="@drawable/sign_ic_lock"
-        android:drawablePadding="12dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:layout_marginBottom="12dp"
-        android:transitionName="password_transition" />
-
-    <EditText
-        android:id="@+id/phone_Xb"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/sign_bg_input"
-        android:hint="Phone"
-        android:textSize="14sp"
-        android:drawableStart="@drawable/sign_ic_phone"
-        android:drawablePadding="12dp"
-        android:inputType="phone"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:layout_marginBottom="12dp" />
-
-    <!-- Nuova sezione Account Type -->
-    <LinearLayout
-        android:id="@+id/containerAccountType_Xb"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/sign_bg_input"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:layout_marginBottom="24dp">
+        android:orientation="vertical"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingTop="60dp"
+        android:paddingBottom="40dp"
+        android:gravity="center_horizontal">
 
         <ImageView
-            android:id="@+id/iconAccountType_Xb"
-            android:layout_width="wrap_content"
+            android:id="@+id/logo_Xb"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:src="@drawable/sign_ic_logo"
+            android:layout_marginBottom="40dp"
+            android:scaleType="fitCenter"
+            android:transitionName="logo_transition" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/sign_ic_user"
-            android:layout_marginEnd="12dp"/>
+            android:orientation="horizontal"
+            android:layout_marginBottom="32dp">
 
-        <Spinner
-            android:id="@+id/spinnerAccountType_Xb"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@null"
-            android:spinnerMode="dropdown"
-            android:popupTheme="@style/CustomSpinnerPopup"
-            android:dropDownWidth="150dp"
-            android:dropDownHorizontalOffset="0dp" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/sign_ic_dropdown_arrow"
-            android:alpha="0.6"
-            android:importantForAccessibility="no" />
+                <TextView
+                    android:id="@+id/tabSignIn_Xb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SIGN IN"
+                    android:textSize="14sp"
+                    android:textColor="#4A3B32"
+                    android:paddingBottom="4dp"
+                    android:transitionName="tab_signin_transition" />
+
+                <View
+                    android:id="@+id/lineSignIn_Xb"
+                    android:layout_width="50dp"
+                    android:layout_height="3dp"
+                    android:background="#00000000"
+                    android:transitionName="line_signin_transition" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tabSignUp_Xb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="4dp"
+                    android:text="SIGN UP"
+                    android:textSize="14sp"
+                    android:textColor="#4A3B32"
+                    android:textStyle="bold"
+                    android:transitionName="tab_signup_transition" />
+
+                <View
+                    android:id="@+id/lineSignUp_Xb"
+                    android:layout_width="50dp"
+                    android:layout_height="3dp"
+                    android:background="#F09B42"
+                    android:transitionName="line_signup_transition" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Nome e Cognome in una riga -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <EditText
+                android:id="@+id/firstName_Xb"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/sign_bg_input"
+                android:hint="Nome"
+                android:textSize="14sp"
+                android:drawableStart="@drawable/sign_ic_user"
+                android:drawablePadding="8dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <EditText
+                android:id="@+id/lastName_Xb"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/sign_bg_input"
+                android:hint="Cognome"
+                android:textSize="14sp"
+                android:drawableStart="@drawable/sign_ic_user"
+                android:drawablePadding="8dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+        </LinearLayout>
+
+        <!-- Città, Provincia, CAP in una riga -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <EditText
+                android:id="@+id/city_Xb"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1.5"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/sign_bg_input"
+                android:hint="Città"
+                android:textSize="14sp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <EditText
+                android:id="@+id/province_Xb"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="0.8"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/sign_bg_input"
+                android:hint="Prov"
+                android:textSize="14sp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:maxLength="2" />
+
+            <EditText
+                android:id="@+id/cap_Xb"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/sign_bg_input"
+                android:hint="CAP"
+                android:textSize="14sp"
+                android:inputType="number"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:maxLength="5" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/username_Xb"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/sign_bg_input"
+            android:hint="Username"
+            android:textSize="14sp"
+            android:drawableStart="@drawable/sign_ic_user"
+            android:drawablePadding="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="12dp"
+            android:transitionName="username_transition" />
+
+        <EditText
+            android:id="@+id/email_Xb"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/sign_bg_input"
+            android:hint="Email"
+            android:textSize="14sp"
+            android:drawableStart="@drawable/sign_ic_mail"
+            android:drawablePadding="12dp"
+            android:inputType="textEmailAddress"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/password_Xb"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/sign_bg_input"
+            android:hint="Password"
+            android:textSize="14sp"
+            android:inputType="textPassword"
+            android:drawableStart="@drawable/sign_ic_lock"
+            android:drawablePadding="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="12dp"
+            android:transitionName="password_transition" />
+
+        <EditText
+            android:id="@+id/phone_Xb"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/sign_bg_input"
+            android:hint="Phone"
+            android:textSize="14sp"
+            android:drawableStart="@drawable/sign_ic_phone"
+            android:drawablePadding="12dp"
+            android:inputType="phone"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Sezione Account Type -->
+        <LinearLayout
+            android:id="@+id/containerAccountType_Xb"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/sign_bg_input"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="24dp">
+
+            <ImageView
+                android:id="@+id/iconAccountType_Xb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sign_ic_user"
+                android:layout_marginEnd="12dp"/>
+
+            <Spinner
+                android:id="@+id/spinnerAccountType_Xb"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/sign_ic_dropdown_arrow"
+                android:alpha="0.6"
+                android:importantForAccessibility="no" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSignUp_Xb"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/sign_bg_button"
+            app:backgroundTint="@null"
+            android:text="SIGN UP"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:transitionName="button_transition" />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnSignUp_Xb"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/sign_bg_button"
-        app:backgroundTint="@null"
-        android:text="SIGN UP"
-        android:textSize="14sp"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:transitionName="button_transition" />
-
-</LinearLayout>
+</ScrollView>

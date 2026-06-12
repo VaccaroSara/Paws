@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    android:layout_height="200dp"
+    android:layout_marginBottom="16dp"
+    android:layout_marginEnd="16dp">
+
+    <!-- Puppy Image -->
+    <ImageView
+        android:id="@+id/ivPostImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@drawable/bg_add_puppy_placeholder" />
+
+    <!-- Deletion Icon (Left) -->
+    <FrameLayout
+        android:id="@+id/btnDeletePost"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_white_circle"
+        android:clickable="true"
+        android:focusable="true">
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_trash" />
+    </FrameLayout>
+
+    <!-- Name Overlay (Right) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_profile_button"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp">
+
+        <TextView
+            android:id="@+id/tvPostName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="12sp"
+            android:textColor="#4A3B32"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnEditPost"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_edit_pencil" />
+    </LinearLayout>
+
+</RelativeLayout>

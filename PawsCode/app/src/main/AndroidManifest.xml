@@ -2,17 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Paws">
+        android:theme="@style/Theme.Paws"
+        tools:replace="android:allowBackup,android:fullBackupContent">
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.screens.auth.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>
@@ -22,14 +25,14 @@
         </activity>
 
         <activity
-            android:name=".HomeActivity"
+            android:name=".ui.screens.home.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".ui.screens.auth.SignUpActivity"
             android:exported="false" />
 
         <activity
-            android:name=".SignInActivity"
+            android:name=".ui.screens.auth.SignInActivity"
             android:exported="true">
         </activity>
     </application>

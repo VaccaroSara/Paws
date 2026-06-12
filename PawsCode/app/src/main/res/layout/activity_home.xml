@@ -4,25 +4,30 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <!-- Area contenuto (vuota per ora) -->
+    <!-- Area contenuto -->
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_nav" />
+        android:layout_above="@+id/nav_divider" />
 
-    <!-- Barra di Navigazione Inferiore Personalizzata -->
+    <!-- Divider superiore per la navbar -->
+    <View
+        android:id="@+id/nav_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/bottom_nav"
+        android:background="#E0E0E0" />
+
+    <!-- Barra di Navigazione Inferiore -->
     <LinearLayout
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
-        android:elevation="8dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
         android:baselineAligned="false">
 
         <!-- Home Item -->
@@ -36,13 +41,13 @@
             <View
                 android:id="@+id/bg_home"
                 android:layout_width="64dp"
-                android:layout_height="40dp"
+                android:layout_height="46dp"
                 android:layout_gravity="center"
                 android:background="@drawable/home_bg_nav_selector"
                 android:duplicateParentState="true" />
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:src="@drawable/home_ic_home_selector"
                 android:duplicateParentState="true"
@@ -57,11 +62,19 @@
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="true">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+            <View
+                android:id="@+id/bg_plus"
+                android:layout_width="64dp"
+                android:layout_height="46dp"
                 android:layout_gravity="center"
-                android:src="@drawable/home_ic_plus"
+                android:background="@drawable/home_bg_nav_selector"
+                android:duplicateParentState="true" />
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:src="@drawable/home_ic_plus_selector"
+                android:duplicateParentState="true"
                 android:contentDescription="Add" />
         </FrameLayout>
 
@@ -76,13 +89,13 @@
             <View
                 android:id="@+id/bg_heart"
                 android:layout_width="64dp"
-                android:layout_height="40dp"
+                android:layout_height="46dp"
                 android:layout_gravity="center"
                 android:background="@drawable/home_bg_nav_selector"
                 android:duplicateParentState="true" />
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:src="@drawable/home_ic_heart_selector"
                 android:duplicateParentState="true"
@@ -100,13 +113,13 @@
             <View
                 android:id="@+id/bg_profile"
                 android:layout_width="64dp"
-                android:layout_height="40dp"
+                android:layout_height="46dp"
                 android:layout_gravity="center"
                 android:background="@drawable/home_bg_nav_selector"
                 android:duplicateParentState="true" />
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:src="@drawable/home_ic_profile_selector"
                 android:duplicateParentState="true"
@@ -114,12 +127,5 @@
         </FrameLayout>
 
     </LinearLayout>
-
-    <!-- Linea divisoria sopra la barra -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_above="@id/bottom_nav"
-        android:background="#EEEEEE" />
 
 </RelativeLayout>

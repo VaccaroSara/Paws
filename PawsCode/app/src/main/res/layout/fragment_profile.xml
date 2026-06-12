@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Header -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Profile"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#4A3B32" />
+        </RelativeLayout>
+
+        <!-- Profile Picture -->
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="32dp">
+
+            <ImageView
+                android:id="@+id/ivAvatarMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/sign_ic_user"
+                android:background="@drawable/bg_avatar"
+                android:padding="20dp"
+                android:scaleType="centerInside" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/ic_edit_pencil"
+                android:background="@drawable/bg_profile_row"
+                android:padding="4dp" />
+        </RelativeLayout>
+
+        <!-- Info Rows -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="32dp">
+
+            <!-- Nome e Cognome Row -->
+            <RelativeLayout
+                android:id="@+id/rowFullNameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_profile_row"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView
+                    android:id="@+id/ic_full_name_edit"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/sign_ic_user" />
+                <TextView
+                    android:id="@+id/tvFullNameEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/ic_full_name_edit"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:text="Nome e Cognome"
+                    android:textColor="#8E8E8E" />
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_edit_pencil" />
+            </RelativeLayout>
+
+            <!-- Città, Provincia, CAP Row in 3 blocks with pencils -->
+            <LinearLayout
+                android:id="@+id/rowAddressEdit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:baselineAligned="false">
+
+                <!-- Città Block -->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/bg_profile_row"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:layout_marginEnd="4dp">
+                    <TextView
+                        android:id="@+id/tvCityEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Città"
+                        android:textSize="13sp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textColor="#8E8E8E" />
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_edit_pencil" />
+                </RelativeLayout>
+
+                <!-- Provincia Block -->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:background="@drawable/bg_profile_row"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:layout_marginEnd="4dp">
+                    <TextView
+                        android:id="@+id/tvProvinceEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="PR"
+                        android:textSize="13sp"
+                        android:textColor="#8E8E8E" />
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_edit_pencil" />
+                </RelativeLayout>
+
+                <!-- CAP Block -->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_profile_row"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp">
+                    <TextView
+                        android:id="@+id/tvCapEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="CAP"
+                        android:textSize="13sp"
+                        android:textColor="#8E8E8E" />
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_edit_pencil" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- Username Row -->
+            <RelativeLayout
+                android:id="@+id/rowUsernameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_profile_row"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView
+                    android:id="@+id/ic_user_edit"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/sign_ic_user" />
+                <TextView
+                    android:id="@+id/tvUsernameEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/ic_user_edit"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:text="Username"
+                    android:textColor="#8E8E8E" />
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_edit_pencil" />
+            </RelativeLayout>
+
+            <!-- Email Row -->
+            <RelativeLayout
+                android:id="@+id/rowEmailEdit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_profile_row"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView
+                    android:id="@+id/ic_email_edit"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/sign_ic_mail" />
+                <TextView
+                    android:id="@+id/tvEmailEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/ic_email_edit"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:text="Email"
+                    android:textColor="#8E8E8E" />
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_edit_pencil" />
+            </RelativeLayout>
+
+            <!-- Phone Row -->
+            <RelativeLayout
+                android:id="@+id/rowPhoneEdit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_profile_row"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView
+                    android:id="@+id/ic_phone_edit"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/sign_ic_phone" />
+                <TextView
+                    android:id="@+id/tvPhoneEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/ic_phone_edit"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:text="Phone"
+                    android:textColor="#8E8E8E" />
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_edit_pencil" />
+            </RelativeLayout>
+
+            <!-- Password Row -->
+            <RelativeLayout
+                android:id="@+id/rowPasswordEdit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_profile_row"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView
+                    android:id="@+id/ic_pass_edit"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/sign_ic_lock" />
+                <TextView
+                    android:id="@+id/tvPasswordEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/ic_pass_edit"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:text="********"
+                    android:textColor="#8E8E8E" />
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_edit_pencil" />
+            </RelativeLayout>
+
+            <!-- Account Type Row -->
+            <RelativeLayout
+                android:id="@+id/rowAccountTypeEdit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_profile_row"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView
+                    android:id="@+id/ic_home_edit"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/home_ic_home" />
+                <TextView
+                    android:id="@+id/tvAccountTypeEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/ic_home_edit"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:text="Private"
+                    android:textColor="#8E8E8E" />
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_edit_pencil" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- Logout Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogoutEdit"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:textColor="#FF5252"
+            android:background="@drawable/bg_logout_button"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>

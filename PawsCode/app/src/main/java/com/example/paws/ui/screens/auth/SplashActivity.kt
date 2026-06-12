@@ -1,20 +1,22 @@
-package com.example.paws
+package com.example.paws.ui.screens.auth
 
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.paws.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // Nascondiamo il logo di sistema (zampina) usando installSplashScreen con l'icona trasparente
         installSplashScreen()
-        
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
@@ -27,15 +29,20 @@ class SplashActivity : AppCompatActivity() {
         } else {
             @Suppress("DEPRECATION")
             window.decorView.systemUiVisibility = (
-                android.view.View.SYSTEM_UI_FLAG_FULLSCREEN or
-                android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-                android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                View.SYSTEM_UI_FLAG_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
             )
         }
 
-        // Ritardo di 2 secondi prima di passare alla SignInActivity
+        // Ritardo di 2 secondi prima di passare alla schermata successiva
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, SignInActivity::class.java)
+            val currentUser = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+            val intent = if (currentUser != null) {
+                Intent(this, com.example.paws.ui.screens.home.HomeActivity::class.java)
+            } else {
+                Intent(this, SignInActivity::class.java)
+            }
             startActivity(intent)
             finish()
         }, 2000)

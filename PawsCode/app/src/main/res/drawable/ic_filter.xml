@@ -1,0 +1,69 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="35dp"
+    android:height="35dp"
+    android:viewportWidth="35"
+    android:viewportHeight="35">
+    <group>
+        <clip-path android:pathData="M0,0h35v35h-35z" />
+
+        <!-- Riga Superiore -->
+        <path
+            android:strokeColor="#45321E"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M24.7917,8.7499c0,0.7736 -0.3073,1.5154 -0.8543,2.0624c-0.547,0.547 -1.2888,0.8543 -2.0624,0.8543c-0.7735,0 -1.5154,-0.3073 -2.0624,-0.8543c-0.547,-0.547 -0.8543,-1.2888 -0.8543,-2.0624c0,-0.7736 0.3073,-1.5154 0.8543,-2.0624c0.547,-0.547 1.2889,-0.8543 2.0624,-0.8543c0.7736,0 1.5154,0.3073 2.0624,0.8543c0.547,0.547 0.8543,1.2888 0.8543,2.0624z" />
+        <path
+            android:strokeColor="#45321E"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M5.8334,8.75H21.875" />
+        <path
+            android:strokeColor="#45321E"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M27.7084,8.75H29.1667" />
+
+        <!-- Riga Centrale -->
+        <path
+            android:strokeColor="#45321E"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M11.6667,17.5c0,0.7736 -0.3073,1.5154 -0.8543,2.0624c-0.547,0.547 -1.2888,0.8543 -2.0624,0.8543c-0.7735,0 -1.5154,-0.3073 -2.0624,-0.8543c-0.547,-0.547 -0.8543,-1.2888 -0.8543,-2.0624c0,-0.7736 0.3073,-1.5154 0.8543,-2.0624c0.547,-0.547 1.2889,-0.8543 2.0624,-0.8543c0.7736,0 1.5154,0.3073 2.0624,0.8543c0.547,0.547 0.8543,1.2888 0.8543,2.0624z" />
+        <path
+            android:strokeColor="#45321E"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M5.8334,17.5H8.75" />
+        <path
+            android:strokeColor="#45321E"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M14.5834,17.5H29.1667" />
+
+        <!-- Riga Inferiore -->
+        <path
+            android:strokeColor="#45321E"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M24.7917,26.25c0,0.7736 -0.3073,1.5154 -0.8543,2.0624c-0.547,0.547 -1.2888,0.8543 -2.0624,0.8543c-0.7735,0 -1.5154,-0.3073 -2.0624,-0.8543c-0.547,-0.547 -0.8543,-1.2888 -0.8543,-2.0624c0,-0.7736 0.3073,-1.5154 0.8543,-2.0624c0.547,-0.547 1.2889,-0.8543 2.0624,-0.8543c0.7736,0 1.5154,0.3073 2.0624,0.8543c0.547,0.547 0.8543,1.2888 0.8543,2.0624z" />
+        <path
+            android:strokeColor="#45321E"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M5.8334,26.25H21.875" />
+        <path
+            android:strokeColor="#45321E"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M27.7084,26.25H29.1667" />
+    </group>
+</vector>

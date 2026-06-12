@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Top Bar -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp">
+
+            <ImageView
+                android:id="@+id/btnBackCreate"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back_arrow" />
+
+            <TextView
+                android:id="@+id/tvHeaderTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="New post"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#4A3B32" />
+        </RelativeLayout>
+
+        <!-- Selected Image Preview -->
+        <ImageView
+            android:id="@+id/ivPreviewPost"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Name Input -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_profile_row"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="16dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/home_ic_paws_logo" />
+            <EditText
+                android:id="@+id/etPuppyName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="Name"
+                android:paddingStart="12dp"
+                android:textSize="14sp"
+                android:textColor="#4A3B32" />
+        </LinearLayout>
+
+        <!-- Selection Row (Gender, Type, Age) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <!-- Gender -->
+            <LinearLayout
+                android:id="@+id/containerGender"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_gender_circle"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp">
+                <ImageView
+                    android:id="@+id/ivGenderIcon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_male" />
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/sign_ic_dropdown_arrow"
+                    android:layout_marginStart="4dp"
+                    app:tint="#FFFFFF" />
+            </LinearLayout>
+
+            <!-- Type -->
+            <LinearLayout
+                android:id="@+id/containerType"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_detail_capsule"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginStart="12dp">
+                <TextView
+                    android:id="@+id/tvPuppyType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dog"
+                    android:textSize="14sp"
+                    android:textColor="#4A3B32" />
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/sign_ic_dropdown_arrow"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <!-- Age -->
+            <LinearLayout
+                android:id="@+id/containerAge"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_detail_capsule"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginStart="12dp">
+                <TextView
+                    android:id="@+id/tvPuppyAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1 years"
+                    android:textSize="14sp"
+                    android:textColor="#4A3B32" />
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/sign_ic_dropdown_arrow"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Caption -->
+        <EditText
+            android:id="@+id/etCaption"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@null"
+            android:hint="Follow a caption..."
+            android:gravity="top"
+            android:textSize="14sp"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Share Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSharePost"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/sign_bg_button"
+            android:text="SHARE"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</ScrollView>
