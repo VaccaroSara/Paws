@@ -1,36 +1,32 @@
-# Walkthrough - Advanced Filtering & User Types
+# Walkthrough - Notification Enhancements
 
-I have implemented a professional filtering system that allows users to find exactly the puppy they are looking for based on multiple criteria.
+I have improved the notification system with a visual indicator, cleanup tools, and refined styling.
 
 ## Changes Made
 
-### 1. Advanced Filtering Logic
-- **[HomeFragment.kt](file:///Users/tareknaja/Desktop/Uni/Programmazione Mobile/Paws/PawsCode/app/src/main/java/com/example/paws/ui/screens/home/HomeFragment.kt)**:
-    - **Interactive Filter Dialog**: Clicking the filter icon now opens a structured menu to filter by **Age**, **Gender**, **Animal Type**, and **User Type** (Private vs. Shelter).
-    - **Real-time Updates**: The feed updates instantly as soon as a filter is selected.
-    - **Clear Filters**: Added an option to reset all filters and see the full feed again.
+### 1. Notification Badge (Orange Dot)
+- **[Home & Favorites Headers]**:
+    - Wrapped the bell icon in a container and added a small orange dot (`bg_orange_dot.xml`).
+    - **Smart Visibility**: The app now listens for new notifications in the background. If you have any notifications, a small orange dot appears on the bell icon in both the **Home** and **Favorites** screens.
+    - The badge remains visible until all notifications are cleared, giving you a clear signal that someone liked your post.
 
-### 2. User Type Tracking
-- **[PuppyPost Model](file:///Users/tareknaja/Desktop/Uni/Programmazione Mobile/Paws/PawsCode/app/src/main/java/com/example/paws/ui/screens/home/PostAdapter.kt)**: Updated to include `userType`.
-- **[CreatePostFragment.kt](file:///Users/tareknaja/Desktop/Uni/Programmazione Mobile/Paws/PawsCode/app/src/main/java/com/example/paws/ui/screens/home/CreatePostFragment.kt)**:
-    - Now automatically fetches whether the creator is a "Private User" or an "Animal Shelter" during post creation/editing.
-    - This data is saved in Firestore, enabling the new filtering capabilities.
+### 2. Notifications Cleanup
+- **[NotificationsFragment.kt](file:///Users/tareknaja/Desktop/Uni/Programmazione Mobile/Paws/PawsCode/app/src/main/java/com/example/paws/ui/screens/home/NotificationsFragment.kt)**:
+    - Added a trash icon (`ic_trash_gray.xml`) next to the "Your Notifications" title.
+    - **Bulk Deletion**: Clicking this icon opens a confirmation dialog asking if you want to delete all notifications.
+    - Once confirmed, all your notifications are wiped from Firestore, and the list clears instantly.
 
-### 3. UI Improvements
-- **[fragment_home.xml](file:///Users/tareknaja/Desktop/Uni/Programmazione Mobile/Paws/PawsCode/app/src/main/res/layout/fragment_home.xml)**: Added an ID to the filter icon to make it clickable and responsive.
+### 3. Styling & Font
+- **[item_notification.xml](file:///Users/tareknaja/Desktop/Uni/Programmazione Mobile/Paws/PawsCode/app/src/main/res/layout/item_notification.xml)**:
+    - Updated the notification text to use `sans-serif-medium`. Since Poppins was not a standard system-integrated font in the current resource folder, this provides the most similar modern, clean look that matches your UI requirements.
 
 ## How to Verify
-1. **Apply Filters**:
-    - Go to the Home screen and click the **Filter** icon (next to the search bar).
-    - Select **"Animal Type"** -> **"Dog"**.
-    - Verify that only dogs are shown.
-    - Add another filter: **"Gender"** -> **"Female"**.
-    - Verify that only female dogs are now visible.
-2. **User Type Filter**:
-    - Select **"User Type"** -> **"Animal Shelter"**.
-    - Verify that only posts from registered shelters are shown.
-3. **Reset**:
-    - Select **"Clear All Filters"** to return to the original global feed.
+1. **Trigger Badge**: Have another user favorite your post. Verify the orange dot appears on the bell in Home or Favorites.
+2. **Open Notifications**: Click the bell. The list should show the new items.
+3. **Clear All**:
+    - Click the trash icon in the top right of the notifications card.
+    - Confirm the deletion.
+    - Verify the list is empty and the orange badge on the main screens is gone.
 
 ---
-The Home feed is now a powerful search tool, helping users find their perfect companion more easily!
+The notification system is now more intuitive and easier to manage!

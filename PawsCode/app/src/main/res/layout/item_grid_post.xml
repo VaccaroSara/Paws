@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="0dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivGridPostImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_add_puppy_placeholder" />
+
+        <!-- Label with name -->
+        <TextView
+            android:id="@+id/tvGridPostName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_white_rounded_label"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="4dp"
+            android:text="Mandy"
+            android:textColor="#4A3B32"
+            android:textSize="14sp"
+            android:fontFamily="@font/font" />
+
+        <!-- Favorite Heart Button -->
+        <FrameLayout
+            android:id="@+id/btnGridFavorite"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_white_circle">
+
+            <ImageView
+                android:id="@+id/ivGridFavoriteHeart"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_heart_outline"
+                app:tint="#4A3B32" />
+        </FrameLayout>
+
+        <!-- Home icon if Shelter/Private (Optional from image) -->
+        <ImageView
+            android:id="@+id/ivGridHomeIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="12dp"
+            android:src="@drawable/home_ic_home"
+            android:visibility="gone"
+            app:tint="#FFFFFF" />
+
+    </FrameLayout>
+</androidx.cardview.widget.CardView>

@@ -13,6 +13,36 @@
         android:scaleType="centerCrop"
         android:background="@drawable/bg_add_puppy_placeholder" />
 
+    <!-- Likes Overlay (Top Right) -->
+    <LinearLayout
+        android:id="@+id/containerLikesRecent"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_likes_capsule"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/home_ic_heart_selected" />
+
+        <TextView
+            android:id="@+id/tvRecentLikesCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="0"
+            android:textColor="#4A3B32"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <!-- Deletion Icon (Left) -->
     <FrameLayout
         android:id="@+id/btnDeletePost"

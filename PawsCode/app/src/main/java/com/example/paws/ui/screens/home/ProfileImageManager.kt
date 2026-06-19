@@ -34,6 +34,10 @@ object ProfileImageManager {
 
     fun loadProfileImage(context: Context, imageView: ImageView) {
         val uid = auth.currentUser?.uid ?: return
+        loadProfileImageForUid(context, uid, imageView)
+    }
+
+    fun loadProfileImageForUid(context: Context, uid: String, imageView: ImageView) {
         val radiusPx = (CORNER_RADIUS_DP * context.resources.displayMetrics.density).toInt()
 
         db.collection("users").document(uid).get().addOnSuccessListener { doc ->

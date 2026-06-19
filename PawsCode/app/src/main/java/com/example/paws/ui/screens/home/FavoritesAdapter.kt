@@ -20,6 +20,7 @@ class FavoritesAdapter(
         val ivImage: ImageView = view.findViewById(R.id.ivFavoriteImage)
         val tvName: TextView = view.findViewById(R.id.tvFavoriteName)
         val btnUnlike: ImageView = view.findViewById(R.id.btnUnlike)
+        val tvLikesCount: TextView = view.findViewById(R.id.tvFavoriteLikesCount)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
@@ -30,6 +31,16 @@ class FavoritesAdapter(
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         val post = favorites[position]
         holder.tvName.text = post.name
+        
+        // Listener in tempo reale per il numero di salvataggi effettivi
+        com.google.firebase.firestore.FirebaseFirestore.getInstance()
+            .collection("favorites")
+            .whereEqualTo("postId", post.id)
+            .addSnapshotListener { snapshots, _ ->
+                if (snapshots != null) {
+                    holder.tvLikesCount.text = snapshots.size().toString()
+                }
+            }
 
         val radiusPx = (24 * holder.itemView.context.resources.displayMetrics.density).toInt()
 

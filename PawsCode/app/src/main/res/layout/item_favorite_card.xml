@@ -44,15 +44,34 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <ImageView
-                android:id="@+id/btnUnlike"
-                android:layout_width="32dp"
+            <!-- Likes and Unlike Action -->
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:src="@drawable/home_ic_heart_selected"
-                android:padding="4dp"
-                android:background="@drawable/bg_white_circle"
-                android:clickable="true"
-                android:focusable="true" />
+                android:background="@drawable/bg_likes_capsule"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp">
+
+                <ImageView
+                    android:id="@+id/btnUnlike"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/home_ic_heart_selected"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/tvFavoriteLikesCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="0"
+                    android:textColor="#4A3B32"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
         </LinearLayout>
     </RelativeLayout>

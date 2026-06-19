@@ -30,7 +30,7 @@
                     android:id="@+id/tvWelcomeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="hi, user"
+                    android:text="hi"
                     android:textSize="24sp"
                     android:textColor="#A67B5B"
                     android:fontFamily="@font/font"
@@ -43,12 +43,23 @@
                     android:src="@drawable/home_ic_paws_logo" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/ivBellHome"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/ic_bell"
-                android:contentDescription="Notifications" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/ivBellHome"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_bell"
+                    android:contentDescription="Notifications" />
+                <View
+                    android:id="@+id/viewBadgeHome"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="top|end"
+                    android:background="@drawable/bg_orange_dot"
+                    android:visibility="gone" />
+            </FrameLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -74,6 +85,7 @@
                     android:src="@drawable/ic_search" />
 
                 <EditText
+                    android:id="@+id/etSearchHome"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"

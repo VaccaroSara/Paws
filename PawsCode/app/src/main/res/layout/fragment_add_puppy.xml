@@ -30,7 +30,7 @@
                     android:id="@+id/tvWelcomeNameAdd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="hi, user"
+                    android:text="hi"
                     android:textSize="24sp"
                     android:textColor="#A67B5B"
                     android:fontFamily="@font/font"
@@ -44,6 +44,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/ivBellAdd"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:src="@drawable/ic_bell"
@@ -73,6 +74,7 @@
                     android:src="@drawable/ic_search" />
 
                 <EditText
+                    android:id="@+id/etSearchAdd"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -85,11 +87,14 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/ivFilterAdd"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="16dp"
                 android:src="@drawable/ic_filter"
-                android:contentDescription="Filter" />
+                android:contentDescription="Filter"
+                android:clickable="true"
+                android:focusable="true" />
         </LinearLayout>
     </LinearLayout>
 

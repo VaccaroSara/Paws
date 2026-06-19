@@ -91,7 +91,26 @@ class SignUpActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, pass)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    saveUserData(auth.currentUser?.uid, firstName, lastName, city, province, cap, username, email, phone, accountType)
+                    val uid = auth.currentUser?.uid
+                    if (uid != null) {
+                        // Check if username is unique
+                        db.collection("users")
+                            .whereEqualTo("username", username)
+                            .get()
+                            .addOnSuccessListener { querySnapshot ->
+                                if (querySnapshot.isEmpty) {
+                                    saveUserData(uid, firstName, lastName, city, province, cap, username, email, phone, accountType)
+                                } else {
+                                    // Username already exists, delete the auth user just created
+                                    auth.currentUser?.delete()
+                                    Toast.makeText(this, "Username già in uso. Scegline un altro.", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                            .addOnFailureListener {
+                                auth.currentUser?.delete()
+                                Toast.makeText(this, "Errore verifica username: ${it.message}", Toast.LENGTH_SHORT).show()
+                            }
+                    }
                 } else {
                     Toast.makeText(this, "Errore: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                 }

@@ -19,76 +19,112 @@
             android:scaleType="centerCrop"
             android:src="@drawable/bg_add_puppy_placeholder" />
 
+        <!-- Info Icon (Top Right) -->
+        <FrameLayout
+            android:id="@+id/btnPuppyInfo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg_white_circle"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_info" />
+        </FrameLayout>
+
         <!-- Bottom Overlay Info -->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
-            android:padding="20dp"
-            android:gravity="center_vertical">
+            android:padding="20dp">
 
-            <!-- Gender Icon (Blue circle) -->
-            <FrameLayout
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/bg_gender_circle">
-                <ImageView
-                    android:id="@+id/ivGenderIcon"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_male" />
-            </FrameLayout>
-
-            <!-- Breed Icon (White circle) -->
-            <FrameLayout
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/bg_white_circle">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_dog_face" />
-            </FrameLayout>
-
-            <!-- Name Capsule -->
-            <TextView
-                android:id="@+id/tvFeedName"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/bg_name_capsule"
-                android:gravity="center"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:text="Romeo"
-                android:textColor="#4A3B32"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                <!-- Gender Icon -->
+                <FrameLayout
+                    android:id="@+id/containerGender"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/bg_gender_circle">
+                    <ImageView
+                        android:id="@+id/ivGenderIcon"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_male" />
+                </FrameLayout>
 
-            <!-- Info Icon -->
-            <FrameLayout
-                android:id="@+id/btnPuppyInfo"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/bg_white_circle"
-                android:clickable="true"
-                android:focusable="true">
+                <!-- Breed Icon -->
+                <FrameLayout
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_white_circle">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_dog_face" />
+                </FrameLayout>
+
+                <!-- Name Capsule -->
+                <TextView
+                    android:id="@+id/tvFeedName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_name_capsule"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="Romeo"
+                    android:textColor="#4A3B32"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Likes Capsule (Bottom Right) -->
+            <LinearLayout
+                android:id="@+id/containerLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_likes_capsule"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="12dp">
+
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_info" />
-            </FrameLayout>
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/home_ic_heart_selected" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvLikesCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="0"
+                    android:textColor="#4A3B32"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </RelativeLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

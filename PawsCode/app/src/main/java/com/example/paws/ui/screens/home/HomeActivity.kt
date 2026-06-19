@@ -9,6 +9,13 @@ import com.example.paws.R
 
 class HomeActivity : AppCompatActivity() {
 
+    private val homeFragment = HomeFragment()
+    private val addPuppyFragment = AddPuppyFragment()
+    private val favoritesFragment = FavoritesFragment()
+    private val profileFragment = ProfileFragment()
+    
+    private var activeFragment: Fragment = homeFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -20,37 +27,50 @@ class HomeActivity : AppCompatActivity() {
 
         val navViews = listOf(navHome, navPlus, navHeart, navProfile)
 
-        // Seleziona la home di default all'avvio
+        // Initialize fragments
+        supportFragmentManager.beginTransaction().apply {
+            add(R.id.content_frame, profileFragment, "4").hide(profileFragment)
+            add(R.id.content_frame, favoritesFragment, "3").hide(favoritesFragment)
+            add(R.id.content_frame, addPuppyFragment, "2").hide(addPuppyFragment)
+            add(R.id.content_frame, homeFragment, "1")
+        }.commit()
+
         navHome.isSelected = true
-        replaceFragment(HomeFragment())
 
         navViews.forEach { view ->
             view.setOnClickListener {
-                // Deseleziona tutte le icone
+                if (view.isSelected) return@setOnClickListener
+
                 navViews.forEach { it.isSelected = false }
-                // Seleziona quella cliccata
                 view.isSelected = true
                 
-                // Determina quale fragment mostrare in base all'ID cliccato
-                val fragment: Fragment = when (view.id) {
-                    R.id.nav_home -> HomeFragment()
-                    R.id.nav_plus -> AddPuppyFragment()
+                val nextFragment: Fragment = when (view.id) {
+                    R.id.nav_home -> homeFragment
+                    R.id.nav_plus -> addPuppyFragment
                     R.id.nav_heart -> {
                         Log.d("HomeActivity", "Switching to FavoritesFragment")
-                        FavoritesFragment()
+                        favoritesFragment
                     }
-                    R.id.nav_profile -> ProfileFragment()
-                    else -> HomeFragment()
+                    R.id.nav_profile -> profileFragment
+                    else -> homeFragment
                 }
                 
-                replaceFragment(fragment)
+                showFragment(nextFragment)
             }
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    private fun showFragment(fragment: Fragment) {
+        // Quando cambiamo tab dalla navbar, dobbiamo "pulire" la navigazione interna (backstack)
+        // per evitare che rimangano aperti profili o dettagli sopra le tab principali.
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        }
+
         supportFragmentManager.beginTransaction()
-            .replace(R.id.content_frame, fragment)
+            .hide(activeFragment)
+            .show(fragment)
             .commit()
+        activeFragment = fragment
     }
 }

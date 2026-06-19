@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,10 +32,21 @@ class NotificationsFragment : Fragment() {
 
         val tvWelcomeName = view.findViewById<TextView>(R.id.tvWelcomeNameNotif)
         val rvNotifications = view.findViewById<RecyclerView>(R.id.rvNotifications)
+        val btnClear = view.findViewById<View>(R.id.btnClearNotifications)
+        val tvEmpty = view.findViewById<TextView>(R.id.tvEmptyNotifications)
+        val ivBell = view.findViewById<View>(R.id.ivBellNotif)
 
         adapter = NotificationAdapter(emptyList())
         rvNotifications.layoutManager = LinearLayoutManager(requireContext())
         rvNotifications.adapter = adapter
+
+        btnClear.setOnClickListener {
+            clearAllNotifications()
+        }
+
+        ivBell.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
 
         val currentUser = auth.currentUser
         if (currentUser != null) {
@@ -50,20 +62,50 @@ class NotificationsFragment : Fragment() {
                     }
                 }
             
-            loadNotifications(currentUser.uid)
+            loadNotifications(currentUser.uid, tvEmpty)
         }
 
         return view
     }
 
-    private fun loadNotifications(uid: String) {
+    private fun clearAllNotifications() {
+        val currentUser = auth.currentUser ?: return
+        
+        android.app.AlertDialog.Builder(requireContext())
+            .setTitle("Eliminare tutte le notifiche?")
+            .setMessage("Questa azione non può essere annullata.")
+            .setPositiveButton("ELIMINA TUTTO") { _, _ ->
+                db.collection("notifications")
+                    .whereEqualTo("targetUid", currentUser.uid)
+                    .get()
+                    .addOnSuccessListener { snapshots ->
+                        val batch = db.batch()
+                        for (doc in snapshots) {
+                            batch.delete(doc.reference)
+                        }
+                        batch.commit().addOnSuccessListener {
+                            if (isAdded) Toast.makeText(requireContext(), "Notifiche eliminate", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            }
+            .setNegativeButton("ANNULLA", null)
+            .show()
+    }
+
+    private fun loadNotifications(uid: String, tvEmpty: TextView) {
         db.collection("notifications")
             .whereEqualTo("targetUid", uid)
-            .orderBy("timestamp", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshots, e ->
+                if (e != null) {
+                    tvEmpty.visibility = View.VISIBLE
+                    return@addSnapshotListener
+                }
+
                 if (snapshots != null && isAdded) {
                     val notifications = snapshots.toObjects(NotificationItem::class.java)
+                        .sortedByDescending { it.timestamp }
                     adapter.updateNotifications(notifications)
+                    tvEmpty.visibility = if (notifications.isEmpty()) View.VISIBLE else View.GONE
                 }
             }
     }

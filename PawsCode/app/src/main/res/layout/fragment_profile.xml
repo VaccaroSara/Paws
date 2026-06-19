@@ -83,7 +83,7 @@
                     android:layout_toEndOf="@id/ic_full_name_edit"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="12dp"
-                    android:text="Nome e Cognome"
+                    android:text=""
                     android:textColor="#8E8E8E" />
                 <ImageView
                     android:layout_width="16dp"
@@ -118,7 +118,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Città"
+                        android:text=""
                         android:textSize="13sp"
                         android:maxLines="1"
                         android:ellipsize="end"
@@ -145,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="PR"
+                        android:text=""
                         android:textSize="13sp"
                         android:textColor="#8E8E8E" />
                     <ImageView
@@ -169,7 +169,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="CAP"
+                        android:text=""
                         android:textSize="13sp"
                         android:textColor="#8E8E8E" />
                     <ImageView
@@ -205,7 +205,7 @@
                     android:layout_toEndOf="@id/ic_user_edit"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="12dp"
-                    android:text="Username"
+                    android:text=""
                     android:textColor="#8E8E8E" />
                 <ImageView
                     android:layout_width="16dp"
@@ -239,7 +239,7 @@
                     android:layout_toEndOf="@id/ic_email_edit"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="12dp"
-                    android:text="Email"
+                    android:text=""
                     android:textColor="#8E8E8E" />
                 <ImageView
                     android:layout_width="16dp"
@@ -273,7 +273,7 @@
                     android:layout_toEndOf="@id/ic_phone_edit"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="12dp"
-                    android:text="Phone"
+                    android:text=""
                     android:textColor="#8E8E8E" />
                 <ImageView
                     android:layout_width="16dp"
@@ -341,7 +341,7 @@
                     android:layout_toEndOf="@id/ic_home_edit"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="12dp"
-                    android:text="Private"
+                    android:text=""
                     android:textColor="#8E8E8E" />
                 <ImageView
                     android:layout_width="16dp"
@@ -358,6 +358,19 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:text="Logout"
+            android:textAllCaps="false"
+            android:textColor="#FF5252"
+            android:background="@drawable/bg_logout_button"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Delete Account Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDeleteAccount"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Elimina Account"
             android:textAllCaps="false"
             android:textColor="#FF5252"
             android:background="@drawable/bg_logout_button"

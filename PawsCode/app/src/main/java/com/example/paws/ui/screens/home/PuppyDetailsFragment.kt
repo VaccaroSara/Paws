@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -33,6 +37,19 @@ class PuppyDetailsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_puppy_details, container, false)
         db = FirebaseFirestore.getInstance()
+
+        // Implementiamo lo swipe to favorite (verso destra)
+        val gestureDetector = android.view.GestureDetector(requireContext(), object : android.view.GestureDetector.SimpleOnGestureListener() {
+            override fun onFling(e1: android.view.MotionEvent?, e2: android.view.MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+                if (e1 != null && e2.x - e1.x > 100 && Math.abs(velocityX) > 100) {
+                    puppyPost?.let { favoritePostAndGoBack(it) }
+                    return true
+                }
+                return false
+            }
+        })
+
+        view.setOnTouchListener { _, event -> gestureDetector.onTouchEvent(event) }
 
         val ivImage = view.findViewById<ImageView>(R.id.ivDetailPuppyImage)
         val tvName = view.findViewById<TextView>(R.id.tvDetailPuppyName)
@@ -86,5 +103,39 @@ class PuppyDetailsFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun favoritePostAndGoBack(post: PuppyPost) {
+        val auth = com.google.firebase.auth.FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser ?: return
+        val favId = "${currentUser.uid}_${post.id}"
+
+        db.collection("favorites").document(favId).get().addOnSuccessListener { doc ->
+            if (doc.exists()) {
+                parentFragmentManager.popBackStack()
+                return@addOnSuccessListener
+            }
+
+            val favoriteData = hashMapOf(
+                "uid" to currentUser.uid,
+                "postId" to post.id,
+                "name" to post.name,
+                "imageUrl" to post.imageUrl,
+                "gender" to post.gender,
+                "type" to post.type,
+                "age" to post.age,
+                "caption" to post.caption,
+                "userType" to post.userType,
+                "timestamp" to com.google.firebase.Timestamp.now()
+            )
+
+            db.collection("favorites").document(favId).set(favoriteData)
+                .addOnSuccessListener {
+                    if (isAdded) {
+                        android.widget.Toast.makeText(requireContext(), "${post.name} salvato!", android.widget.Toast.LENGTH_SHORT).show()
+                        parentFragmentManager.popBackStack()
+                    }
+                }
+        }
     }
 }

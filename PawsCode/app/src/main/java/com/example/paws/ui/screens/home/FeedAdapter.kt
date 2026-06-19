@@ -20,8 +20,9 @@ class FeedAdapter(
         val ivImage: ImageView = view.findViewById(R.id.ivFeedImage)
         val tvName: TextView = view.findViewById(R.id.tvFeedName)
         val ivGender: ImageView = view.findViewById(R.id.ivGenderIcon)
-        val containerGender: View = ivGender.parent as View
+        val containerGender: View = view.findViewById(R.id.containerGender)
         val btnInfo: View = view.findViewById(R.id.btnPuppyInfo)
+        val tvLikesCount: TextView = view.findViewById(R.id.tvLikesCount)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
@@ -32,6 +33,16 @@ class FeedAdapter(
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
         val post = posts[position]
         holder.tvName.text = post.name
+        
+        // Listener in tempo reale per il numero di salvataggi effettivi
+        com.google.firebase.firestore.FirebaseFirestore.getInstance()
+            .collection("favorites")
+            .whereEqualTo("postId", post.id)
+            .addSnapshotListener { snapshots, _ ->
+                if (snapshots != null) {
+                    holder.tvLikesCount.text = snapshots.size().toString()
+                }
+            }
 
         val radiusPx = (32 * holder.itemView.context.resources.displayMetrics.density).toInt()
 

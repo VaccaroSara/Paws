@@ -47,6 +47,8 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    private var userListener: com.google.firebase.firestore.ListenerRegistration? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -59,6 +61,7 @@ class ProfileFragment : Fragment() {
 
         ivAvatar = view.findViewById(R.id.ivAvatarMain)
         val btnLogout = view.findViewById<Button>(R.id.btnLogoutEdit)
+        val btnDelete = view.findViewById<Button>(R.id.btnDeleteAccount)
         
         tvFullName = view.findViewById(R.id.tvFullNameEdit)
         tvCity = view.findViewById(R.id.tvCityEdit)
@@ -79,6 +82,7 @@ class ProfileFragment : Fragment() {
         val rowAccountType = view.findViewById<View>(R.id.rowAccountTypeEdit)
 
         btnLogout.setOnClickListener { logoutUser() }
+        btnDelete.setOnClickListener { confirmDeleteAccount() }
         ivAvatar.setOnClickListener { openGallery() }
 
         // Edit listeners
@@ -90,30 +94,37 @@ class ProfileFragment : Fragment() {
         rowPassword.setOnClickListener { showPasswordResetDialog() }
         rowAccountType.setOnClickListener { showAccountTypeDialog() }
 
-        ProfileImageManager.loadProfileImage(requireContext(), ivAvatar)
         loadUserData()
 
         return view
     }
 
+    override fun onDestroyView() {
+        userListener?.remove()
+        super.onDestroyView()
+    }
+
     private fun loadUserData() {
         val currentUser = auth.currentUser ?: return
-        db.collection("users").document(currentUser.uid)
-            .get()
-            .addOnSuccessListener { document ->
+        userListener?.remove()
+        userListener = db.collection("users").document(currentUser.uid)
+            .addSnapshotListener { document, _ ->
                 if (isAdded && document != null && document.exists()) {
                     val firstName = document.getString("firstName") ?: ""
                     val lastName = document.getString("lastName") ?: ""
                     tvFullName.text = "$firstName $lastName".trim()
 
-                    tvCity.text = document.getString("city") ?: "Città"
-                    tvProvince.text = document.getString("province") ?: "PR"
-                    tvCap.text = document.getString("cap") ?: "CAP"
+                    tvCity.text = document.getString("city") ?: ""
+                    tvProvince.text = document.getString("province") ?: ""
+                    tvCap.text = document.getString("cap") ?: ""
 
                     tvUsername.text = document.getString("username") ?: "N/A"
                     tvEmail.text = document.getString("email") ?: currentUser.email
                     tvPhone.text = document.getString("phone") ?: "N/A"
                     tvAccountType.text = document.getString("accountType") ?: "Private"
+
+                    // Aggiorna l'immagine profilo in tempo reale
+                    ProfileImageManager.loadProfileImage(requireContext(), ivAvatar)
                 }
             }
     }
@@ -158,17 +169,17 @@ class ProfileFragment : Fragment() {
 
         val inputCity = EditText(requireContext())
         inputCity.hint = "Città"
-        inputCity.setText(if (tvCity.text != "Città") tvCity.text else "")
+        inputCity.setText(tvCity.text.toString())
         layout.addView(inputCity)
 
         val inputProv = EditText(requireContext())
         inputProv.hint = "Provincia"
-        inputProv.setText(if (tvProvince.text != "PR") tvProvince.text else "")
+        inputProv.setText(tvProvince.text.toString())
         layout.addView(inputProv)
 
         val inputCap = EditText(requireContext())
         inputCap.hint = "CAP"
-        inputCap.setText(if (tvCap.text != "CAP") tvCap.text else "")
+        inputCap.setText(tvCap.text.toString())
         layout.addView(inputCap)
 
         builder.setView(layout)
@@ -179,9 +190,9 @@ class ProfileFragment : Fragment() {
             val cap = inputCap.text.toString()
             val updates = hashMapOf<String, Any>("city" to city, "province" to prov, "cap" to cap)
             updateUserFields(updates) {
-                tvCity.text = if (city.isNotEmpty()) city else "Città"
-                tvProvince.text = if (prov.isNotEmpty()) prov else "PR"
-                tvCap.text = if (cap.isNotEmpty()) cap else "CAP"
+                tvCity.text = city
+                tvProvince.text = prov
+                tvCap.text = cap
             }
         }
         builder.setNegativeButton("Annulla") { d, _ -> d.cancel() }
@@ -252,5 +263,60 @@ class ProfileFragment : Fragment() {
         val intent = Intent(requireContext(), SignInActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
+    }
+
+    private fun confirmDeleteAccount() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Eliminare Account?")
+            .setMessage("Questa azione eliminerà definitivamente il tuo profilo e tutti i tuoi post. Sei sicuro?")
+            .setPositiveButton("ELIMINA DEFINITIVAMENTE") { _, _ ->
+                deleteAccount()
+            }
+            .setNegativeButton("ANNULLA", null)
+            .show()
+    }
+
+    private fun deleteAccount() {
+        val user = auth.currentUser ?: return
+        val uid = user.uid
+
+        // 1. Delete user posts
+        db.collection("posts")
+            .whereEqualTo("uid", uid)
+            .get()
+            .addOnSuccessListener { snapshots ->
+                val batch = db.batch()
+                for (doc in snapshots) {
+                    batch.delete(doc.reference)
+                }
+                
+                // 2. Delete user document
+                batch.delete(db.collection("users").document(uid))
+                
+                batch.commit().addOnSuccessListener {
+                    // 3. Delete from Auth
+                    user.delete()
+                        .addOnSuccessListener {
+                            if (isAdded) {
+                                Toast.makeText(requireContext(), "Account eliminato", Toast.LENGTH_SHORT).show()
+                                logoutUser()
+                            }
+                        }
+                        .addOnFailureListener { e ->
+                            if (isAdded) {
+                                if (e is com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException) {
+                                    Toast.makeText(requireContext(), "Riautenticazione necessaria. Effettua logout e login per eliminare.", Toast.LENGTH_LONG).show()
+                                } else {
+                                    Toast.makeText(requireContext(), "Errore Auth: ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                }.addOnFailureListener { e ->
+                    if (isAdded) Toast.makeText(requireContext(), "Errore Firestore: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { e ->
+                if (isAdded) Toast.makeText(requireContext(), "Errore recupero post: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 }

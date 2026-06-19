@@ -20,7 +20,21 @@ data class PuppyPost(
     val type: String = "Dog",
     val age: String = "1 years",
     val caption: String = "",
-    val userType: String = "Private User"
+    val userType: String = "Private User",
+    val likesCount: Int = 0
+)
+
+data class User(
+    val uid: String = "",
+    val firstName: String = "",
+    val lastName: String = "",
+    val username: String = "",
+    val email: String = "",
+    val city: String = "",
+    val province: String = "",
+    val phone: String = "",
+    val accountType: String = "Private User",
+    val profileImageUrl: String = ""
 )
 
 class PostAdapter(
@@ -45,6 +59,7 @@ class PostAdapter(
         val tvName: TextView = view.findViewById(R.id.tvPostName)
         val btnEdit: ImageView = view.findViewById(R.id.btnEditPost)
         val btnDelete: View = view.findViewById(R.id.btnDeletePost)
+        val tvLikesCount: TextView = view.findViewById(R.id.tvRecentLikesCount)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -65,6 +80,16 @@ class PostAdapter(
         } else if (holder is PostViewHolder) {
             val post = posts[position - 1] // Subtract 1 for the ADD item
             holder.tvName.text = post.name
+            
+            // Listener in tempo reale per il numero di salvataggi effettivi
+            com.google.firebase.firestore.FirebaseFirestore.getInstance()
+                .collection("favorites")
+                .whereEqualTo("postId", post.id)
+                .addSnapshotListener { snapshots, _ ->
+                    if (snapshots != null) {
+                        holder.tvLikesCount.text = snapshots.size().toString()
+                    }
+                }
             
             if (post.imageUrl.isNotEmpty()) {
                 Glide.with(holder.itemView.context)

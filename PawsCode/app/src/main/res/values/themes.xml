@@ -27,4 +27,8 @@
         <item name="android:dividerHeight">1dp</item>
         <item name="android:dropDownVerticalOffset">4dp</item>
     </style>
+    <style name="RoundedSquare">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
 </resources>
