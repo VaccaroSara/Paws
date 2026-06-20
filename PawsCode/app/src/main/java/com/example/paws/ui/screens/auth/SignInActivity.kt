@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -22,6 +23,9 @@ class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
+
+        // Hide keyboard when clicking background
+        findViewById<View>(android.R.id.content).setOnClickListener { hideKeyboard() }
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
@@ -90,5 +94,11 @@ class SignInActivity : AppCompatActivity() {
                     Toast.makeText(this, "Errore: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                 }
             }
+    }
+
+    private fun hideKeyboard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        val view = currentFocus ?: View(this)
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

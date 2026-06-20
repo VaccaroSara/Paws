@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -95,6 +96,13 @@ class AddPuppyFragment : Fragment() {
         rvRecent.layoutManager = GridLayoutManager(requireContext(), 2)
         rvRecent.adapter = adapter
 
+        // Hide keyboard when clicking background or list
+        view.setOnClickListener { hideKeyboard() }
+        rvRecent.setOnTouchListener { _, _ -> 
+            hideKeyboard()
+            false 
+        }
+
         // Load name
         val currentUser = auth.currentUser
         if (currentUser != null) {
@@ -104,7 +112,7 @@ class AddPuppyFragment : Fragment() {
                     if (isAdded && document != null && document.exists()) {
                         val firstName = document.getString("firstName") ?: ""
                         if (firstName.isNotEmpty()) {
-                            tvWelcomeName.text = "hi, $firstName"
+                            tvWelcomeName.text = "Hi, $firstName"
                         }
                     }
                 }
@@ -246,5 +254,10 @@ class AddPuppyFragment : Fragment() {
                         }
                 }
             }
+    }
+
+    private fun hideKeyboard() {
+        val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }

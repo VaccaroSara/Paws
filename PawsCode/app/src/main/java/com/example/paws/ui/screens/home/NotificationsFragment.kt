@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -40,6 +41,13 @@ class NotificationsFragment : Fragment() {
         rvNotifications.layoutManager = LinearLayoutManager(requireContext())
         rvNotifications.adapter = adapter
 
+        // Hide keyboard when clicking background or list
+        view.setOnClickListener { hideKeyboard() }
+        rvNotifications.setOnTouchListener { _, _ -> 
+            hideKeyboard()
+            false 
+        }
+
         btnClear.setOnClickListener {
             clearAllNotifications()
         }
@@ -57,7 +65,7 @@ class NotificationsFragment : Fragment() {
                     if (isAdded && document != null && document.exists()) {
                         val firstName = document.getString("firstName")
                         if (!firstName.isNullOrEmpty()) {
-                            tvWelcomeName.text = "hi, $firstName"
+                            tvWelcomeName.text = "Hi, $firstName"
                         }
                     }
                 }
@@ -108,5 +116,10 @@ class NotificationsFragment : Fragment() {
                     tvEmpty.visibility = if (notifications.isEmpty()) View.VISIBLE else View.GONE
                 }
             }
+    }
+
+    private fun hideKeyboard() {
+        val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }

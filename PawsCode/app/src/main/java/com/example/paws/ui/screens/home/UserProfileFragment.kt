@@ -60,9 +60,11 @@ class UserProfileFragment : Fragment() {
         val btnBack = view.findViewById<View>(R.id.btnBackFromUserProfile)
         val rvPosts = view.findViewById<RecyclerView>(R.id.rvUserProfilePosts)
         val ivFilter = view.findViewById<View>(R.id.ivFilterUserProfile)
+        val btnShare = view.findViewById<View>(R.id.btnShareUserProfile)
 
         btnBack.setOnClickListener { parentFragmentManager.popBackStack() }
         ivFilter.setOnClickListener { showFilterDialog() }
+        btnShare.setOnClickListener { shareUserProfile(tvUsername.text.toString()) }
 
         // Setup RecyclerView as Grid
         adapter = GridPostAdapter(emptyList(), { post ->
@@ -90,12 +92,23 @@ class UserProfileFragment : Fragment() {
             db.collection("users").document(currentUid).get().addOnSuccessListener { doc ->
                 if (isAdded && doc.exists()) {
                     val name = doc.getString("firstName") ?: "user"
-                    tvHeaderName.text = "hi, ${name.lowercase()}"
+                    tvHeaderName.text = "Hi, ${name.lowercase()}"
                 }
             }
         }
 
         return view
+    }
+
+    private fun shareUserProfile(username: String) {
+        val shareText = "Check out $username's profile on Paws!"
+        
+        val intent = android.content.Intent(android.content.Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Paws Profile")
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, shareText)
+        
+        startActivity(android.content.Intent.createChooser(intent, "Share via"))
     }
 
     private fun loadUserData(uid: String, ivAvatar: ImageView, tvHeaderName: TextView, tvUsername: TextView, tvAccountType: TextView, tvPhone: TextView, tvLocation: TextView) {

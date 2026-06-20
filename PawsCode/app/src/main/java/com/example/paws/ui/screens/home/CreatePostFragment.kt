@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -82,6 +83,9 @@ class CreatePostFragment : Fragment() {
         val btnShare = view.findViewById<Button>(R.id.btnSharePost)
         val btnBack = view.findViewById<ImageView>(R.id.btnBackCreate)
         val tvHeader = view.findViewById<TextView>(R.id.tvHeaderTitle)
+
+        // Hide keyboard when clicking background
+        view.setOnClickListener { hideKeyboard() }
 
         if (existingPostId != null) {
             btnShare.text = "SAVE CHANGES"
@@ -277,5 +281,10 @@ class CreatePostFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun hideKeyboard() {
+        val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }

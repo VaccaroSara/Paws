@@ -38,7 +38,7 @@
                 android:text="Username"
                 android:textSize="26sp"
                 android:textColor="#4A3B32"
-                android:fontFamily="@font/font" />
+                android:fontFamily="sans-serif-medium" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
                     android:text="Private"
                     android:textSize="14sp"
                     android:textColor="#8E8E8E"
-                    android:fontFamily="@font/font" />
+                    android:fontFamily="sans-serif-medium" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

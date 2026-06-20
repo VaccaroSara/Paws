@@ -39,7 +39,17 @@ class HomeActivity : AppCompatActivity() {
 
         navViews.forEach { view ->
             view.setOnClickListener {
-                if (view.isSelected) return@setOnClickListener
+                if (view.isSelected) {
+                    // Se la tab è già selezionata e siamo in Home, puliamo la navigazione interna
+                    if (view.id == R.id.nav_home) {
+                        if (supportFragmentManager.backStackEntryCount > 0) {
+                            supportFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                        }
+                        // Puliamo anche la ricerca
+                        homeFragment.resetSearch()
+                    }
+                    return@setOnClickListener
+                }
 
                 navViews.forEach { it.isSelected = false }
                 view.isSelected = true

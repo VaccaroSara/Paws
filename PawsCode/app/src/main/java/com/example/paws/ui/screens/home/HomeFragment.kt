@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -25,6 +26,7 @@ class HomeFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var adapter: SearchAdapter
+    private lateinit var tvPuppiesLabel: View
     private var allPosts: MutableList<PuppyPost> = mutableListOf()
     private var favoritedPostIds: Set<String> = emptySet()
     
@@ -38,6 +40,7 @@ class HomeFragment : Fragment() {
     private var favoritesListener: com.google.firebase.firestore.ListenerRegistration? = null
     private var feedListener: com.google.firebase.firestore.ListenerRegistration? = null
     private var notificationsListener: com.google.firebase.firestore.ListenerRegistration? = null
+    private var etSearch: EditText? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +57,8 @@ class HomeFragment : Fragment() {
         val ivBell = view.findViewById<View>(R.id.ivBellHome)
         val ivFilter = view.findViewById<View>(R.id.ivFilterHome)
         val viewBadge = view.findViewById<View>(R.id.viewBadgeHome)
-        val etSearch = view.findViewById<EditText>(R.id.etSearchHome)
+        etSearch = view.findViewById<EditText>(R.id.etSearchHome)
+        tvPuppiesLabel = view.findViewById(R.id.tvPuppiesLabel)
 
         etSearch?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -96,6 +100,13 @@ class HomeFragment : Fragment() {
         rvFeed.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         rvFeed.adapter = adapter
         
+        // Hide keyboard when clicking background or list
+        view.setOnClickListener { hideKeyboard() }
+        rvFeed.setOnTouchListener { _, _ -> 
+            hideKeyboard()
+            false 
+        }
+        
         // SnapHelper makes it feel like swiping through pages/cards
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(rvFeed)
@@ -125,7 +136,7 @@ class HomeFragment : Fragment() {
                     if (isAdded && document != null && document.exists()) {
                         val firstName = document.getString("firstName")
                         if (!firstName.isNullOrEmpty()) {
-                            tvWelcomeName.text = "hi, $firstName"
+                            tvWelcomeName.text = "Hi, $firstName"
                         }
                     }
                 }
@@ -151,7 +162,20 @@ class HomeFragment : Fragment() {
         favoritesListener?.remove()
         feedListener?.remove()
         notificationsListener?.remove()
+        etSearch = null
         super.onDestroyView()
+    }
+
+    fun resetSearch() {
+        searchQuery = ""
+        etSearch?.setText("")
+        applyFilters()
+        hideKeyboard()
+    }
+
+    private fun hideKeyboard() {
+        val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
     private fun showFilterDialog() {
@@ -203,6 +227,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun applyFilters() {
+        // Show or hide "Puppies for you" label based on search query
+        if (::tvPuppiesLabel.isInitialized) {
+            tvPuppiesLabel.visibility = if (searchQuery.isEmpty()) View.VISIBLE else View.GONE
+        }
+
         // First filter the posts
         val filteredPosts = allPosts.filter { it.id !in favoritedPostIds }.let { list ->
             var result = list

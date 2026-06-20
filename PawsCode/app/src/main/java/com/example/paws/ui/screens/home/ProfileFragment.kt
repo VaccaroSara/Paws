@@ -8,6 +8,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -81,9 +82,12 @@ class ProfileFragment : Fragment() {
         val rowPassword = view.findViewById<View>(R.id.rowPasswordEdit)
         val rowAccountType = view.findViewById<View>(R.id.rowAccountTypeEdit)
 
+        val btnShare = view.findViewById<View>(R.id.btnShareMainProfile)
+
         btnLogout.setOnClickListener { logoutUser() }
         btnDelete.setOnClickListener { confirmDeleteAccount() }
         ivAvatar.setOnClickListener { openGallery() }
+        btnShare.setOnClickListener { shareMyProfile() }
 
         // Edit listeners
         rowFullName.setOnClickListener { showFullNameEditDialog() }
@@ -93,6 +97,9 @@ class ProfileFragment : Fragment() {
         rowEmail.setOnClickListener { showEditDialog("email", "Modifica Email", tvEmail) }
         rowPassword.setOnClickListener { showPasswordResetDialog() }
         rowAccountType.setOnClickListener { showAccountTypeDialog() }
+
+        // Hide keyboard when clicking background
+        view.setOnClickListener { hideKeyboard() }
 
         loadUserData()
 
@@ -258,6 +265,21 @@ class ProfileFragment : Fragment() {
         pickImageLauncher.launch(intent)
     }
 
+    private fun shareMyProfile() {
+        val currentUser = auth.currentUser ?: return
+        val username = tvUsername.text.toString()
+        val fullName = tvFullName.text.toString()
+        
+        val shareText = "Check out my profile on Paws!\n\nUsername: $username\nName: $fullName"
+        
+        val intent = android.content.Intent(android.content.Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Paws Profile")
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, shareText)
+        
+        startActivity(android.content.Intent.createChooser(intent, "Share via"))
+    }
+
     private fun logoutUser() {
         FirebaseAuth.getInstance().signOut()
         val intent = Intent(requireContext(), SignInActivity::class.java)
@@ -318,5 +340,10 @@ class ProfileFragment : Fragment() {
             .addOnFailureListener { e ->
                 if (isAdded) Toast.makeText(requireContext(), "Errore recupero post: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun hideKeyboard() {
+        val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }

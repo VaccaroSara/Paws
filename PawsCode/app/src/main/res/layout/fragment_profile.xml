@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
@@ -31,7 +32,7 @@
         <RelativeLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginBottom="32dp">
+            android:layout_marginBottom="16dp">
 
             <ImageView
                 android:id="@+id/ivAvatarMain"
@@ -51,6 +52,33 @@
                 android:background="@drawable/bg_profile_row"
                 android:padding="4dp" />
         </RelativeLayout>
+
+        <!-- Share Profile Button -->
+        <LinearLayout
+            android:id="@+id/btnShareMainProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/bg_search_bar"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_share"
+                app:tint="#8E8E8E" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Share profile"
+                android:textSize="14sp"
+                android:textColor="#8E8E8E"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
 
         <!-- Info Rows -->
         <LinearLayout
@@ -370,7 +398,7 @@
             android:id="@+id/btnDeleteAccount"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Elimina Account"
+            android:text="Delete Account"
             android:textAllCaps="false"
             android:textColor="#FF5252"
             android:background="@drawable/bg_logout_button"

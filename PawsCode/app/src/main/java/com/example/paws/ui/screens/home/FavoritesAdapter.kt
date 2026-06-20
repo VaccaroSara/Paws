@@ -13,6 +13,7 @@ import com.example.paws.R
 
 class FavoritesAdapter(
     private var favorites: List<PuppyPost>,
+    private val onItemClick: (PuppyPost) -> Unit,
     private val onUnlikeClick: (PuppyPost) -> Unit
 ) : RecyclerView.Adapter<FavoritesAdapter.FavoriteViewHolder>() {
 
@@ -51,6 +52,10 @@ class FavoritesAdapter(
                 .into(holder.ivImage)
         } else {
             holder.ivImage.setImageResource(R.drawable.bg_add_puppy_placeholder)
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick(post)
         }
 
         holder.btnUnlike.setOnClickListener {

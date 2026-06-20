@@ -38,10 +38,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
-                    android:text="hi, sciammoc"
+                    android:text="Hi, sciammoc"
                     android:textSize="24sp"
                     android:textColor="#A67B5B"
-                    android:fontFamily="@font/font" />
+                    android:fontFamily="sans-serif-medium" />
 
                 <ImageView
                     android:layout_width="28dp"
@@ -85,7 +85,7 @@
                         android:text="PataRonchi"
                         android:textSize="28sp"
                         android:textColor="#4A3B32"
-                        android:fontFamily="@font/font" />
+                        android:fontFamily="sans-serif-medium" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -116,13 +116,16 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/btnShareUserProfile"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:background="@drawable/bg_search_bar"
                             android:paddingHorizontal="12dp"
                             android:paddingVertical="4dp"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:focusable="true">
                             <ImageView
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
@@ -208,7 +211,7 @@
                     android:text="Post:"
                     android:textSize="18sp"
                     android:textColor="#4A3B32"
-                    android:fontFamily="@font/font" />
+                    android:fontFamily="sans-serif-medium" />
                 <ImageView
                     android:id="@+id/ivFilterUserProfile"
                     android:layout_width="24dp"

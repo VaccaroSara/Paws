@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -21,6 +22,7 @@ class FavoritesFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var adapter: FavoritesAdapter
+    private lateinit var tvEmptyFavorites: View
     private var allFavoritePosts = mutableMapOf<String, PuppyPost>()
     
     // Filter states
@@ -51,6 +53,7 @@ class FavoritesFragment : Fragment() {
         val viewBadge = view.findViewById<View>(R.id.viewBadgeFav)
         val ivFilter = view.findViewById<View>(R.id.ivFilterFav)
         val etSearch = view.findViewById<EditText>(R.id.etSearchFav)
+        tvEmptyFavorites = view.findViewById(R.id.tvEmptyFavorites)
 
         etSearch?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -70,12 +73,26 @@ class FavoritesFragment : Fragment() {
                 .commit()
         }
         
-        adapter = FavoritesAdapter(emptyList()) { post ->
+        adapter = FavoritesAdapter(emptyList(), { post ->
+            val detailsFragment = PuppyDetailsFragment.newInstance(post)
+            parentFragmentManager.beginTransaction()
+                .add(R.id.content_frame, detailsFragment)
+                .hide(this)
+                .addToBackStack(null)
+                .commit()
+        }, { post ->
             unlikePost(post)
-        }
+        })
         
         rvFavorites.layoutManager = GridLayoutManager(requireContext(), 2)
         rvFavorites.adapter = adapter
+
+        // Hide keyboard when clicking background or list
+        view.setOnClickListener { hideKeyboard() }
+        rvFavorites.setOnTouchListener { _, _ -> 
+            hideKeyboard()
+            false 
+        }
 
         val currentUser = auth.currentUser
         if (currentUser != null) {
@@ -86,7 +103,7 @@ class FavoritesFragment : Fragment() {
                     if (isAdded && document != null && document.exists()) {
                         val firstName = document.getString("firstName")
                         if (!firstName.isNullOrEmpty()) {
-                            tvWelcomeName.text = "hi, $firstName"
+                            tvWelcomeName.text = "Hi, $firstName"
                         }
                     }
                 }
@@ -239,6 +256,11 @@ class FavoritesFragment : Fragment() {
             filterUserType?.let { ut -> result = result.filter { it.userType == ut } }
             result
         }
+        
+        if (::tvEmptyFavorites.isInitialized) {
+            tvEmptyFavorites.visibility = if (sortedList.isEmpty() && searchQuery.isEmpty()) View.VISIBLE else View.GONE
+        }
+
         adapter.updateFavorites(sortedList)
     }
 
@@ -253,5 +275,10 @@ class FavoritesFragment : Fragment() {
                     Toast.makeText(requireContext(), "${post.name} rimosso dai preferiti", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun hideKeyboard() {
+        val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }
