@@ -1,9 +1,12 @@
 package com.example.paws.ui.screens.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -20,6 +23,8 @@ class UserProfileFragment : Fragment() {
     private var userId: String? = null
     private lateinit var adapter: GridPostAdapter
     private var allUserPosts: List<PuppyPost> = emptyList()
+
+    private var userPhone: String = ""
 
     // Filter states
     private var filterGender: String? = null
@@ -53,22 +58,33 @@ class UserProfileFragment : Fragment() {
 
         val ivAvatar = view.findViewById<ImageView>(R.id.ivUserProfileAvatar)
         val tvHeaderName = view.findViewById<TextView>(R.id.tvUserProfileHeaderName)
-        val tvUsername = view.findViewById<TextView>(R.id.tvUserProfileUsername)
+        val tvFullName = view.findViewById<TextView>(R.id.tvUserProfileFullName)
         val tvAccountType = view.findViewById<TextView>(R.id.tvUserProfileAccountType)
-        val tvPhone = view.findViewById<TextView>(R.id.tvUserProfilePhone)
         val tvLocation = view.findViewById<TextView>(R.id.tvUserProfileLocation)
         val btnBack = view.findViewById<View>(R.id.btnBackFromUserProfile)
         val rvPosts = view.findViewById<RecyclerView>(R.id.rvUserProfilePosts)
         val ivFilter = view.findViewById<View>(R.id.ivFilterUserProfile)
         val btnShare = view.findViewById<View>(R.id.btnShareUserProfile)
+        val btnCall = view.findViewById<View>(R.id.btnCallUserProfile)
 
         btnBack.setOnClickListener { parentFragmentManager.popBackStack() }
         ivFilter.setOnClickListener { showFilterDialog() }
-        btnShare.setOnClickListener { shareUserProfile(tvUsername.text.toString()) }
+        
+        btnShare.setOnClickListener { 
+            val username = tvHeaderName.text.toString()
+            shareUserProfile(username) 
+        }
+
+        btnCall.setOnClickListener {
+            if (userPhone.isNotEmpty()) {
+                makeCall(userPhone)
+            } else {
+                android.widget.Toast.makeText(requireContext(), "Phone number not available", android.widget.Toast.LENGTH_SHORT).show()
+            }
+        }
 
         // Setup RecyclerView as Grid
         adapter = GridPostAdapter(emptyList(), { post ->
-            // Click on puppy: Show Details (like home feed)
             val detailsFragment = PuppyDetailsFragment.newInstance(post)
             parentFragmentManager.beginTransaction()
                 .add(R.id.content_frame, detailsFragment)
@@ -82,43 +98,44 @@ class UserProfileFragment : Fragment() {
         rvPosts.layoutManager = GridLayoutManager(requireContext(), 2)
         rvPosts.adapter = adapter
 
-        userId?.let { uid ->
-            loadUserData(uid, ivAvatar, tvHeaderName, tvUsername, tvAccountType, tvPhone, tvLocation)
-            loadUserPosts(uid)
+        // Hide keyboard when touching the list
+        rvPosts.setOnTouchListener { _, _ ->
+            hideKeyboard()
+            false
         }
 
-        // Also load current logged user name for header
-        auth.currentUser?.uid?.let { currentUid ->
-            db.collection("users").document(currentUid).get().addOnSuccessListener { doc ->
-                if (isAdded && doc.exists()) {
-                    val name = doc.getString("firstName") ?: "user"
-                    tvHeaderName.text = "Hi, ${name.lowercase()}"
-                }
-            }
+        userId?.let { uid ->
+            loadUserData(uid, ivAvatar, tvHeaderName, tvFullName, tvAccountType, tvLocation)
+            loadUserPosts(uid)
         }
 
         return view
     }
 
-    private fun shareUserProfile(username: String) {
-        val shareText = "Check out $username's profile on Paws!"
-        
-        val intent = android.content.Intent(android.content.Intent.ACTION_SEND)
-        intent.type = "text/plain"
-        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Paws Profile")
-        intent.putExtra(android.content.Intent.EXTRA_TEXT, shareText)
-        
-        startActivity(android.content.Intent.createChooser(intent, "Share via"))
+    private fun makeCall(phone: String) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$phone")
+        startActivity(intent)
     }
 
-    private fun loadUserData(uid: String, ivAvatar: ImageView, tvHeaderName: TextView, tvUsername: TextView, tvAccountType: TextView, tvPhone: TextView, tvLocation: TextView) {
+    private fun shareUserProfile(username: String) {
+        val shareText = "Check out $username's profile on Paws!"
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Paws Profile")
+        intent.putExtra(Intent.EXTRA_TEXT, shareText)
+        startActivity(Intent.createChooser(intent, "Share via"))
+    }
+
+    private fun loadUserData(uid: String, ivAvatar: ImageView, tvHeaderName: TextView, tvFullName: TextView, tvAccountType: TextView, tvLocation: TextView) {
         db.collection("users").document(uid).get().addOnSuccessListener { doc ->
             if (isAdded && doc.exists()) {
                 val user = doc.toObject(User::class.java)?.copy(uid = uid)
                 user?.let {
-                    tvUsername.text = it.username
+                    tvHeaderName.text = it.username
+                    tvFullName.text = "${it.firstName} ${it.lastName}"
                     tvAccountType.text = it.accountType
-                    tvPhone.text = it.phone
+                    userPhone = it.phone
                     val loc = if (it.city.isNotEmpty()) "${it.city} (${it.province})" else "N/A"
                     tvLocation.text = loc
                     ProfileImageManager.loadProfileImageForUid(requireContext(), uid, ivAvatar)
@@ -146,7 +163,7 @@ class UserProfileFragment : Fragment() {
                 when (which) {
                     0 -> showSubFilterDialog("Age", arrayOf("All", "1 months", "6 months", "1 years", "2 years", "3 years", "5+ years"))
                     1 -> showSubFilterDialog("Gender", arrayOf("All", "Male", "Female"))
-                    2 -> showSubFilterDialog("Animal Type", arrayOf("All", "Dog", "Cat", "Bird", "Other"))
+                    2 -> showSubFilterDialog("Animal Type", arrayOf("All", "Dog", "Cat", "Bird"))
                     3 -> {
                         filterAge = null
                         filterGender = null
@@ -179,6 +196,11 @@ class UserProfileFragment : Fragment() {
                 applyFilters()
             }
             .show()
+    }
+
+    private fun hideKeyboard() {
+        val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
     private fun applyFilters() {

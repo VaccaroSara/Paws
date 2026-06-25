@@ -53,6 +53,7 @@ class FavoritesFragment : Fragment() {
         val viewBadge = view.findViewById<View>(R.id.viewBadgeFav)
         val ivFilter = view.findViewById<View>(R.id.ivFilterFav)
         val etSearch = view.findViewById<EditText>(R.id.etSearchFav)
+        etSearch?.hint = "search for a puppy..."
         tvEmptyFavorites = view.findViewById(R.id.tvEmptyFavorites)
 
         etSearch?.addTextChangedListener(object : TextWatcher {

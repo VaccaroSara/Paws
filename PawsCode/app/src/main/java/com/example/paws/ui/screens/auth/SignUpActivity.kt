@@ -56,7 +56,7 @@ class SignUpActivity : AppCompatActivity() {
             val phone = etPhone.text.toString()
             val accountType = spinnerAccountType.selectedItem.toString()
             
-            signUpUser(firstName, lastName, city, province, cap, username, email, pass, phone, accountType)
+            signUpUser(firstName, lastName, city, province, cap, username, email.trim().lowercase(), pass, phone, accountType)
         }
 
         val containerAccountType = findViewById<View>(R.id.containerAccountType_Xb)

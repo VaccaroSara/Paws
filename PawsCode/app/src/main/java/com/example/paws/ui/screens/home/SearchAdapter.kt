@@ -65,6 +65,8 @@ class SearchAdapter(
 
         val radiusPx = (32 * holder.itemView.context.resources.displayMetrics.density).toInt()
 
+        val ivAnimalType: ImageView = holder.itemView.findViewById(R.id.ivAnimalTypeIcon)
+
         if (post.imageUrl.isNotEmpty()) {
             Glide.with(holder.itemView.context)
                 .load(post.imageUrl)
@@ -80,6 +82,13 @@ class SearchAdapter(
         } else {
             holder.ivGender.setImageResource(R.drawable.ic_male)
             holder.containerGender.setBackgroundResource(R.drawable.bg_gender_circle)
+        }
+
+        // Animal Type Icon
+        when (post.type.lowercase()) {
+            "cat" -> ivAnimalType.setImageResource(R.drawable.cat)
+            "bird" -> ivAnimalType.setImageResource(R.drawable.bird)
+            else -> ivAnimalType.setImageResource(R.drawable.dog)
         }
 
         holder.btnInfo.setOnClickListener { onPostClick(post) }

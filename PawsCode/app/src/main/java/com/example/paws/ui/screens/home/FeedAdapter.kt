@@ -23,6 +23,7 @@ class FeedAdapter(
         val containerGender: View = view.findViewById(R.id.containerGender)
         val btnInfo: View = view.findViewById(R.id.btnPuppyInfo)
         val tvLikesCount: TextView = view.findViewById(R.id.tvLikesCount)
+        val ivAnimalType: ImageView = view.findViewById(R.id.ivAnimalTypeIcon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
@@ -65,8 +66,11 @@ class FeedAdapter(
         }
 
         // Animal Type Icon
-        // ivBreed is not in layout anymore, or we should find it if needed.
-        // For now, let's remove the broken references.
+        when (post.type.lowercase()) {
+            "cat" -> holder.ivAnimalType.setImageResource(R.drawable.cat)
+            "bird" -> holder.ivAnimalType.setImageResource(R.drawable.bird)
+            else -> holder.ivAnimalType.setImageResource(R.drawable.dog)
+        }
 
         holder.btnInfo.setOnClickListener {
             onInfoClick(post)

@@ -58,6 +58,7 @@ class HomeFragment : Fragment() {
         val ivFilter = view.findViewById<View>(R.id.ivFilterHome)
         val viewBadge = view.findViewById<View>(R.id.viewBadgeHome)
         etSearch = view.findViewById<EditText>(R.id.etSearchHome)
+        etSearch?.hint = "search for a user..."
         tvPuppiesLabel = view.findViewById(R.id.tvPuppiesLabel)
 
         etSearch?.addTextChangedListener(object : TextWatcher {
@@ -89,6 +90,8 @@ class HomeFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }, { user ->
+            // Close keyboard before navigating
+            hideKeyboard()
             // Navigate to User Profile - Using add instead of replace to keep Home state
             val profileFragment = UserProfileFragment.newInstance(user.uid)
             parentFragmentManager.beginTransaction()
@@ -186,7 +189,7 @@ class HomeFragment : Fragment() {
                 when (which) {
                     0 -> showSubFilterDialog("Age", arrayOf("All", "1 months", "6 months", "1 years", "2 years", "3 years", "5+ years"))
                     1 -> showSubFilterDialog("Gender", arrayOf("All", "Male", "Female"))
-                    2 -> showSubFilterDialog("Animal Type", arrayOf("All", "Dog", "Cat", "Bird", "Other"))
+                    2 -> showSubFilterDialog("Animal Type", arrayOf("All", "Dog", "Cat", "Bird"))
                     3 -> showSubFilterDialog("User Type", arrayOf("All", "Private User", "Animal Shelter"))
                     4 -> {
                         filterAge = null
@@ -248,6 +251,7 @@ class HomeFragment : Fragment() {
         }
 
         if (searchQuery.isNotEmpty() && searchQuery.length >= 2) {
+            val currentUid = auth.currentUser?.uid ?: ""
             // Search for users
             db.collection("users")
                 .whereGreaterThanOrEqualTo("username", searchQuery)
@@ -255,9 +259,10 @@ class HomeFragment : Fragment() {
                 .get()
                 .addOnSuccessListener { snapshots ->
                     if (isAdded) {
-                        val users = snapshots.toObjects(User::class.java).mapIndexed { index, user ->
-                            user.copy(uid = snapshots.documents[index].id)
-                        }
+                        val users = snapshots.toObjects(User::class.java)
+                            .mapIndexed { index, user -> user.copy(uid = snapshots.documents[index].id) }
+                            .filter { it.uid != currentUid } // Don't search for self
+
                         val combinedList = mutableListOf<Any>()
                         combinedList.addAll(users)
                         combinedList.addAll(filteredPosts)
@@ -299,7 +304,7 @@ class HomeFragment : Fragment() {
 
             // Se non esiste, procediamo al salvataggio
             db.collection("users").document(currentUser.uid).get().addOnSuccessListener { userDoc ->
-                val currentUserName = userDoc.getString("firstName") ?: "someone"
+                val currentUsername = userDoc.getString("username") ?: "someone"
                 
                 val favoriteData = hashMapOf(
                     "uid" to currentUser.uid,
@@ -324,7 +329,8 @@ class HomeFragment : Fragment() {
                         // Notifica al proprietario
                         val notificationData = hashMapOf(
                             "targetUid" to post.uid,
-                            "text" to "$currentUserName liked your post",
+                            "text" to "$currentUsername added ${post.name} to favorites",
+                            "postImageUrl" to post.imageUrl,
                             "timestamp" to com.google.firebase.Timestamp.now()
                         )
                         db.collection("notifications").add(notificationData)

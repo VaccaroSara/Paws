@@ -141,4 +141,46 @@ object ProfileImageManager {
             e.printStackTrace()
         }
     }
+
+    /**
+     * Elimina un'immagine specifica da Supabase (usato per i post).
+     */
+    fun deletePostImage(postId: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val fileName = "post_images/$postId.jpg"
+                SupabaseManager.client.storage.from(BUCKET_NAME).delete(fileName)
+                Log.d(TAG, "Post image deleted: $fileName")
+            } catch (e: Exception) {
+                Log.e(TAG, "Error deleting post image from Supabase", e)
+            }
+        }
+    }
+
+    /**
+     * Elimina tutti i dati immagine associati a un utente (foto profilo + post).
+     */
+    fun deleteAllUserDataFromSupabase(uid: String, postIds: List<String>) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val storage = SupabaseManager.client.storage.from(BUCKET_NAME)
+                
+                // 1. Elimina foto profilo
+                try {
+                    storage.delete("profile_images/$uid.jpg")
+                    Log.d(TAG, "Profile image deleted for $uid")
+                } catch (e: Exception) { Log.e(TAG, "Error deleting profile image", e) }
+
+                // 2. Elimina tutte le foto dei post
+                for (postId in postIds) {
+                    try {
+                        storage.delete("post_images/$postId.jpg")
+                        Log.d(TAG, "Post image deleted: $postId")
+                    } catch (e: Exception) { Log.e(TAG, "Error deleting post $postId", e) }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error in bulk deletion from Supabase", e)
+            }
+        }
+    }
 }

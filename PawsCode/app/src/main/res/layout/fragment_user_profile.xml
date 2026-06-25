@@ -17,7 +17,7 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Header with Back Button and Name -->
+            <!-- Header with Back Button and Username -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,16 +38,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
-                    android:text="Hi, sciammoc"
+                    android:text="Pata"
                     android:textSize="24sp"
                     android:textColor="#A67B5B"
-                    android:fontFamily="sans-serif-medium" />
-
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/ic_bell"
-                    app:tint="#4A3B32" />
+                    android:fontFamily="@font/font" />
             </LinearLayout>
 
             <View
@@ -60,135 +54,141 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="24dp"
-                android:gravity="center_vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="24dp">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/ivUserProfileAvatar"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bg_add_puppy_placeholder"
-                    app:shapeAppearanceOverlay="@style/RoundedSquare" />
+                <!-- Full Name -->
+                <TextView
+                    android:id="@+id/tvUserProfileFullName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Davide Ronchini"
+                    android:textSize="28sp"
+                    android:textColor="#A67B5B"
+                    android:fontFamily="@font/font"
+                    android:layout_marginBottom="16dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="20dp">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvUserProfileUsername"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="PataRonchi"
-                        android:textSize="28sp"
-                        android:textColor="#4A3B32"
-                        android:fontFamily="sans-serif-medium" />
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivUserProfileAvatar"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_add_puppy_placeholder"
+                        app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="8dp">
+                        android:orientation="vertical"
+                        android:layout_marginStart="20dp">
 
+                        <!-- Account Type -->
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_search_bar"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="4dp"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp">
                             <ImageView
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
                                 android:src="@drawable/home_ic_home"
-                                app:tint="#8E8E8E" />
+                                app:tint="#A67B5B"
+                                android:contentDescription="Type" />
                             <TextView
                                 android:id="@+id/tvUserProfileAccountType"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
+                                android:layout_marginStart="8dp"
                                 android:text="Private"
-                                android:textSize="12sp"
-                                android:textColor="#8E8E8E" />
+                                android:textSize="16sp"
+                                android:textColor="#8E8E8E"
+                                android:fontFamily="@font/font" />
                         </LinearLayout>
 
+                        <!-- Location -->
                         <LinearLayout
-                            android:id="@+id/btnShareUserProfile"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:background="@drawable/bg_search_bar"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="4dp"
                             android:gravity="center_vertical"
-                            android:clickable="true"
-                            android:focusable="true">
+                            android:layout_marginBottom="16dp">
                             <ImageView
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
-                                android:src="@drawable/ic_share"
-                                app:tint="#8E8E8E" />
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:src="@drawable/ic_location"
+                                app:tint="#A67B5B"
+                                android:contentDescription="Location" />
                             <TextView
+                                android:id="@+id/tvUserProfileLocation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
-                                android:text="Share profile"
-                                android:textSize="12sp"
-                                android:textColor="#8E8E8E" />
+                                android:layout_marginStart="8dp"
+                                android:text="Ortona (CH)"
+                                android:textSize="16sp"
+                                android:textColor="#4A3B32"
+                                android:fontFamily="@font/font" />
+                        </LinearLayout>
+
+                        <!-- Actions -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/btnCallUserProfile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:background="@drawable/bg_search_bar"
+                                android:paddingHorizontal="16dp"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:focusable="true">
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:src="@drawable/sign_ic_phone"
+                                    app:tint="#8E8E8E"
+                                    android:contentDescription="Call" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="6dp"
+                                    android:text="Call"
+                                    android:textSize="14sp"
+                                    android:textColor="#8E8E8E" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btnShareUserProfile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="32dp"
+                                android:layout_marginStart="12dp"
+                                android:background="@drawable/bg_search_bar"
+                                android:paddingHorizontal="16dp"
+                                android:gravity="center_vertical"
+                                android:clickable="true"
+                                android:focusable="true">
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:src="@drawable/ic_share"
+                                    app:tint="#8E8E8E"
+                                    android:contentDescription="Share" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="6dp"
+                                    android:text="Share profile"
+                                    android:textSize="14sp"
+                                    android:textColor="#8E8E8E" />
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Contact info -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="24dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical">
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/sign_ic_phone"
-                        app:tint="#A67B5B"
-                        android:contentDescription="Phone" />
-                    <TextView
-                        android:id="@+id/tvUserProfilePhone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="+39 000 000 0000"
-                        android:textSize="14sp"
-                        android:textColor="#4A3B32" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical">
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_location"
-                        app:tint="#A67B5B" />
-                    <TextView
-                        android:id="@+id/tvUserProfileLocation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="City (PR)"
-                        android:textSize="14sp"
-                        android:textColor="#4A3B32" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -211,7 +211,7 @@
                     android:text="Post:"
                     android:textSize="18sp"
                     android:textColor="#4A3B32"
-                    android:fontFamily="sans-serif-medium" />
+                    android:fontFamily="@font/font" />
                 <ImageView
                     android:id="@+id/ivFilterUserProfile"
                     android:layout_width="24dp"

@@ -133,6 +133,19 @@ class PuppyDetailsFragment : Fragment() {
                 .addOnSuccessListener {
                     if (isAdded) {
                         android.widget.Toast.makeText(requireContext(), "${post.name} salvato!", android.widget.Toast.LENGTH_SHORT).show()
+                        
+                        // Invia notifica al proprietario
+                        db.collection("users").document(currentUser.uid).get().addOnSuccessListener { userDoc ->
+                            val currentUsername = userDoc.getString("username") ?: "someone"
+                            val notificationData = hashMapOf(
+                                "targetUid" to post.uid,
+                                "text" to "$currentUsername added ${post.name} to favorites",
+                                "postImageUrl" to post.imageUrl,
+                                "timestamp" to com.google.firebase.Timestamp.now()
+                            )
+                            db.collection("notifications").add(notificationData)
+                        }
+
                         parentFragmentManager.popBackStack()
                     }
                 }

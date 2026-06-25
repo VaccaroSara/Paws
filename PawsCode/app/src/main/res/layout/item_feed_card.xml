@@ -73,6 +73,7 @@
                     android:layout_marginStart="8dp"
                     android:background="@drawable/bg_white_circle">
                     <ImageView
+                        android:id="@+id/ivAnimalTypeIcon"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center"

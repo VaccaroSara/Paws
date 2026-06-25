@@ -62,6 +62,7 @@ class AddPuppyFragment : Fragment() {
         val ivBell = view.findViewById<View>(R.id.ivBellAdd)
         val ivFilter = view.findViewById<View>(R.id.ivFilterAdd)
         val etSearch = view.findViewById<EditText>(R.id.etSearchAdd)
+        etSearch?.hint = "search for a puppy..."
 
         etSearch?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -147,7 +148,7 @@ class AddPuppyFragment : Fragment() {
                 when (which) {
                     0 -> showSubFilterDialog("Age", arrayOf("All", "1 months", "6 months", "1 years", "2 years", "3 years", "5+ years"))
                     1 -> showSubFilterDialog("Gender", arrayOf("All", "Male", "Female"))
-                    2 -> showSubFilterDialog("Animal Type", arrayOf("All", "Dog", "Cat", "Bird", "Other"))
+                    2 -> showSubFilterDialog("Animal Type", arrayOf("All", "Dog", "Cat", "Bird"))
                     3 -> showSubFilterDialog("User Type", arrayOf("All", "Private User", "Animal Shelter"))
                     4 -> {
                         filterAge = null
@@ -239,7 +240,10 @@ class AddPuppyFragment : Fragment() {
                 
                 // Commit notifications and favorite removals
                 batch.commit().addOnSuccessListener {
-                    // 2. Finally delete from 'posts' collection
+                    // 2. Delete image from Supabase
+                    ProfileImageManager.deletePostImage(post.id)
+
+                    // 3. Finally delete from 'posts' collection
                     db.collection("posts").document(post.id)
                         .delete()
                         .addOnSuccessListener {

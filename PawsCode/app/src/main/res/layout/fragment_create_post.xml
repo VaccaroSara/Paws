@@ -110,6 +110,12 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:layout_marginStart="12dp">
+                <ImageView
+                    android:id="@+id/ivTypeIcon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/home_ic_paws_logo"
+                    android:layout_marginEnd="4dp" />
                 <TextView
                     android:id="@+id/tvPuppyType"
                     android:layout_width="wrap_content"
@@ -150,15 +156,37 @@
         </LinearLayout>
 
         <!-- Caption -->
-        <EditText
-            android:id="@+id/etCaption"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@null"
-            android:hint="Follow a caption..."
-            android:gravity="top"
-            android:textSize="14sp"
-            android:layout_marginBottom="32dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp">
+
+            <EditText
+                android:id="@+id/etCaption"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@null"
+                android:hint="Follow a caption..."
+                android:gravity="top"
+                android:textSize="14sp"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+                android:scrollbarFadeDuration="0"
+                android:scrollbarSize="4dp"
+                android:scrollbarThumbVertical="@drawable/bg_scrollbar_thumb"
+                android:maxLength="450" />
+
+            <TextView
+                android:id="@+id/tvCharCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etCaption"
+                android:layout_alignParentEnd="true"
+                android:text="450 characters remaining"
+                android:textSize="12sp"
+                android:textColor="#8E8E8E"
+                android:fontFamily="sans-serif" />
+        </RelativeLayout>
 
         <!-- Share Button -->
         <androidx.appcompat.widget.AppCompatButton

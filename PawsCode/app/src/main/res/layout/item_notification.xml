@@ -23,13 +23,23 @@
 
         <TextView
             android:id="@+id/tvNotificationText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:layout_weight="1"
             android:text="username liked your post"
             android:textColor="#8E8E8E"
             android:textSize="14sp"
             android:fontFamily="sans-serif-medium" />
+
+        <ImageView
+            android:id="@+id/ivNotificationPostThumb"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Post Thumbnail"
+            android:visibility="gone" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

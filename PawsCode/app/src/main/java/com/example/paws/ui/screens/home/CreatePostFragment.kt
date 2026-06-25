@@ -2,6 +2,8 @@ package com.example.paws.ui.screens.home
 
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -72,7 +74,9 @@ class CreatePostFragment : Fragment() {
         val ivPreview = view.findViewById<ImageView>(R.id.ivPreviewPost)
         val etName = view.findViewById<EditText>(R.id.etPuppyName)
         val etCaption = view.findViewById<EditText>(R.id.etCaption)
+        val tvCharCount = view.findViewById<TextView>(R.id.tvCharCount)
         val tvType = view.findViewById<TextView>(R.id.tvPuppyType)
+        val ivTypeIcon = view.findViewById<ImageView>(R.id.ivTypeIcon) // Assuming this ID exists or should be added
         val tvAge = view.findViewById<TextView>(R.id.tvPuppyAge)
         val ivGender = view.findViewById<ImageView>(R.id.ivGenderIcon)
         
@@ -87,9 +91,37 @@ class CreatePostFragment : Fragment() {
         // Hide keyboard when clicking background
         view.setOnClickListener { hideKeyboard() }
 
+        // Header and labels logic...
         if (existingPostId != null) {
             btnShare.text = "SAVE CHANGES"
             tvHeader.text = "Edit Post"
+        }
+
+        // Caption character counter
+        etCaption.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val remaining = 450 - (s?.length ?: 0)
+                tvCharCount.text = "$remaining characters remaining"
+                
+                if (remaining <= 0) {
+                    tvCharCount.setTextColor(android.graphics.Color.RED)
+                } else {
+                    tvCharCount.setTextColor(android.graphics.Color.parseColor("#8E8E8E"))
+                }
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        // Allow scrolling inside EditText when it's inside a ScrollView
+        etCaption.setOnTouchListener { v, event ->
+            if (v.id == R.id.etCaption) {
+                v.parent.requestDisallowInterceptTouchEvent(true)
+                when (event.action and android.view.MotionEvent.ACTION_MASK) {
+                    android.view.MotionEvent.ACTION_UP -> v.parent.requestDisallowInterceptTouchEvent(false)
+                }
+            }
+            false
         }
 
         selectedImageUri?.let {
@@ -149,11 +181,19 @@ class CreatePostFragment : Fragment() {
         }
 
         containerType.setOnClickListener {
-            val types = arrayOf("Dog", "Cat", "Bird", "Other")
+            val types = arrayOf("Dog", "Cat", "Bird")
             android.app.AlertDialog.Builder(requireContext())
                 .setTitle("Select Type")
                 .setItems(types) { _, which ->
-                    tvType.text = types[which]
+                    val selectedType = types[which]
+                    tvType.text = selectedType
+                    
+                    // Update icon based on selection
+                    when (selectedType) {
+                        "Cat" -> ivTypeIcon?.setImageResource(R.drawable.cat)
+                        "Bird" -> ivTypeIcon?.setImageResource(R.drawable.bird)
+                        "Dog" -> ivTypeIcon?.setImageResource(R.drawable.dog)
+                    }
                 }
                 .show()
         }
@@ -171,7 +211,7 @@ class CreatePostFragment : Fragment() {
         btnBack.setOnClickListener { parentFragmentManager.popBackStack() }
 
         btnShare.setOnClickListener {
-            val name = etName.text.toString()
+            val name = etName.text.toString().trim().replaceFirstChar { it.uppercase() }
             val caption = etCaption.text.toString()
             val type = tvType.text.toString()
             val age = tvAge.text.toString()

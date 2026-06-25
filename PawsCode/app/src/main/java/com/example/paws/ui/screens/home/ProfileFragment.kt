@@ -307,6 +307,7 @@ class ProfileFragment : Fragment() {
             .whereEqualTo("uid", uid)
             .get()
             .addOnSuccessListener { snapshots ->
+                val postIds = snapshots.documents.map { it.id }
                 val batch = db.batch()
                 for (doc in snapshots) {
                     batch.delete(doc.reference)
@@ -316,7 +317,10 @@ class ProfileFragment : Fragment() {
                 batch.delete(db.collection("users").document(uid))
                 
                 batch.commit().addOnSuccessListener {
-                    // 3. Delete from Auth
+                    // 3. Delete images from Supabase
+                    ProfileImageManager.deleteAllUserDataFromSupabase(uid, postIds)
+
+                    // 4. Delete from Auth
                     user.delete()
                         .addOnSuccessListener {
                             if (isAdded) {

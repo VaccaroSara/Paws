@@ -40,7 +40,7 @@ class SignInActivity : AppCompatActivity() {
         etEmail.hint = "Email"
 
         btnLogin.setOnClickListener {
-            signInUser(etEmail.text.toString(), etPassword.text.toString())
+            signInUser(etEmail.text.toString().trim().lowercase(), etPassword.text.toString())
         }
 
         tabSignUp.setOnClickListener {
