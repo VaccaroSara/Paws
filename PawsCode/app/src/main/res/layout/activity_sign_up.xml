@@ -83,43 +83,65 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Nome e Cognome in una riga -->
+        <!-- Nome e Cognome -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginBottom="12dp">
 
-            <EditText
-                android:id="@+id/firstName_Xb"
+            <!-- Nome -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp"
                 android:background="@drawable/sign_bg_input"
-                android:hint="Nome"
-                android:textSize="14sp"
-                android:drawableStart="@drawable/sign_ic_user"
-                android:drawablePadding="8dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="11dp"
+                    android:src="@drawable/sign_ic_user"
+                    android:importantForAccessibility="no" />
+                <EditText
+                    android:id="@+id/firstName_Xb"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="Nome"
+                    android:textSize="14sp"
+                    android:paddingEnd="8dp" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/lastName_Xb"
+            <!-- Cognome -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
                 android:background="@drawable/sign_bg_input"
-                android:hint="Cognome"
-                android:textSize="14sp"
-                android:drawableStart="@drawable/sign_ic_user"
-                android:drawablePadding="8dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="11dp"
+                    android:src="@drawable/sign_ic_user"
+                    android:importantForAccessibility="no" />
+                <EditText
+                    android:id="@+id/lastName_Xb"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="Cognome"
+                    android:textSize="14sp"
+                    android:paddingEnd="8dp" />
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Città, Provincia, CAP in una riga -->
+        <!-- Città, Prov, CAP -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -135,7 +157,7 @@
                 android:background="@drawable/sign_bg_input"
                 android:hint="Città"
                 android:textSize="14sp"
-                android:paddingStart="12dp"
+                android:paddingStart="16dp"
                 android:paddingEnd="12dp" />
 
             <EditText
@@ -167,62 +189,116 @@
                 android:maxLength="5" />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/username_Xb"
+        <!-- Username -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/sign_bg_input"
-            android:hint="Username"
-            android:textSize="14sp"
-            android:drawableStart="@drawable/sign_ic_user"
-            android:drawablePadding="12dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_marginBottom="12dp"
-            android:transitionName="username_transition" />
+            android:transitionName="username_transition">
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="13dp"
+                android:src="@drawable/sign_ic_user"
+                android:importantForAccessibility="no" />
+            <EditText
+                android:id="@+id/username_Xb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="Username"
+                android:textSize="14sp"
+                android:paddingEnd="16dp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/email_Xb"
+        <!-- Email -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/sign_bg_input"
-            android:hint="Email"
-            android:textSize="14sp"
-            android:drawableStart="@drawable/sign_ic_mail"
-            android:drawablePadding="12dp"
-            android:inputType="textEmailAddress"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:layout_marginBottom="12dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="13dp"
+                android:src="@drawable/sign_ic_mail"
+                android:importantForAccessibility="no" />
+            <EditText
+                android:id="@+id/email_Xb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="Email"
+                android:textSize="14sp"
+                android:inputType="textEmailAddress"
+                android:paddingEnd="16dp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/password_Xb"
+        <!-- Password -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/sign_bg_input"
-            android:hint="Password"
-            android:textSize="14sp"
-            android:inputType="textPassword"
-            android:drawableStart="@drawable/sign_ic_lock"
-            android:drawablePadding="12dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_marginBottom="12dp"
-            android:transitionName="password_transition" />
+            android:transitionName="password_transition">
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="13dp"
+                android:src="@drawable/sign_ic_lock"
+                android:importantForAccessibility="no" />
+            <EditText
+                android:id="@+id/password_Xb"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textSize="14sp" />
+            <ImageView
+                android:id="@+id/btnTogglePassword_Xb"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="15dp"
+                android:src="@drawable/ic_eye_hidden"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:importantForAccessibility="no" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/phone_Xb"
+        <!-- Phone -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/sign_bg_input"
-            android:hint="Phone"
-            android:textSize="14sp"
-            android:drawableStart="@drawable/sign_ic_phone"
-            android:drawablePadding="12dp"
-            android:inputType="phone"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:layout_marginBottom="12dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="13dp"
+                android:src="@drawable/sign_ic_phone"
+                android:importantForAccessibility="no" />
+            <EditText
+                android:id="@+id/phone_Xb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="Phone"
+                android:textSize="14sp"
+                android:inputType="phone"
+                android:paddingEnd="16dp" />
+        </LinearLayout>
 
         <!-- Sezione Account Type -->
         <LinearLayout
@@ -232,17 +308,14 @@
             android:background="@drawable/sign_bg_input"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
             android:layout_marginBottom="24dp">
-
             <ImageView
                 android:id="@+id/iconAccountType_Xb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="13dp"
                 android:src="@drawable/sign_ic_user"
-                android:layout_marginEnd="12dp"/>
-
+                android:importantForAccessibility="no" />
             <Spinner
                 android:id="@+id/spinnerAccountType_Xb"
                 android:layout_width="0dp"
@@ -250,14 +323,14 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:spinnerMode="dropdown" />
-
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="8dp"
                 android:src="@drawable/sign_ic_dropdown_arrow"
                 android:alpha="0.6"
-                android:importantForAccessibility="no" />
-
+                android:importantForAccessibility="no"
+                android:layout_marginEnd="8dp" />
         </LinearLayout>
 
         <Button

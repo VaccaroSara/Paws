@@ -41,7 +41,7 @@
                     android:text="Pata"
                     android:textSize="24sp"
                     android:textColor="#A67B5B"
-                    android:fontFamily="@font/font" />
+                    android:fontFamily="serif" />
             </LinearLayout>
 
             <View
@@ -65,7 +65,7 @@
                     android:text="Davide Ronchini"
                     android:textSize="28sp"
                     android:textColor="#A67B5B"
-                    android:fontFamily="@font/font"
+                    android:fontFamily="serif"
                     android:layout_marginBottom="16dp" />
 
                 <LinearLayout
@@ -107,7 +107,7 @@
                                 android:text="Private"
                                 android:textSize="16sp"
                                 android:textColor="#8E8E8E"
-                                android:fontFamily="@font/font" />
+                                android:fontFamily="serif" />
                         </LinearLayout>
 
                         <!-- Location -->
@@ -130,7 +130,7 @@
                                 android:text="Ortona (CH)"
                                 android:textSize="16sp"
                                 android:textColor="#4A3B32"
-                                android:fontFamily="@font/font" />
+                                android:fontFamily="serif" />
                         </LinearLayout>
 
                         <!-- Actions -->
@@ -211,7 +211,7 @@
                     android:text="Post:"
                     android:textSize="18sp"
                     android:textColor="#4A3B32"
-                    android:fontFamily="@font/font" />
+                    android:fontFamily="serif" />
                 <ImageView
                     android:id="@+id/ivFilterUserProfile"
                     android:layout_width="24dp"

@@ -1,7 +1,10 @@
 package com.example.paws.ui.screens.home
 
+import android.app.Activity
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -14,6 +17,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -37,6 +41,22 @@ class CreatePostFragment : Fragment() {
     private var existingPostId: String? = null
     private var existingImageUrl: String? = null
     private val TAG = "CreatePostFragment"
+
+    private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val imageUri = result.data?.data
+            if (imageUri != null) {
+                selectedImageUri = imageUri
+                view?.findViewById<ImageView>(R.id.ivPreviewPost)?.let { ivPreview ->
+                    val radiusPx = (24 * resources.displayMetrics.density).toInt()
+                    Glide.with(this)
+                        .load(imageUri)
+                        .transform(CenterCrop(), RoundedCorners(radiusPx))
+                        .into(ivPreview)
+                }
+            }
+        }
+    }
 
     companion object {
         private const val BUCKET_NAME = "paws-images"
@@ -95,6 +115,11 @@ class CreatePostFragment : Fragment() {
         if (existingPostId != null) {
             btnShare.text = "SAVE CHANGES"
             tvHeader.text = "Edit Post"
+            
+            // Allow changing photo when editing
+            ivPreview.setOnClickListener {
+                openGallery()
+            }
         }
 
         // Caption character counter
@@ -264,67 +289,81 @@ class CreatePostFragment : Fragment() {
     private fun sharePost(name: String, caption: String, type: String, age: String, isUpdate: Boolean = false, updateId: String? = null) {
         val uid = auth.currentUser?.uid ?: return
         val postId = updateId ?: UUID.randomUUID().toString()
-        val uri = selectedImageUri ?: return
+        val uri = selectedImageUri
 
         Toast.makeText(requireContext(), if (isUpdate) "Salvataggio..." else "Caricamento in corso...", Toast.LENGTH_SHORT).show()
 
         db.collection("users").document(uid).get().addOnSuccessListener { userDoc ->
             val userType = userDoc.getString("accountType") ?: "Private User"
 
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    val inputStream = requireContext().contentResolver.openInputStream(uri)
-                    val bytes = inputStream?.readBytes()
-                    inputStream?.close()
+            if (uri != null) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        val inputStream = requireContext().contentResolver.openInputStream(uri)
+                        val bytes = inputStream?.readBytes()
+                        inputStream?.close()
 
-                    if (bytes != null) {
-                        val fileName = "posts/$postId.jpg"
-                        val storage = SupabaseManager.client.storage.from(BUCKET_NAME)
-                        
-                        storage.upload(fileName, bytes) {
-                            upsert = true // Allow overwrite if updating
+                        if (bytes != null) {
+                            val fileName = "posts/$postId.jpg"
+                            val storage = SupabaseManager.client.storage.from(BUCKET_NAME)
+                            
+                            storage.upload(fileName, bytes) {
+                                upsert = true // Allow overwrite if updating
+                            }
+
+                            val publicUrl = storage.publicUrl(fileName)
+
+                            withContext(Dispatchers.Main) {
+                                savePostToFirestore(postId, uid, name, publicUrl, type, age, caption, userType, isUpdate)
+                            }
                         }
-
-                        val publicUrl = storage.publicUrl(fileName)
-
+                    } catch (e: Exception) {
                         withContext(Dispatchers.Main) {
-                            val postData = hashMapOf(
-                                "id" to postId,
-                                "uid" to uid,
-                                "name" to name,
-                                "imageUrl" to publicUrl,
-                                "gender" to currentGender,
-                                "type" to type,
-                                "age" to age,
-                                "caption" to caption,
-                                "userType" to userType,
-                                "timestamp" to com.google.firebase.Timestamp.now()
-                            )
-
-                            db.collection("posts").document(postId)
-                                .set(postData)
-                                .addOnSuccessListener {
-                                    if (isAdded) {
-                                        Toast.makeText(requireContext(), if (isUpdate) "Modifiche salvate!" else "Post condiviso!", Toast.LENGTH_SHORT).show()
-                                        parentFragmentManager.popBackStack()
-                                    }
-                                }
-                                .addOnFailureListener { e ->
-                                    if (isAdded) Toast.makeText(requireContext(), "Errore database", Toast.LENGTH_SHORT).show()
-                                }
+                            if (isAdded) Toast.makeText(requireContext(), "Errore: ${e.message}", Toast.LENGTH_LONG).show()
                         }
-                    }
-                } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        if (isAdded) Toast.makeText(requireContext(), "Errore: ${e.message}", Toast.LENGTH_LONG).show()
                     }
                 }
+            } else if (isUpdate && existingImageUrl != null) {
+                // Update without changing image
+                savePostToFirestore(postId, uid, name, existingImageUrl!!, type, age, caption, userType, true)
             }
         }
+    }
+
+    private fun savePostToFirestore(postId: String, uid: String, name: String, imageUrl: String, type: String, age: String, caption: String, userType: String, isUpdate: Boolean) {
+        val postData = hashMapOf(
+            "id" to postId,
+            "uid" to uid,
+            "name" to name,
+            "imageUrl" to imageUrl,
+            "gender" to currentGender,
+            "type" to type,
+            "age" to age,
+            "caption" to caption,
+            "userType" to userType,
+            "timestamp" to com.google.firebase.Timestamp.now()
+        )
+
+        db.collection("posts").document(postId)
+            .set(postData)
+            .addOnSuccessListener {
+                if (isAdded) {
+                    Toast.makeText(requireContext(), if (isUpdate) "Modifiche salvate!" else "Post condiviso!", Toast.LENGTH_SHORT).show()
+                    parentFragmentManager.popBackStack()
+                }
+            }
+            .addOnFailureListener { e ->
+                if (isAdded) Toast.makeText(requireContext(), "Errore database", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun hideKeyboard() {
         val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        pickImageLauncher.launch(intent)
     }
 }

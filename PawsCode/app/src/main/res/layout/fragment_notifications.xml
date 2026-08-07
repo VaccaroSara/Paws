@@ -33,7 +33,7 @@
                     android:text="hi"
                     android:textSize="24sp"
                     android:textColor="#A67B5B"
-                    android:fontFamily="@font/font"
+                    android:fontFamily="serif"
                     android:textAllCaps="false" />
 
                 <ImageView
@@ -80,7 +80,7 @@
                     android:hint="search..."
                     android:paddingStart="12dp"
                     android:textSize="14sp"
-                    android:fontFamily="@font/font"
+                    android:fontFamily="serif"
                     android:inputType="text"
                     android:textColorHint="#8E8E8E" />
             </LinearLayout>

@@ -80,34 +80,72 @@
         </LinearLayout>
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/username_Xa"
+    <!-- Email/Username -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/sign_bg_input"
-        android:hint="Username"
-        android:textSize="14sp"
-        android:drawableStart="@drawable/sign_ic_user"
-        android:drawablePadding="12dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:layout_marginBottom="12dp"
-        android:transitionName="username_transition" />
+        android:transitionName="username_transition">
 
-    <EditText
-        android:id="@+id/password_Xa"
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="13dp"
+            android:src="@drawable/sign_ic_user"
+            android:importantForAccessibility="no" />
+
+        <EditText
+            android:id="@+id/username_Xa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="Email"
+            android:textSize="14sp"
+            android:paddingEnd="16dp"
+            android:inputType="textEmailAddress" />
+    </LinearLayout>
+
+    <!-- Password -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/sign_bg_input"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textSize="14sp"
-        android:drawableStart="@drawable/sign_ic_lock"
-        android:drawablePadding="12dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:layout_marginBottom="24dp"
-        android:transitionName="password_transition" />
+        android:transitionName="password_transition">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="13dp"
+            android:src="@drawable/sign_ic_lock"
+            android:importantForAccessibility="no" />
+
+        <EditText
+            android:id="@+id/password_Xa"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/btnTogglePassword_Xa"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="15dp"
+            android:src="@drawable/ic_eye_hidden"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:importantForAccessibility="no" />
+    </LinearLayout>
 
     <!-- Bottone -->
     <Button

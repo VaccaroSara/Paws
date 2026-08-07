@@ -7,6 +7,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -33,11 +34,25 @@ class SignInActivity : AppCompatActivity() {
         // UI references
         val etEmail = findViewById<EditText>(R.id.username_Xa) // Using username field as email
         val etPassword = findViewById<EditText>(R.id.password_Xa)
+        val btnTogglePassword = findViewById<ImageView>(R.id.btnTogglePassword_Xa)
         val btnLogin = findViewById<Button>(R.id.btnLogin_Xa)
         val tabSignUp = findViewById<TextView>(R.id.tabSignUp_Xa)
 
         // Change hint to Email to avoid confusion
         etEmail.hint = "Email"
+
+        var isPasswordVisible = false
+        btnTogglePassword.setOnClickListener {
+            isPasswordVisible = !isPasswordVisible
+            if (isPasswordVisible) {
+                etPassword.transformationMethod = android.text.method.HideReturnsTransformationMethod.getInstance()
+                btnTogglePassword.setImageResource(R.drawable.ic_eye_visible)
+            } else {
+                etPassword.transformationMethod = android.text.method.PasswordTransformationMethod.getInstance()
+                btnTogglePassword.setImageResource(R.drawable.ic_eye_hidden)
+            }
+            etPassword.setSelection(etPassword.text.length)
+        }
 
         btnLogin.setOnClickListener {
             signInUser(etEmail.text.toString().trim().lowercase(), etPassword.text.toString())

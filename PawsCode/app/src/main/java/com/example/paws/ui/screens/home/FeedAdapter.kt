@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.signature.ObjectKey
 import com.example.paws.R
 
 class FeedAdapter(
@@ -51,6 +52,7 @@ class FeedAdapter(
             Glide.with(holder.itemView.context)
                 .load(post.imageUrl)
                 .transform(CenterCrop(), RoundedCorners(radiusPx))
+                .signature(ObjectKey(post.imageUrl))
                 .into(holder.ivImage)
         } else {
             holder.ivImage.setImageResource(R.drawable.bg_add_puppy_placeholder)

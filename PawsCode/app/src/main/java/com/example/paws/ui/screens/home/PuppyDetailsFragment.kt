@@ -89,11 +89,28 @@ class PuppyDetailsFragment : Fragment() {
             // Load Owner Details
             db.collection("users").document(post.uid).get().addOnSuccessListener { doc ->
                 if (isAdded && doc.exists()) {
-                    tvUsername.text = doc.getString("username") ?: doc.getString("firstName") ?: "Unknown"
+                    val username = doc.getString("username") ?: doc.getString("firstName") ?: "Unknown"
+                    tvUsername.text = username
                     tvPhone.text = doc.getString("phone") ?: "N/A"
                     val city = doc.getString("city") ?: ""
                     val province = doc.getString("province") ?: ""
                     tvLocation.text = if (city.isNotEmpty() && province.isNotEmpty()) "$city ($province)" else city
+
+                    // Navigate to owner profile on click
+                    tvUsername.setOnClickListener {
+                        val currentUid = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid
+                        if (post.uid != currentUid) {
+                            val profileFragment = UserProfileFragment.newInstance(post.uid)
+                            parentFragmentManager.beginTransaction()
+                                .add(R.id.content_frame, profileFragment)
+                                .hide(this@PuppyDetailsFragment)
+                                .addToBackStack(null)
+                                .commit()
+                        } else {
+                            // Optionally redirect to own profile or show message
+                            Toast.makeText(requireContext(), "Questo è il tuo profilo", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
         }
