@@ -96,7 +96,7 @@ class CreatePostFragment : Fragment() {
         val etCaption = view.findViewById<EditText>(R.id.etCaption)
         val tvCharCount = view.findViewById<TextView>(R.id.tvCharCount)
         val tvType = view.findViewById<TextView>(R.id.tvPuppyType)
-        val ivTypeIcon = view.findViewById<ImageView>(R.id.ivTypeIcon) // Assuming this ID exists or should be added
+        val ivTypeIcon = view.findViewById<ImageView>(R.id.ivTypeIcon)
         val tvAge = view.findViewById<TextView>(R.id.tvPuppyAge)
         val ivGender = view.findViewById<ImageView>(R.id.ivGenderIcon)
         
@@ -110,6 +110,9 @@ class CreatePostFragment : Fragment() {
 
         // Hide keyboard when clicking background
         view.setOnClickListener { hideKeyboard() }
+
+        // Set default icon for Dog
+        ivTypeIcon.setImageResource(R.drawable.dog)
 
         // Header and labels logic...
         if (existingPostId != null) {
@@ -163,10 +166,19 @@ class CreatePostFragment : Fragment() {
                 if (isAdded && doc.exists()) {
                     etName.setText(doc.getString("name"))
                     etCaption.setText(doc.getString("caption"))
-                    tvType.text = doc.getString("type") ?: "Dog"
+                    val type = doc.getString("type") ?: "Dog"
+                    tvType.text = type
                     tvAge.text = doc.getString("age") ?: "1 years"
                     currentGender = doc.getString("gender") ?: "male"
                     existingImageUrl = doc.getString("imageUrl")
+                    
+                    // Update type icon based on loaded data
+                    when (type) {
+                        "Cat" -> ivTypeIcon?.setImageResource(R.drawable.cat)
+                        "Bird" -> ivTypeIcon?.setImageResource(R.drawable.bird)
+                        "Dog" -> ivTypeIcon?.setImageResource(R.drawable.dog)
+                        else -> ivTypeIcon?.setImageResource(R.drawable.home_ic_paws_logo)
+                    }
                     
                     if (currentGender == "female") {
                         ivGender.setImageResource(R.drawable.ic_female)
@@ -206,7 +218,7 @@ class CreatePostFragment : Fragment() {
         }
 
         containerType.setOnClickListener {
-            val types = arrayOf("Dog", "Cat", "Bird")
+            val types = arrayOf("Dog", "Cat", "Bird", "Other")
             android.app.AlertDialog.Builder(requireContext())
                 .setTitle("Select Type")
                 .setItems(types) { _, which ->
@@ -218,6 +230,7 @@ class CreatePostFragment : Fragment() {
                         "Cat" -> ivTypeIcon?.setImageResource(R.drawable.cat)
                         "Bird" -> ivTypeIcon?.setImageResource(R.drawable.bird)
                         "Dog" -> ivTypeIcon?.setImageResource(R.drawable.dog)
+                        else -> ivTypeIcon?.setImageResource(R.drawable.home_ic_paws_logo)
                     }
                 }
                 .show()
@@ -311,7 +324,8 @@ class CreatePostFragment : Fragment() {
                                 upsert = true // Allow overwrite if updating
                             }
 
-                            val publicUrl = storage.publicUrl(fileName)
+                            // Append a timestamp to the URL to bypass Glide's cache
+                            val publicUrl = "${storage.publicUrl(fileName)}?t=${System.currentTimeMillis()}"
 
                             withContext(Dispatchers.Main) {
                                 savePostToFirestore(postId, uid, name, publicUrl, type, age, caption, userType, isUpdate)
