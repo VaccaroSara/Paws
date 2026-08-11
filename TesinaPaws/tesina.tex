@@ -60,56 +60,35 @@
 \thispagestyle{empty}
 
 \setcounter{page}{0}
-\newchapter{Descrizione del Progetto}
-PAWS è un’app che si occupa di facilitare la scoperta e l'eventuale adozione di animali, proponendo un'interfaccia dinamica e interattiva che mostra a schermo un animale alla volta. L'utente, se interessato, può effettuare uno swipe per salvare l'animale in una lista dedicata ai preferiti, altrimenti può semplicemente scorrere per passare al prossimo. Un’ulteriore funzionalità è la “Scheda Dettaglio”, una particolare visualizzazione che si attiva con un tap sulla foto: il suo scopo è quello di fornire informazioni approfondite sull'animale, come l'età, la razza, la storia clinica e la posizione geografica. Infine, la sezione "Preferiti" prevede un'area di gestione in cui gli utenti possono consultare in qualsiasi momento gli animali salvati e utilizzare un pulsante dedicato per contattare direttamente il rifugio, l'associazione o l'attuale proprietario.
 
-L’accesso al sistema deve avvenire attraverso delle credenziali che comprendono un indirizzo email e una password di almeno 6 caratteri. Gli animali salvati vengono visualizzati all'interno dei Preferiti in una lista in cui è visibile la foto in miniatura, il nome dell'animale, la razza e la data in cui è stato aggiunto alla lista.
-
-L’app quindi risulta intuitiva e diretta nel proprio utilizzo a seconda delle particolari preferenze e necessità dell'utente; le macro categorie di utilizzo sono:
-
-Esplorazione dinamica e interattiva tramite meccanica di swipe per scoprire nuovi animali.
-
-Consultazione informativa attraverso schede dettaglio pensate per conoscere a fondo le caratteristiche e i bisogni di ogni animale.
-
-Gestione dei Preferiti e contatti, in cui gli utenti possono tenere traccia degli animali di loro interesse e avviare comunicazioni dirette per l'adozione o la richiesta di informazioni.
 \clearpage
+\section*{Descrizione in linguaggio naturale}
+Il progetto consiste nello sviluppo di \textbf{Paws}, un'applicazione mobile pensata per amanti degli animali privati e rifugi. L'obiettivo dell'applicazione è offrire uno strumento per facilitare l'adozione e la condivisione di annunci relativi a cuccioli ed animali domestici, tenendo traccia delle schede di dettaglio dei singoli animali e consentendo il contatto diretto tra gli utenti.
 
-\section*{Descrizione in Linguaggio Naturale}
-Il progetto consiste nello sviluppo di \textbf{Paws}, un'applicazione mobile pensata per gli amanti degli animali, i privati e le strutture d'accoglienza (canili e rifugi). L'obiettivo dell'applicazione è offrire uno strumento integrato ed intuitivo per facilitare l'adozione e la condivisione di annunci relativi a cuccioli ed animali domestici, tenendo traccia delle schede di dettaglio dei singoli animali e consentendo il contatto diretto tra gli utenti.
-
-Il sistema prevede due macro-tipologie di utenti:
+\noindent Il sistema prevede due macro-tipologie di utenti:
 \begin{itemize}
-    \item \textbf{Utenti Privati:} appassionati ed individui che utilizzano l'applicazione per consultare gli annunci di cuccioli disponibili, salvare gli animali preferiti nella propria sezione dedicata, pubblicare nuovi annunci di adozione, filtrare la ricerca per razza, età, sesso e tipologia di utente, e contattare direttamente i proprietari tramite chiamata telefonica.
-    \item \textbf{Rifugi e Canili (Animal Shelters):} strutture ed organizzazioni dedicate che dispongono di funzionalità per la pubblicazione e gestione di annunci di adozione su più ampia scala, promuovendo la visibilità degli animali in cerca di una casa e gestendo il proprio profilo informativo.
+   \item \textbf{Utenti privati:} individui che utilizzano l'applicazione per consultare gli annunci disponibili, salvare gli animali preferiti nella propria sezione dedicata, pubblicare nuovi annunci di adozione, filtrare la ricerca per razza, età, sesso e tipologia di utente, contattare direttamente i proprietari tramite chiamata telefonica, nonché cercare altri utenti e rifugi per animali (animal shelters) per visionarne i profili e i relativi post.
+   \item \textbf{Rifugi e canili (Animal shelters):} strutture ed organizzazioni dedicate che dispongono di funzionalità per la pubblicazione e gestione di annunci di adozione su più ampia scala, promuovendo la visibilità degli animali in cerca di una casa e gestendo il proprio profilo informativo.
 \end{itemize}
 
 \section*{Sintesi dell'Approccio}
 Per la realizzazione del sistema, lo sviluppo dell'applicazione mobile è stato suddiviso in due percorsi complementari:
 \begin{itemize}
-    \item \textbf{Applicazione Android Nativa:} sviluppata in Kotlin sfruttando l'architettura nativa Android e la libreria di componenti UI, garantendo elevate prestazioni, gesture fluide (swipe-to-favorite) e perfetta integrazione con i servizi di sistema come l'avvio delle chiamate ed i servizi Firebase (Authentication, Firestore e Storage).
-    \item \textbf{Applicazione Clone Cross-Platform:} realizzata in Flutter per consentire la portabilità del codice a partire da un'unica codebase, replicando fedelmente le funzionalità, la gerarchia tipografica (serif/sans-serif/custom font), l'identità visiva e l'interfaccia dell'applicazione nativa.
+   \item \textbf{Applicazione Android nativa:} sviluppata in Kotlin sfruttando l'architettura nativa Android e la libreria di componenti UI, garantendo elevate prestazioni, gesture fluide (swipe-to-favorite) ed integrazione sia con i servizi di sistema (come l'avvio delle chiamate) sia con servizi di backend esterni. Nello specifico, sono stati utilizzati Firebase per l'autenticazione e la memorizzazione delle credenziali degli utenti e Supabase per il caricamento delle immagini e l'archiviazione dei dati completi relativi ai cuccioli.
+   \item \textbf{Applicazione clone cross-platform:} realizzata in Flutter per consentire la portabilità del codice a partire da un'unica codebase, replicando fedelmente le funzionalità, l'identità visiva e l'interfaccia dell'applicazione nativa.
 \end{itemize}
 
-Questo approccio parallelo consente di analizzare e confrontare i vantaggi dello sviluppo nativo in termini di integrazione con il sistema operativo e risposta delle gesture rispetto ai benefici legati alla velocità di sviluppo e riusabilità offerti dalle moderne tecnologie cross-platform.
-
-\newsection*{Architettura del Sistema}
-L’architettura di GESTRI è concepita secondo un approccio modulare, così da favorire la scalabilità, la manutenzione e l’evoluzione futura della piattaforma. I principali componenti possono essere riassunti come segue:
-\begin{itemize}
-    \item \textbf{Interfaccia Utente (Front-end):} fornisce un ambiente semplice e intuitivo per l’interazione degli utenti, adattato alle diverse tipologie di attori (Operatori, Staff, Clienti). 
-    È progettata per garantire chiarezza, usabilità e accesso rapido alle funzionalità principali.
-    \item \textbf{Logica Applicativa (Back-end):} rappresenta il cuore del sistema, gestisce i processi interni e applica le regole di business. 
-    Qui risiedono i meccanismi come quelli di registrazione, monitoraggio delle attività, generazione dei documenti e gestione dei permessi degli utenti.
-    \item \textbf{Gestione dei Dati (Database):} si occupa della memorizzazione strutturata delle informazioni. 
-    La progettazione segue criteri di integrità e consistenza, sfruttando relazioni tra entità per ridurre ridondanze e facilitare le operazioni di ricerca e consultazione.
-    \item \textbf{Servizi di Supporto:} includono funzionalità trasversali come autenticazione, controlli di sicurezza e strumenti di reportistica.
-\end{itemize}
-Questa architettura a più livelli permette di separare in modo chiaro presentazione, logica e dati, garantendo così robustezza, flessibilità e una più agevole gestione del sistema nel tempo.
-
-\newsection*{Accesso}
-La gestione delle credenziali assicura una netta distinzione tra i profili e rafforza il livello di sicurezza, prevenendo usi impropri e garantendo che ciascun utente operi esclusivamente nell’ambito delle proprie competenze.
+\noindent Questo approccio parallelo consente di analizzare e confrontare i vantaggi dello sviluppo nativo in termini di integrazione con il sistema operativo e risposta delle gesture rispetto ai benefici legati alla velocità di sviluppo e riusabilità offerti dalle moderne tecnologie cross-platform
 
 
 \newchapter{Glossario dei Termini}
+
+
+Il seguente glossario definisce in modo univoco i termini di business e tecnologici utilizzati nell’ambito del progetto per evitare ambiguità durante le fasi di analisi, progettazione e sviluppo.
+
+
+\vspace{0.5cm} % Spazio opzionale per separare il testo dalla tabella
+
 
 \begin{longtable}{ >{\raggedright\arraybackslash}p{1.5cm} >{\raggedright\arraybackslash}p{5.5cm} >{\raggedright\arraybackslash}p{2cm} >{\raggedright\arraybackslash}p{2.97cm}}
 \toprule
@@ -119,53 +98,81 @@ La gestione delle credenziali assicura una netta distinzione tra i profili e raf
 \bottomrule
 \endfoot
 \endlastfoot
-Account & Area personale dell'utente. & TECNICO & Profilo \\
-Login & Processo con cui un utente viene identificato e entra nella piattaforma. & TECNICO & Accesso \\
-Sistema & Insieme organizzato di componenti interconnessi che lavorano insieme per svolgere una o più funzioni definite. & TECNICO & Gestionale, Programma, Sito \\
-Utente & Ruolo generico da cui derivano Cliente e Operatore. Ha la capacità di accedere al sistema. & TECNICO & - \\
-Cliente & Soggetto che commissiona il servizio e consulta documenti e stato delle attività. & BUSINESS & - \\
-
+Utente Privato & Persona fisica registrata che utilizza l'app per cercare cuccioli, salvare preferiti e pubblicare annunci di adozione & BUSINESS & Privato, User \\ \addlinespace
+Animal Shelter & Struttura d'accoglienza o associazione no-profit che utilizza l’app per cercare cuccioli, salvare preferiti e pubblicare annunci di adozione & BUSINESS & Rifugio, Ente di adozione \\ \addlinespace
+Cucciolo & Entità principale dell'applicazione che rappresenta un animale pubblicato con foto, nome, età, sesso, tipo e descrizione & BUSINESS & Animale, Post, Pet, Puppy \\ \addlinespace
+Scheda Dettaglio & Schermata informativa dedicata ad un singolo cucciolo contenente tutti i dettagli dell'animale e i contatti del proprietario & BUSINESS & Dettagli Cucciolo, Puppy Details \\ \addlinespace
+Preferiti & Sezione dell'applicazione in cui l'utente raccoglie e salva i cuccioli a cui è interessato & BUSINESS & Saved, Mi Piace, Favorites \\ \addlinespace
+Notifica & Messaggio automatico inviato al proprietario di un annuncio quando un altro utente aggiunge/rimuove il suo cucciolo ai preferiti & BUSINESS & Avviso, Notification \\ \addlinespace
+Filtro di Ricerca & Strumento per restringere l'elenco degli animali visualizzati in base a parametri quali età, sesso, tipo di animale e tipo di utente & BUSINESS & Criterio di Selezione, Search Filter \\ \addlinespace
+Account & Insieme delle credenziali di accesso (email e password) e dei dati personali che identificano un utente nel sistema & TECNICO & Profilo \\ \addlinespace
+Swipe to Favorite & Gesto di scorrimento orizzontale della scheda verso destra che consente di salvare un cucciolo nei preferiti & TECNICO & Gesture Swipe, Scorrimento Destra \\ \addlinespace
+Firebase & Servizio cloud utilizzato per la gestione della registrazione, dell'autenticazione sicura e della sessione degli utenti & TECNICO & Auth, Gestione Accessi \\ \addlinespace
+Cloud Firestore & Database NoSQL in tempo reale utilizzato per memorizzare i dati degli utenti, dei post, dei preferiti e delle notifiche & TECNICO & DB NoSQL, Firestore \\ \addlinespace
+Supabase & Servizio di Object Storage utilizzato per l'hosting e l'erogazione performante delle immagini del profilo e delle foto dei cuccioli & TECNICO & Storage Cloud \\ \addlinespace
 \end{longtable}
 
 \newchapter{Gestione dei requisiti}
-
-CIAO SARA Nella presente sezione si analizzano in modo approfondito i requisiti del sistema, procedendo alla loro suddivisione secondo le seguenti categorie:
+Nella presente sezione si analizzano in modo approfondito i requisiti del sistema, procedendo alla loro suddivisione secondo le seguenti categorie:
 \begin{itemize}
-    \item Requisiti funzionali, che definiscono le specifiche funzionalità che il sistema è tenuto a fornire.
-    \item Requisiti non funzionali, che individuano i vincoli e le qualità che il sistema deve soddisfare, quali ad esempio l'usabilità, la sicurezza e le prestazioni.
+   \item Requisiti funzionali, che definiscono le specifiche funzionalità che il sistema è tenuto a fornire.
+   \item Requisiti non funzionali, che individuano i vincoli e le qualità che il sistema deve soddisfare, quali ad esempio l'usabilità, la sicurezza e le prestazioni.
 \end{itemize}
 
-\newsection{Requisiti Funzionali}
+\section*{Requisiti Funzionali}
+\subsection*{Area: Gestione utente e autenticazione}
+\begin{itemize}
+    \item \textbf{RF1: Sign up:} il sistema deve permettere la creazione di un account inserendo email, password, nome, cognome, città, provincia, CAP, numero di telefono, username e la selezione del tipo di account (Utente Privato o Animal Shelter).
+    \item \textbf{RF2: Sign in:} il sistema deve consentire agli utenti registrati di accedere all'applicazione inserendo le proprie credenziali.
+    \item \textbf{RF3: Gestione e modifica profilo:} il sistema deve permettere all'utente di visualizzare e modificare i propri dati personali, aggiornare la foto profilo, richiedere il reset della password via email e modificare la tipologia di account.
+    \item \textbf{RF4: Logout:} il sistema deve consentire all'utente di effettuare un logout sicuro dalla sessione attiva.
+    \item \textbf{RF5: Delete account:} il sistema deve permettere all'utente di eliminare definitivamente il proprio account.
+\end{itemize}
+\subsection*{Area: Gestione post}
+\begin{itemize}
+    \item \textbf{RF6: Creazione cucciolo:} il sistema deve permettere all'utente di caricare un nuovo annuncio specificando nome del cucciolo, tipo di animale (cane, gatto, uccello), sesso (maschio, femmina), età, didascalia descrittiva e foto dell'animale.
+    \item \textbf{RF7: Modifica ed eliminazione cucciolo:} il sistema deve permettere all'autore dell'annuncio di modificare le informazioni inserite o di eliminare definitivamente il post e la relativa immagine memorizzata nel cloud.
+    \item \textbf{RF8: Visualizzazione feed e scheda dettaglio:} il sistema deve mostrare il feed degli annunci pubblicati e consentire la visualizzazione delle informazioni complete dell'animale e di contatto del proprietario.
+\end{itemize}
+\subsection*{Area: Preferiti e interazioni}
+\begin{itemize}
+    \item \textbf{RF9: Aggiunta e rimozione dai preferiti:} il sistema deve permettere di aggiungere un cucciolo ai preferiti e di rimuoverlo premendo sul cuore nella sezione preferiti.
+    \item \textbf{RF10: Calcolo dei mi piace:} il sistema deve calcolare e mostrare in tempo reale il numero totale di salvataggi ricevuti per ciascun post.
+    \item \textbf{RF11: Chiamata telefonica diretta:} il sistema deve consentire di avviare una chiamata verso il numero di telefono del proprietario.
+\end{itemize}
+\subsection*{Area: Ricerca e filtri}
+\begin{itemize}
+    \item \textbf{RF12: Ricerca:} il sistema deve permettere di cercare utenti o cuccioli inserendo il testo nella barra di ricerca.
+    \item \textbf{RF13: Filtraggio:} il sistema deve consentire il filtraggio degli annunci in base a età, sesso, tipo di animale e tipo di utente.
+\end{itemize}
+\subsection*{Area: Notifiche}
+\begin{itemize}
+    \item \textbf{RF14: Generazione notifica:} il sistema deve generare una notifica destinata al proprietario dell'annuncio quando un altro utente aggiunge/rimuove il suo cucciolo ai/dai preferiti.
+    \item \textbf{RF15: Consultazione e pulizia notifiche:} il sistema deve mostrare un elenco delle notifiche ricevute e permetterne l'eliminazione.
+\end{itemize}
 
-% Requisiti funzionali (testo inserito automaticamente)
-\newsubsection*{Area: Gestione Utente}
 
-\newsubsubsection*{RF1: Registrazione Utente}
-
-Il sistema dovrà permettere la registrazione di nuovi utenti (Clienti, Operatori, Staff) inserendo i dati necessari.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{RequisitiFunzionali}
-\end{figure}
-\clearpage
-
-
-\newsection{Requisiti Non Funzionali}
-
-% Requisiti non funzionali (testo inserito automaticamente)
-\newsubsection*{Area: Gestione Tecnologie}
-
-\newsubsubsection*{RNF1: Implementazione in Python 3}
-
-Il sistema dovrà essere implementato utilizzando Python 3.
-
-
-\begin{figure*}[ht]
-    \centering
-    \includegraphics[width=1\textwidth]{RequisitiNonFunzionali}
-\end{figure*}
-
+\section*{Requisiti Non Funzionali}
+\subsection*{Area: Prestazioni e Reattività}
+\begin{itemize}
+    \item \textbf{RNF1: Tempi di Risposta:} Il caricamento delle immagini e delle informazioni dal database cloud deve avvenire entro 2 secondi in condizioni normali di connettività.
+    \item \textbf{RNF2: Fluidità delle Animazioni:} L'animazione del gesto Swipe to Favorite e il passaggio tra schermate devono mantenere una frequenza di aggiornamento fluida di 60 fps sia in Android nativo che in Flutter.
+\end{itemize}
+\subsection*{Area: Usabilità ed Esperienza Utente (UI/UX)}
+\begin{itemize}
+    \item \textbf{RNF3: Parità Visiva e Tipografica:} L'applicazione Flutter deve garantire una fedeltà visiva al 100\% rispetto all'applicazione nativa Kotlin, rispettando la gerarchia dei colori (azzurro \#78A7D3 per maschio, rosa \#DC6FA6 per femmina) e dei font (serif, sans-serif-medium, font personalizzato Lacquer).
+    \item \textbf{RNF4: Feedback all'Utente:} Ogni azione critica (salvataggio, eliminazione, invio notifiche) deve fornire un feedback visivo immediato tramite messaggi SnackBar o finestre di dialogo.
+\end{itemize}
+\subsection*{Area: Sicurezza e Gestione Dati}
+\begin{itemize}
+    \item \textbf{RNF5: Autenticazione e Cifratura:} La gestione delle credenziali di accesso deve avvenire in modo sicuro tramite protocolli cifrati gestiti da Firebase Authentication.
+    \item \textbf{RNF6: Integrità e Pulizia dei Dati:} In caso di eliminazione di un utente o di un post, il sistema deve garantire la rimozione a cascata dei relativi file di immagine dallo storage cloud (Supabase Storage).
+\end{itemize}
+\subsection*{Area: Portabilità e Manutenibilità}
+\begin{itemize}
+    \item \textbf{RNF7: Multi-piattaforma:} La codebase Flutter deve essere completamente compatibile ed eseguibile sia su dispositivi Android che iOS senza modifiche alla logica di business.
+    \item \textbf{RNF8: Modularità e Pulizia del Codice:} Il codice sorgente (sia Kotlin che Dart) deve essere strutturato in modo modulare separando i modelli dati, i servizi cloud ed i componenti di interfaccia utente.
+\end{itemize}
 
 \clearpage
 \newsection{Tabella MoSCoW dei Requisiti}
