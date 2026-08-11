@@ -1,11 +1,16 @@
 \babel@toc {italian}{}\relax 
 \babel@toc {italian}{}\relax 
-\contentsline {chapter}{Glossario dei Termini}{2}{chapter*.3}%
-\contentsline {chapter}{Gestione dei requisiti}{4}{chapter*.5}%
-\contentsline {section}{Tabella MoSCoW dei Requisiti}{6}{section*.6}%
-\contentsline {section}{Diagrammi dei Casi d'Uso}{7}{section*.7}%
-\contentsline {section}{Mockup}{9}{section*.11}%
-\contentsline {section}{Verifica e Validazione del Software: Unit Tests}{10}{section*.13}%
-\contentsline {subsection}{Test Manuali}{10}{section*.14}%
-\contentsline {subsection}{Unit Test}{10}{section*.15}%
+\contentsline {chapter}{Introduzione}{1}{chapter*.3}%
+\contentsline {section}{Descrizione in linguaggio naturale}{1}{section*.4}%
+\contentsline {chapter}{Glossario dei Termini}{2}{chapter*.6}%
+\contentsline {chapter}{Progettazione e sviluppo applicazione}{4}{chapter*.8}%
+\contentsline {section}{Analisi dei requisiti}{4}{section*.9}%
+\contentsline {subsection}{Requisiti Funzionali}{4}{section*.10}%
+\contentsline {subsection}{Requisiti Non Funzionali: Kotlin (App Nativa)}{5}{section*.11}%
+\contentsline {subsection}{Requisiti Non Funzionali: Flutter (App Cross-Platform)}{5}{section*.12}%
+\contentsline {section}{Descrizione dei Casi d'Uso}{7}{section*.13}%
+\contentsline {section}{Mockup}{12}{section*.20}%
+\contentsline {section}{Verifica e Validazione del Software: Unit Tests}{13}{section*.22}%
+\contentsline {subsection}{Test Manuali}{13}{section*.23}%
+\contentsline {subsection}{Unit Test}{13}{section*.24}%
 \contentsfinish 

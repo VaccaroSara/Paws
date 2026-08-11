@@ -589,10 +589,6 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/eccc1000.tfm
 OUTPUT tesina.toc
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-INPUT ./img/Attori.png
-INPUT ./img/Attori.png
-INPUT ./img/Attori.png
-INPUT ./img/Attori.png
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm
 INPUT ./img/MockupLogin.png
 INPUT ./img/MockupLogin.png

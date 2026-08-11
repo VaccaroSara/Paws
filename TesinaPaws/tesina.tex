@@ -62,7 +62,8 @@
 \setcounter{page}{0}
 
 \clearpage
-\section*{Descrizione in linguaggio naturale}
+\newchapter{Introduzione}
+\newsection{Descrizione in linguaggio naturale}
 Il progetto consiste nello sviluppo di \textbf{Paws}, un'applicazione mobile pensata per amanti degli animali privati e rifugi. L'obiettivo dell'applicazione è offrire uno strumento per facilitare l'adozione e la condivisione di annunci relativi a cuccioli ed animali domestici, tenendo traccia delle schede di dettaglio dei singoli animali e consentendo il contatto diretto tra gli utenti.
 
 \noindent Il sistema prevede due macro-tipologie di utenti:
@@ -112,142 +113,265 @@ Cloud Firestore & Database NoSQL in tempo reale utilizzato per memorizzare i dat
 Supabase & Servizio di Object Storage utilizzato per l'hosting e l'erogazione performante delle immagini del profilo e delle foto dei cuccioli & TECNICO & Storage Cloud \\ \addlinespace
 \end{longtable}
 
-\newchapter{Gestione dei requisiti}
+\newchapter{Progettazione e sviluppo applicazione}
 Nella presente sezione si analizzano in modo approfondito i requisiti del sistema, procedendo alla loro suddivisione secondo le seguenti categorie:
 \begin{itemize}
    \item Requisiti funzionali, che definiscono le specifiche funzionalità che il sistema è tenuto a fornire.
    \item Requisiti non funzionali, che individuano i vincoli e le qualità che il sistema deve soddisfare, quali ad esempio l'usabilità, la sicurezza e le prestazioni.
 \end{itemize}
-
-\section*{Requisiti Funzionali}
-\subsection*{Area: Gestione utente e autenticazione}
+\newsection{Analisi dei requisiti}
+\newsubsection{Requisiti Funzionali}
+\subsection*{Area: Gestione utente}
 \begin{itemize}
-    \item \textbf{RF1: Sign up:} il sistema deve permettere la creazione di un account inserendo email, password, nome, cognome, città, provincia, CAP, numero di telefono, username e la selezione del tipo di account (Utente Privato o Animal Shelter).
-    \item \textbf{RF2: Sign in:} il sistema deve consentire agli utenti registrati di accedere all'applicazione inserendo le proprie credenziali.
-    \item \textbf{RF3: Gestione e modifica profilo:} il sistema deve permettere all'utente di visualizzare e modificare i propri dati personali, aggiornare la foto profilo, richiedere il reset della password via email e modificare la tipologia di account.
+    \item \textbf{RF1: Registrazione utente:} il sistema deve permettere la creazione di un account inserendo email, password, nome, cognome, città, provincia, CAP, numero di telefono, username e la selezione del tipo di account (Utente Privato o Animal Shelter).
+    \item \textbf{RF2: Accesso utente:} il sistema deve consentire agli utenti registrati di accedere all'applicazione inserendo le proprie credenziali.
+    \item \textbf{RF3: Modifica profilo:} il sistema deve permettere all'utente di modificare i propri dati personali, aggiornare la foto profilo, richiedere il reset della password via email e modificare la tipologia di account.
     \item \textbf{RF4: Logout:} il sistema deve consentire all'utente di effettuare un logout sicuro dalla sessione attiva.
-    \item \textbf{RF5: Delete account:} il sistema deve permettere all'utente di eliminare definitivamente il proprio account.
+    \item \textbf{RF5: Elimina account:} il sistema deve permettere all'utente di eliminare definitivamente il proprio account.
 \end{itemize}
 \subsection*{Area: Gestione post}
 \begin{itemize}
     \item \textbf{RF6: Creazione cucciolo:} il sistema deve permettere all'utente di caricare un nuovo annuncio specificando nome del cucciolo, tipo di animale (cane, gatto, uccello), sesso (maschio, femmina), età, didascalia descrittiva e foto dell'animale.
-    \item \textbf{RF7: Modifica ed eliminazione cucciolo:} il sistema deve permettere all'autore dell'annuncio di modificare le informazioni inserite o di eliminare definitivamente il post e la relativa immagine memorizzata nel cloud.
-    \item \textbf{RF8: Visualizzazione feed e scheda dettaglio:} il sistema deve mostrare il feed degli annunci pubblicati e consentire la visualizzazione delle informazioni complete dell'animale e di contatto del proprietario.
+    \item \textbf{RF7: Modifica cucciolo:} il sistema deve permettere all'autore dell'annuncio di modificare le informazioni inserite.
+    \item \textbf{RF8: Elimina cucciolo:} il sistema deve permettere all'autore dell'annuncio di eliminare definitivamente il post e la relativa immagine memorizzata nel cloud.
+    \item \textbf{RF9: Visualizzazione post e scheda dettaglio:} il sistema deve mostrare i post dei cuccioli pubblicati e consentire la visualizzazione delle informazioni complete dell'animale e ddel proprietario.
 \end{itemize}
 \subsection*{Area: Preferiti e interazioni}
 \begin{itemize}
-    \item \textbf{RF9: Aggiunta e rimozione dai preferiti:} il sistema deve permettere di aggiungere un cucciolo ai preferiti e di rimuoverlo premendo sul cuore nella sezione preferiti.
-    \item \textbf{RF10: Calcolo dei mi piace:} il sistema deve calcolare e mostrare in tempo reale il numero totale di salvataggi ricevuti per ciascun post.
-    \item \textbf{RF11: Chiamata telefonica diretta:} il sistema deve consentire di avviare una chiamata verso il numero di telefono del proprietario.
+    \item \textbf{RF10: Aggiunta e rimozione dai preferiti:} il sistema deve permettere di aggiungere un cucciolo ai preferiti e di rimuoverlo premendo sul cuore nella sezione preferiti.
+    \item \textbf{RF11: Calcolo dei mi piace:} il sistema deve calcolare e mostrare in tempo reale il numero totale di salvataggi ricevuti per ciascun post.
+    \item \textbf{RF12: Chiamata telefonica:} il sistema deve consentire di avviare una chiamata verso il numero di telefono del proprietario.
 \end{itemize}
 \subsection*{Area: Ricerca e filtri}
 \begin{itemize}
-    \item \textbf{RF12: Ricerca:} il sistema deve permettere di cercare utenti o cuccioli inserendo il testo nella barra di ricerca.
-    \item \textbf{RF13: Filtraggio:} il sistema deve consentire il filtraggio degli annunci in base a età, sesso, tipo di animale e tipo di utente.
+    \item \textbf{RF13: Ricerca:} il sistema deve permettere di cercare utenti o cuccioli inserendo il testo nella barra di ricerca.
+    \item \textbf{RF14: Filtraggio:} il sistema deve consentire il filtraggio degli annunci in base a età, sesso, tipo di animale e tipo di utente.
 \end{itemize}
 \subsection*{Area: Notifiche}
 \begin{itemize}
-    \item \textbf{RF14: Generazione notifica:} il sistema deve generare una notifica destinata al proprietario dell'annuncio quando un altro utente aggiunge/rimuove il suo cucciolo ai/dai preferiti.
-    \item \textbf{RF15: Consultazione e pulizia notifiche:} il sistema deve mostrare un elenco delle notifiche ricevute e permetterne l'eliminazione.
+    \item \textbf{RF15: Generazione notifica:} il sistema deve generare una notifica destinata al proprietario dell'annuncio quando un altro utente aggiunge/rimuove il suo cucciolo ai/dai preferiti.
+    \item \textbf{RF16: Visualizza notifiche:} il sistema deve mostrare all'utente un elenco delle notifiche ricevute.
+    \item  \textbf{RF17: Elimina notifiche:} il sistema deve permettere all'utente l'eliminazione delle notifiche.
 \end{itemize}
 
+\newsubsection{Requisiti Non Funzionali: Kotlin (App Nativa)}
+\begin{itemize}
+    \item \textbf{RNF1-K: Tecnologia di Sviluppo e SDK:} L’applicazione nativa è sviluppata in Kotlin con Android SDK, strutturata mediante Activity e Fragment per la navigazione tra le varie sezioni della schermata principale.
+    \item \textbf{RNF2-K: Layout ed Interfaccia Grafica:} L’interfaccia utente è realizzata interamente mediante Layout XML, utilizzando i componenti Material Design e la libreria ViewBinding per il collegamento sicuro tra codice Kotlin e layout.
+    \item \textbf{RNF3-K: Autenticazione e Database Cloud:} La gestione della sessione utente e la persistenza dei dati di dominio (Post, Profili Utente, Notifiche, Preferiti) sono gestite tramite Firebase Auth per l'autenticazione ed a Cloud Firestore per la lettura/scrittura in tempo reale dei dati.
+    \item \textbf{RNF4-K: Cloud Storage per i Media:} L'upload e la gestione dello storage remoto delle immagini di profili e cuccioli sono realizzati tramite l'integrazione diretta con Supabase Storage.
+    \item \textbf{RNF5-K: Rendering e Caching delle Immagini:} Il caricamento asincrono, il rendering ed il caching locale delle immagini da URL remoto nelle ImageView dell'interfaccia utente sono affidati alla libreria Glide.
+    \item \textbf{RNF6-K: Visualizzazione Dati e RecyclerView:} L'applicazione organizza la presentazione delle liste e delle griglie di dati (post, cuccioli, notifiche, preferiti) mediante RecyclerView e Adapter dedicati (FeedAdapter, GridPostAdapter, FavoritesAdapter, NotificationAdapter, SearchAdapter).
+\end{itemize}
 
-\section*{Requisiti Non Funzionali}
-\subsection*{Area: Prestazioni e Reattività}
+\newsubsection{Requisiti Non Funzionali: Flutter (App Cross-Platform)}
 \begin{itemize}
-    \item \textbf{RNF1: Tempi di Risposta:} Il caricamento delle immagini e delle informazioni dal database cloud deve avvenire entro 2 secondi in condizioni normali di connettività.
-    \item \textbf{RNF2: Fluidità delle Animazioni:} L'animazione del gesto Swipe to Favorite e il passaggio tra schermate devono mantenere una frequenza di aggiornamento fluida di 60 fps sia in Android nativo che in Flutter.
+    \item \textbf{RNF1-F: Tecnologia di Sviluppo Cross-Platform:} L’applicazione cross-platform è sviluppata in Dart con il framework Flutter (SDK \textasciicircum 3.12.2), garantendo la compatibilità sia per dispositivi Android sia per iOS con un'unica codebase.
+    \item \textbf{RNF2-F: Servizi e Modelli Dati:} La gestione dei dati di dominio e della logica di backend è strutturata mediante Service dedicati (FirebaseService, SupabaseService) e Modelli di dati fortemente tipizzati (UserModel, PuppyPostModel, NotificationModel).
+    \item \textbf{RNF3-F: Autenticazione e Cloud Firestore:} La gestione dell'autenticazione utente e le operazioni di lettura/scrittura sulle collezioni cloud (Cuccioli, Post, Preferiti, Notifiche, Utenti) sono affidate ai pacchetti ufficiali firebase\_auth e cloud\_firestore.
+    \item \textbf{RNF4-F: Cloud Storage su Supabase:} Il caricamento e l'hosting remoto dei file multimediali (immagini dei cuccioli nel bucket puppy-images ed avatar utenti nel bucket profile-images) sono realizzati tramite il pacchetto supabase\_flutter.
+    \item \textbf{RNF5-F: Gestione dell'Interfaccia e dello Stato:} L'interfaccia utente e l'aggiornamento dello stato reattivo sono realizzati mediante i componenti nativi StatefulWidget e StatelessWidget di Flutter, con aggiornamento dinamico gestito tramite setState() e l'invocazione diretta dei Service.
+    \item \textbf{RNF6-F: Design System e Caching Immagini:} L'applicazione impiega la classe centralizzata AppTheme (lib/theme/app\_theme.dart) per la definizione di colori (AppColors), stili ed elementi grafici, e la libreria cached\_network\_image per la visualizzazione ottimizzata delle immagini di rete con placeholder di caricamento.
 \end{itemize}
-\subsection*{Area: Usabilità ed Esperienza Utente (UI/UX)}
-\begin{itemize}
-    \item \textbf{RNF3: Parità Visiva e Tipografica:} L'applicazione Flutter deve garantire una fedeltà visiva al 100\% rispetto all'applicazione nativa Kotlin, rispettando la gerarchia dei colori (azzurro \#78A7D3 per maschio, rosa \#DC6FA6 per femmina) e dei font (serif, sans-serif-medium, font personalizzato Lacquer).
-    \item \textbf{RNF4: Feedback all'Utente:} Ogni azione critica (salvataggio, eliminazione, invio notifiche) deve fornire un feedback visivo immediato tramite messaggi SnackBar o finestre di dialogo.
-\end{itemize}
-\subsection*{Area: Sicurezza e Gestione Dati}
-\begin{itemize}
-    \item \textbf{RNF5: Autenticazione e Cifratura:} La gestione delle credenziali di accesso deve avvenire in modo sicuro tramite protocolli cifrati gestiti da Firebase Authentication.
-    \item \textbf{RNF6: Integrità e Pulizia dei Dati:} In caso di eliminazione di un utente o di un post, il sistema deve garantire la rimozione a cascata dei relativi file di immagine dallo storage cloud (Supabase Storage).
-\end{itemize}
-\subsection*{Area: Portabilità e Manutenibilità}
-\begin{itemize}
-    \item \textbf{RNF7: Multi-piattaforma:} La codebase Flutter deve essere completamente compatibile ed eseguibile sia su dispositivi Android che iOS senza modifiche alla logica di business.
-    \item \textbf{RNF8: Modularità e Pulizia del Codice:} Il codice sorgente (sia Kotlin che Dart) deve essere strutturato in modo modulare separando i modelli dati, i servizi cloud ed i componenti di interfaccia utente.
-\end{itemize}
+
 
 \clearpage
-\newsection{Tabella MoSCoW dei Requisiti}
+\newsection{Descrizione dei Casi d'Uso}
+Di seguito sono descritti nel dettaglio i principali casi d’uso per l’applicazione.
+\newsubsection*{Area: Gestione utente}
 
-Di seguito la matrice MoSCoW che classifica i requisiti del sistema secondo le priorità: M (Must-have), S (Should-have), C (Could-have), W (Want-have).
 
-\begin{longtable}{|p{4.5cm}|p{6.25cm}|p{2cm}|}
-\hline
-	\textbf{Area} & \textbf{Requisito} & \textbf{Priorità MoSCoW} \\
-\hline
-\endhead
-
-Gestione Utente & RF1: Registrazione Utente & Must \\
-\hline
-Gestione Utente & RF2: Login Utente & Must \\
-\hline
-\end{longtable}
-
-\clearpage
-\newsection{Diagrammi dei Casi d'Uso}
-
-\newsubsection*{Diagramma degli Attori}
-Il diagramma individua gli attori coinvolti nel sistema e visualizza le connessioni di ereditarietà tra di essi.
-
-\begin{figure*}[ht]
-    \centering
-    \includegraphics[width=1\textwidth]{Attori}
-\end{figure*}
-
-\clearpage
-
+% ==========================================
+% UC-1: Registrazione Utente
+% ==========================================
 \begin{table}[H]
 \vspace*{-0cm}
 \renewcommand{\arraystretch}{1.9}
 \begin{tabular}{|p{3.9cm}|p{9.9cm}|}
 \hline
 \multicolumn{2}{|c|}{\textbf{Caso d’uso: RegistrazioneUtente}} \\ \hline
-\textbf{ID} & 1 \\ \hline
-\textbf{Breve descrizione} & Lo Staff o il Cliente si registra nel sistema, con un ruolo che dipende dal punto di accesso \\ \hline
-\textbf{Attori primari} & Cliente, Staff \\ \hline
-\textbf{Attori secondari} & Nessuno \\ \hline
-\textbf{Precondizioni} & Nessuna \\ \hline
+\textbf{ID} & UC-1 \\ \hline
+\textbf{Breve descrizione} & Un Utente crea un nuovo account per accedere all'applicazione. \\ \hline
+\textbf{Attori primari} & Utente non autenticato (Ospite) \\ \hline
+\textbf{Attori secondari} & Sistema di Autenticazione (Firebase Auth), Database (Cloud Firestore) \\ \hline
+\textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item L'applicazione è avviata e l'Utente si trova nella schermata di registrazione.
+\end{enumerate} \\ \hline
 \textbf{Sequenza degli eventi principale} &
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-    \item \texttt{If} l'Utente è un Cliente che accede alla pagina di registrazione pubblica, allora
-    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-        \item Il sistema mostra il modulo di registrazione
-        \item Il Cliente inserisce le proprie informazioni (nome, cognome, email, password)
-        \item \texttt{While} le credenziali inserite del Cliente non sono valide
-        \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-        \item Il sistema richiede al Cliente di inserire le sue informazioni
-    \end{enumerate}
-        \item Il sistema valida i dati inseriti
-        \item Il sistema crea un nuovo account con il ruolo di Cliente
-    \end{enumerate}
+   \item L'Utente inserisce i propri dati: email, password, nome, cognome, città, provincia, CAP, numero di telefono e username.
+   \item L'Utente seleziona la tipologia di account (Utente Privato o Animal Shelter).
+   \item L'Utente convalida la registrazione premendo il pulsante dedicato.
+   \item Il sistema valida i dati inseriti.
+   \item Il sistema registra il nuovo account su Firebase Auth e ne salva le informazioni su Cloud Firestore.
+   \item L'Utente viene reindirizzato alla schermata principale e risulta autenticato.
 \end{enumerate}\\ \hline
-\textbf{Postcondizioni} & 
+\textbf{Postcondizioni} &
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-\item È stato creato un nuovo account Utente con ruolo Cliente
+\item L'account viene creato ed è abilitato all'uso, e l'Utente risulta autenticato nel sistema.
 \end{enumerate} \\ \hline
 \textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-    \item \texttt{If} l'Utente è un membro dello Staff che accede alla pagina di gestione utenti interna, allora
-    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-        \item Il sistema mostra un modulo di creazione Utente
-        \item Il membro dello Staff inserisce le informazioni del nuovo Utente (nome, cognome, email, password) e seleziona il ruolo desiderato (Operatore o Staff)
-        \item \texttt{While} le credenziali inserite dell'Utente non sono valide
-        \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-        \item Il sistema richiede allo Staff di inserire le sue informazioni
-    \end{enumerate}
-        \item Il sistema valida i dati inseriti
-        \item Il sistema crea un nuovo account con il ruolo specificato (Operatore o Staff)
-    \end{enumerate}
+   \item \texttt{If} i dati non sono validi o l'email risulta già registrata, allora
+   \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+       \item Il sistema mostra un messaggio d'errore.
+       \item Il sistema invita l'Utente a correggere i campi errati o a inserire un indirizzo differente.
+   \end{enumerate}
 \end{enumerate}\\ \hline
 \end{tabular}
 \end{table}
+
+% ==========================================
+% UC-2: Accesso Utente (Login)
+% ==========================================
+\begin{table}[H]
+\vspace*{-0cm}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|p{3.9cm}|p{9.9cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: AccessoUtente}} \\ \hline
+\textbf{ID} & UC-2 \\ \hline
+\textbf{Breve descrizione} & Un Utente registrato effettua l'accesso all'applicazione inserendo le proprie credenziali. \\ \hline
+\textbf{Attori primari} & Utente registrato \\ \hline
+\textbf{Attori secondari} & Sistema di Autenticazione (Firebase Auth) \\ \hline
+\textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item L'Utente possiede un account valido e si trova nella schermata di login.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi principale} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item L'Utente inserisce la propria email e password.
+   \item L'Utente preme il pulsante di accesso.
+   \item Il sistema verifica la correttezza delle credenziali.
+   \item Il sistema autentica l'Utente e lo reindirizza alla schermata principale (Feed).
+\end{enumerate}\\ \hline
+\textbf{Postcondizioni} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+\item L'Utente è autenticato con successo e può accedere alle funzionalità riservate del sistema.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item \texttt{If} le credenziali inserite risultano errate o inesistenti, allora
+   \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+       \item Il sistema mostra un messaggio d'errore per credenziali non valide.
+       \item Il modulo viene pulito o l'Utente è invitato a riprovare l'inserimento.
+   \end{enumerate}
+\end{enumerate}\\ \hline
+\end{tabular}
+\end{table}
+
+% ==========================================
+% UC-3: Modifica Utente
+% ==========================================
+\begin{table}[H]
+\vspace*{-0cm}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|p{3.9cm}|p{9.9cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: ModificaUtente}} \\ \hline
+\textbf{ID} & UC-3 \\ \hline
+\textbf{Breve descrizione} & L'Utente visualizza e aggiorna i propri dati personali o la foto profilo. \\ \hline
+\textbf{Attori primari} & Utente autenticato \\ \hline
+\textbf{Attori secondari} & Database (Cloud Firestore), Cloud Storage (Supabase Storage) \\ \hline
+\textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item L'Utente è autenticato e si trova nella sezione di gestione del proprio profilo.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi principale} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item L'Utente seleziona l'opzione di modifica profilo.
+   \item Il sistema mostra i dati attuali precompilati nei rispettivi campi.
+   \item L'Utente modifica le informazioni desiderate (es. città, telefono, foto profilo).
+   \item L'Utente preme il pulsante per salvare le modifiche.
+   \item Il sistema valida i nuovi dati.
+   \item Il sistema aggiorna le informazioni nel database (ed eventualmente carica la nuova foto nello storage).
+   \item Il sistema mostra un messaggio di conferma dell'avvenuto aggiornamento.
+\end{enumerate}\\ \hline
+\textbf{Postcondizioni} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+\item I dati dell'account Utente sono aggiornati correttamente nel sistema.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item \texttt{If} si verifica un errore di connessione o un dato non rispetta i vincoli di validazione, allora
+   \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+       \item Il sistema mostra un messaggio d'errore specifico (tramite SnackBar o Dialog).
+       \item I dati precedenti non vengono sovrascritti.
+   \end{enumerate}
+\end{enumerate}\\ \hline
+\end{tabular}
+\end{table}
+
+% ==========================================
+% UC-4: Logout
+% ==========================================
+\begin{table}[H]
+\vspace*{-0cm}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|p{3.9cm}|p{9.9cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: Logout}} \\ \hline
+\textbf{ID} & UC-4 \\ \hline
+\textbf{Breve descrizione} & L'Utente termina la propria sessione attiva in modo sicuro. \\ \hline
+\textbf{Attori primari} & Utente autenticato \\ \hline
+\textbf{Attori secondari} & Sistema di Autenticazione (Firebase Auth) \\ \hline
+\textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item L'Utente è attualmente autenticato nell'applicazione.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi principale} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item L'Utente naviga nelle impostazioni del profilo e seleziona l'opzione di logout.
+   \item Il sistema richiede conferma dell'azione tramite una finestra di dialogo.
+   \item L'Utente conferma la volontà di disconnettersi.
+   \item Il sistema revoca i token di accesso e distrugge la sessione attiva.
+   \item L'Utente viene reindirizzato alla schermata di benvenuto o login.
+\end{enumerate}\\ \hline
+\textbf{Postcondizioni} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+\item La sessione è terminata e non è più possibile accedere ai dati protetti senza effettuare un nuovo accesso.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item \texttt{If} l'Utente annulla l'azione nella finestra di conferma, allora
+   \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+       \item L'azione di disconnessione viene annullata e l'Utente rimane autenticato.
+   \end{enumerate}
+\end{enumerate}\\ \hline
+\end{tabular}
+\end{table}
+
+% ==========================================
+% UC-5: Elimina Utente
+% ==========================================
+\begin{table}[H]
+\vspace*{-0cm}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|p{3.9cm}|p{9.9cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: EliminaUtente}} \\ \hline
+\textbf{ID} & UC-5 \\ \hline
+\textbf{Breve descrizione} & L'Utente richiede l'eliminazione definitiva del proprio account e di tutti i dati associati. \\ \hline
+\textbf{Attori primari} & Utente autenticato \\ \hline
+\textbf{Attori secondari} & Firebase Auth, Database (Cloud Firestore), Cloud Storage (Supabase Storage) \\ \hline
+\textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item L'Utente è autenticato e si trova nella sezione di gestione account.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi principale} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item L'Utente seleziona l'opzione per eliminare l'account.
+   \item Il sistema mostra un avviso indicando che l'operazione è irreversibile e richiede un'ulteriore conferma di sicurezza (es. reinserimento della password).
+   \item L'Utente fornisce la conferma richiesta.
+   \item Il sistema procede all'eliminazione a cascata: cancella le immagini collegate su Supabase Storage, rimuove i post, i preferiti e il profilo da Cloud Firestore, ed elimina l'account da Firebase Auth.
+   \item L'Utente viene disconnesso e reindirizzato alla schermata iniziale.
+\end{enumerate}\\ \hline
+\textbf{Postcondizioni} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+\item L'account e tutti i dati ad esso correlati sono permanentemente rimossi dal sistema.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item \texttt{If} l'Utente annulla l'operazione nella finestra di conferma o fallisce l'autenticazione di sicurezza, allora
+   \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+       \item Il sistema interrompe la procedura di eliminazione.
+       \item L'Utente viene riportato alle impostazioni del profilo senza modifiche ai dati.
+   \end{enumerate}
+\end{enumerate}\\ \hline
+\end{tabular}
+\end{table}
+
 
 \clearpage
 \newsection{Mockup}

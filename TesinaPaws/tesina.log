@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.26)  11 AUG 2026 14:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.26)  11 AUG 2026 19:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1395,6 +1395,11 @@ LaTeX Font Warning: Font shape `U/stmry/m/n' in size <5.5> not available
 
 
 Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  [][]|
  []
 
@@ -1412,31 +1417,32 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.84 \newchapter{Glossario dei Termini}
+l.85 \newchapter{Glossario dei Termini}
                                         [1
 
+
 {/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Overfull \hbox (13.32109pt too wide) in paragraph at lines 95--95
+Overfull \hbox (13.32109pt too wide) in paragraph at lines 96--96
 []|\T1/cmr/bx/n/10 TERMINE|  
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 93--97
+Underfull \hbox (badness 10000) in alignment at lines 94--98
 [] [] [] []
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 97--99
+Underfull \hbox (badness 10000) in alignment at lines 98--100
 [] [] [] []
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 99--100
+Underfull \hbox (badness 10000) in alignment at lines 100--101
 [] [] [] []
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 100--113
+Underfull \hbox (badness 10000) in alignment at lines 101--114
 [] [] [] []
  []
 
@@ -1531,21 +1537,6 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 184--185
-[]|\T1/cmr/bx/n/10 Priorità
- []
-
-
-Underfull \hbox (badness 10000) in alignment at lines 182--186
-[] [] []
- []
-
-
-Underfull \hbox (badness 10000) in alignment at lines 186--192
-[] [] []
- []
-
-
 
 
 Overfull \hbox (34.71422pt too wide) has occurred while \output is active
@@ -1567,15 +1558,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  [][]|
  []
 
-[6
-
-]
-<./img/Attori.png, id=111, 537.00626pt x 589.20125pt>
-File: ./img/Attori.png Graphic file (type png)
-<use ./img/Attori.png>
-Package pdftex.def Info: ./img/Attori.png  used on input line 202.
-(pdftex.def)             Requested size: 452.9679pt x 496.99347pt.
-
+[6]
 
 
 Overfull \hbox (34.71422pt too wide) has occurred while \output is active
@@ -1599,7 +1582,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 
 [7
 
- <./img/Attori.png>]
+]
 
 
 Overfull \hbox (34.71422pt too wide) has occurred while \output is active
@@ -1621,13 +1604,77 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  [][]|
  []
 
-[8
+[8]
 
-]
-<./img/MockupLogin.png, id=140, 1284.8pt x 835.12pt>
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[9]
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[10]
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[11]
+<./img/MockupLogin.png, id=203, 1284.8pt x 835.12pt>
 File: ./img/MockupLogin.png Graphic file (type png)
 <use ./img/MockupLogin.png>
-Package pdftex.def Info: ./img/MockupLogin.png  used on input line 258.
+Package pdftex.def Info: ./img/MockupLogin.png  used on input line 382.
 (pdftex.def)             Requested size: 452.9679pt x 294.42444pt.
 
 
@@ -1651,16 +1698,16 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  [][]|
  []
 
-[9
+[12
 
  <./img/MockupLogin.png>] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 275.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 399.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/bx/n' in size <9> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 276.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 400.
 
 
 
@@ -1684,7 +1731,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  [][]|
  []
 
-[10
+[13
 
 ] (./tesina.aux)
  ***********
@@ -1698,18 +1745,18 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 70344 strings out of 473190
- 1746730 string characters out of 5715800
- 2666774 words of memory out of 5000000
- 92634 multiletter control sequences out of 15000+600000
+ 70383 strings out of 473190
+ 1746893 string characters out of 5715800
+ 2666862 words of memory out of 5000000
+ 92626 multiletter control sequences out of 15000+600000
  580655 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,12n,120p,836b,1523s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,12n,120p,836b,1526s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0500.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on tesina.pdf (12 pages, 2874690 bytes).
+Output written on tesina.pdf (15 pages, 2862061 bytes).
 PDF statistics:
- 235 PDF objects out of 1000 (max. 8388607)
- 168 compressed objects within 2 object streams
- 52 named destinations out of 1000 (max. 500000)
- 236 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 322 PDF objects out of 1000 (max. 8388607)
+ 251 compressed objects within 3 object streams
+ 99 named destinations out of 1000 (max. 500000)
+ 271 words of extra memory for PDF output out of 10000 (max. 10000000)
 
