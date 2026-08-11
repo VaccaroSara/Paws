@@ -1,219 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:padding="24dp">
+    android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+    <!-- Top Bar -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:paddingHorizontal="16dp">
+
+        <ImageView
+            android:id="@+id/btnBackFromDetails"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_back_arrow"
+            app:tint="#4A3B32" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Details"
+            android:textColor="#4A3B32"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- Scrollable Content -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="32dp"
-        app:cardElevation="0dp"
-        app:cardBackgroundColor="#EAE3D9">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="30dp">
 
-            <!-- Top Section: Image and Name/Tags -->
+            <!-- Large Image Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#F5F5F5">
+
+                <ImageView
+                    android:id="@+id/ivDetailPuppyImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_add_puppy_placeholder" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Puppy Name -->
+            <TextView
+                android:id="@+id/tvDetailPuppyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="serif"
+                android:text="Romeo"
+                android:textColor="#4A3B32"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- Detail Capsules Row -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp">
+                <!-- Gender Badge -->
+                <FrameLayout
+                    android:id="@+id/containerGender"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/bg_gender_circle">
+
                     <ImageView
-                        android:id="@+id/ivDetailPuppyImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/bg_add_puppy_placeholder" />
-                </androidx.cardview.widget.CardView>
+                        android:id="@+id/ivDetailGenderIcon"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_male" />
+                </FrameLayout>
+
+                <!-- Animal Type Capsule -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_grey_capsule"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="6dp">
+
+                    <ImageView
+                        android:id="@+id/ivDetailTypeIcon"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/dog" />
+
+                    <TextView
+                        android:id="@+id/tvDetailType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="Dog"
+                        android:textColor="#4A3B32"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Age Capsule -->
+                <TextView
+                    android:id="@+id/tvDetailAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_grey_capsule"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="6dp"
+                    android:text="1 years"
+                    android:textColor="#4A3B32"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Caption -->
+            <TextView
+                android:id="@+id/tvPuppyCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:lineSpacingExtra="4dp"
+                android:text="Caption text..."
+                android:textColor="#4A3B32"
+                android:textSize="14sp" />
+
+            <!-- Owner Info Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_owner_card"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Owner Information"
+                    android:textColor="#8E8E93"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp">
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvDetailPuppyName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Romeo"
-                        android:textSize="32sp"
-                        android:textColor="#4A3B32"
-                        android:fontFamily="serif" />
+                    <!-- Avatar Circle -->
+                    <FrameLayout
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@drawable/bg_grey_capsule">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/sign_ic_user"
+                            app:tint="#4A3B32" />
+                    </FrameLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="8dp">
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
 
-                        <FrameLayout
-                            android:id="@+id/containerGender"
-                            android:layout_width="32dp"
-                            android:layout_height="24dp"
-                            android:background="@drawable/bg_gender_circle">
-                            <ImageView
-                                android:id="@+id/ivDetailGenderIcon"
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_male" />
-                        </FrameLayout>
-
+                        <!-- Clickable Username Link -->
                         <TextView
-                            android:id="@+id/tvDetailType"
+                            android:id="@+id/tvOwnerUsername"
                             android:layout_width="wrap_content"
-                            android:layout_height="24dp"
-                            android:layout_marginStart="8dp"
-                            android:background="@drawable/bg_white_circle"
-                            android:gravity="center"
-                            android:paddingStart="12dp"
-                            android:paddingEnd="12dp"
-                            android:text="Dog"
-                            android:textColor="#4A3B32"
-                            android:textSize="12sp" />
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:text="username"
+                            android:textColor="#E87A5D"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
+                        <!-- Phone -->
                         <TextView
-                            android:id="@+id/tvDetailAge"
+                            android:id="@+id/tvOwnerPhone"
                             android:layout_width="wrap_content"
-                            android:layout_height="24dp"
-                            android:layout_marginStart="8dp"
-                            android:background="@drawable/bg_white_circle"
-                            android:gravity="center"
-                            android:paddingStart="12dp"
-                            android:paddingEnd="12dp"
-                            android:text="1 years"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Phone: N/A"
                             android:textColor="#4A3B32"
+                            android:textSize="13sp" />
+
+                        <!-- Location -->
+                        <TextView
+                            android:id="@+id/tvOwnerLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Location: N/A"
+                            android:textColor="#8E8E93"
                             android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#D1C7B7"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp" />
-
-            <!-- Owner Info -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="12dp">
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/sign_ic_user"
-                        app:tint="#4A3B32" />
-                    <TextView
-                        android:id="@+id/tvOwnerUsername"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="Loading..."
-                        android:textColor="#4A3B32"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:paddingVertical="4dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:focusable="true" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/rowOwnerPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="12dp"
-                    android:clickable="true"
-                    android:focusable="true">
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/sign_ic_phone"
-                        app:tint="#4A3B32" />
-                    <TextView
-                        android:id="@+id/tvOwnerPhone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="Loading..."
-                        android:textColor="#4A3B32"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="24dp">
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_location"
-                        app:tint="#4A3B32" />
-                    <TextView
-                        android:id="@+id/tvOwnerLocation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="Loading..."
-                        android:textColor="#4A3B32"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tvPuppyCaption"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Meet Romeo! An adorable tri-color puppy with captivating brown eyes..."
-                    android:textColor="#4A3B32"
-                    android:textSize="16sp"
-                    android:lineSpacingExtra="4dp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <!-- Back Button -->
-            <ImageView
-                android:id="@+id/btnBackFromDetails"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/bg_white_circle"
-                android:padding="12dp"
-                android:src="@drawable/ic_back_arrow"
-                app:tint="#4A3B32" />
-
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</FrameLayout>
+    </ScrollView>
+</LinearLayout>

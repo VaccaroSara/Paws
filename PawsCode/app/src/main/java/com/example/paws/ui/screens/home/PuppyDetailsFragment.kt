@@ -8,9 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -38,7 +35,7 @@ class PuppyDetailsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_puppy_details, container, false)
         db = FirebaseFirestore.getInstance()
 
-        // Implementiamo lo swipe to favorite (verso destra)
+        // Gesture detector per lo swipe to favorite (verso destra)
         val gestureDetector = android.view.GestureDetector(requireContext(), object : android.view.GestureDetector.SimpleOnGestureListener() {
             override fun onFling(e1: android.view.MotionEvent?, e2: android.view.MotionEvent, velocityX: Float, velocityY: Float): Boolean {
                 if (e1 != null && e2.x - e1.x > 100 && Math.abs(velocityX) > 100) {
@@ -55,6 +52,7 @@ class PuppyDetailsFragment : Fragment() {
         val tvName = view.findViewById<TextView>(R.id.tvDetailPuppyName)
         val ivGender = view.findViewById<ImageView>(R.id.ivDetailGenderIcon)
         val containerGender = view.findViewById<View>(R.id.containerGender)
+        val ivTypeIcon = view.findViewById<ImageView>(R.id.ivDetailTypeIcon)
         val tvType = view.findViewById<TextView>(R.id.tvDetailType)
         val tvAge = view.findViewById<TextView>(R.id.tvDetailAge)
         val tvCaption = view.findViewById<TextView>(R.id.tvPuppyCaption)
@@ -62,13 +60,12 @@ class PuppyDetailsFragment : Fragment() {
 
         val tvUsername = view.findViewById<TextView>(R.id.tvOwnerUsername)
         val tvPhone = view.findViewById<TextView>(R.id.tvOwnerPhone)
-        val rowPhone = view.findViewById<View>(R.id.rowOwnerPhone)
         val tvLocation = view.findViewById<TextView>(R.id.tvOwnerLocation)
 
-        // Reset details to avoid showing old or sample data while loading
+        // Reset details while loading
         tvUsername.text = "Loading..."
-        tvPhone.text = "Loading..."
-        tvLocation.text = "Loading..."
+        tvPhone.text = "Phone: Loading..."
+        tvLocation.text = "Location: Loading..."
 
         puppyPost?.let { post ->
             tvName.text = post.name
@@ -76,8 +73,15 @@ class PuppyDetailsFragment : Fragment() {
             tvAge.text = post.age
             tvCaption.text = post.caption
 
+            // Set animal type icon
+            when (post.type.lowercase()) {
+                "cat" -> ivTypeIcon?.setImageResource(R.drawable.cat)
+                "bird" -> ivTypeIcon?.setImageResource(R.drawable.bird)
+                else -> ivTypeIcon?.setImageResource(R.drawable.dog)
+            }
+
             if (post.imageUrl.isNotEmpty()) {
-                val radiusPx = (20 * resources.displayMetrics.density).toInt()
+                val radiusPx = (24 * resources.displayMetrics.density).toInt()
                 Glide.with(this)
                     .load(post.imageUrl)
                     .transform(CenterCrop(), RoundedCorners(radiusPx))
@@ -98,10 +102,10 @@ class PuppyDetailsFragment : Fragment() {
                     val username = doc.getString("username") ?: doc.getString("firstName") ?: "Unknown"
                     tvUsername.text = username
                     val phone = doc.getString("phone") ?: ""
-                    tvPhone.text = if (phone.isNotEmpty()) phone else "N/A"
+                    tvPhone.text = "Phone: ${if (phone.isNotEmpty()) phone else "N/A"}"
                     val city = doc.getString("city") ?: ""
                     val province = doc.getString("province") ?: ""
-                    tvLocation.text = if (city.isNotEmpty() && province.isNotEmpty()) "$city ($province)" else city
+                    tvLocation.text = "Location: ${if (city.isNotEmpty()) "$city (${province})" else "N/A"}"
 
                     // Call confirmation on phone click
                     val onPhoneClick = View.OnClickListener {
@@ -123,7 +127,6 @@ class PuppyDetailsFragment : Fragment() {
                     }
 
                     tvPhone.setOnClickListener(onPhoneClick)
-                    rowPhone?.setOnClickListener(onPhoneClick)
 
                     // Navigate to owner profile on click
                     tvUsername.setOnClickListener {
@@ -136,7 +139,6 @@ class PuppyDetailsFragment : Fragment() {
                                 .addToBackStack(null)
                                 .commit()
                         } else {
-                            // Optionally redirect to own profile or show message
                             Toast.makeText(requireContext(), "Questo è il tuo profilo", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -178,7 +180,7 @@ class PuppyDetailsFragment : Fragment() {
             db.collection("favorites").document(favId).set(favoriteData)
                 .addOnSuccessListener {
                     if (isAdded) {
-                        android.widget.Toast.makeText(requireContext(), "${post.name} salvato!", android.widget.Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "${post.name} salvato!", Toast.LENGTH_SHORT).show()
                         
                         // Invia notifica al proprietario
                         db.collection("users").document(currentUser.uid).get().addOnSuccessListener { userDoc ->
