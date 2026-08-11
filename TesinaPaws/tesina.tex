@@ -73,13 +73,24 @@ Consultazione informativa attraverso schede dettaglio pensate per conoscere a fo
 
 Gestione dei Preferiti e contatti, in cui gli utenti possono tenere traccia degli animali di loro interesse e avviare comunicazioni dirette per l'adozione o la richiesta di informazioni.
 \clearpage
-\newsection*{Sezione}
-La gestione dei dati rappresenta un elemento centrale del progetto. 
-Il sistema è stato progettato per garantire un’organizzazione chiara e strutturata delle informazioni, supportata da procedure di aggiornamento e validazione che ne assicurano l’affidabilità nel tempo.
-\\
-Particolare attenzione è rivolta ai principi di integrità e consistenza, così da mantenere i dati coerenti e privi di ridondanze inutili.
-\\
-In questo modo, la piattaforma garantisce un flusso informativo ordinato, sicuro e facilmente consultabile, a beneficio sia degli operatori interni sia dei clienti.	
+
+\section*{Descrizione in Linguaggio Naturale}
+Il progetto consiste nello sviluppo di \textbf{Paws}, un'applicazione mobile pensata per gli amanti degli animali, i privati e le strutture d'accoglienza (canili e rifugi). L'obiettivo dell'applicazione è offrire uno strumento integrato ed intuitivo per facilitare l'adozione e la condivisione di annunci relativi a cuccioli ed animali domestici, tenendo traccia delle schede di dettaglio dei singoli animali e consentendo il contatto diretto tra gli utenti.
+
+Il sistema prevede due macro-tipologie di utenti:
+\begin{itemize}
+    \item \textbf{Utenti Privati:} appassionati ed individui che utilizzano l'applicazione per consultare gli annunci di cuccioli disponibili, salvare gli animali preferiti nella propria sezione dedicata, pubblicare nuovi annunci di adozione, filtrare la ricerca per razza, età, sesso e tipologia di utente, e contattare direttamente i proprietari tramite chiamata telefonica.
+    \item \textbf{Rifugi e Canili (Animal Shelters):} strutture ed organizzazioni dedicate che dispongono di funzionalità per la pubblicazione e gestione di annunci di adozione su più ampia scala, promuovendo la visibilità degli animali in cerca di una casa e gestendo il proprio profilo informativo.
+\end{itemize}
+
+\section*{Sintesi dell'Approccio}
+Per la realizzazione del sistema, lo sviluppo dell'applicazione mobile è stato suddiviso in due percorsi complementari:
+\begin{itemize}
+    \item \textbf{Applicazione Android Nativa:} sviluppata in Kotlin sfruttando l'architettura nativa Android e la libreria di componenti UI, garantendo elevate prestazioni, gesture fluide (swipe-to-favorite) e perfetta integrazione con i servizi di sistema come l'avvio delle chiamate ed i servizi Firebase (Authentication, Firestore e Storage).
+    \item \textbf{Applicazione Clone Cross-Platform:} realizzata in Flutter per consentire la portabilità del codice a partire da un'unica codebase, replicando fedelmente le funzionalità, la gerarchia tipografica (serif/sans-serif/custom font), l'identità visiva e l'interfaccia dell'applicazione nativa.
+\end{itemize}
+
+Questo approccio parallelo consente di analizzare e confrontare i vantaggi dello sviluppo nativo in termini di integrazione con il sistema operativo e risposta delle gesture rispetto ai benefici legati alla velocità di sviluppo e riusabilità offerti dalle moderne tecnologie cross-platform.
 
 \newsection*{Architettura del Sistema}
 L’architettura di GESTRI è concepita secondo un approccio modulare, così da favorire la scalabilità, la manutenzione e l’evoluzione futura della piattaforma. I principali componenti possono essere riassunti come segue:

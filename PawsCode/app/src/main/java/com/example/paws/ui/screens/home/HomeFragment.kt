@@ -11,6 +11,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.RectF
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -126,6 +132,51 @@ class HomeFragment : Fragment() {
                     favoritedPostIds = favoritedPostIds + item.id
                     applyFilters()
                 }
+            }
+
+            override fun onChildDraw(
+                c: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                val itemView = viewHolder.itemView
+                if (dX > 0 && actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+                    val bgPaint = Paint().apply {
+                        color = Color.parseColor("#FFECB3") // Amber/light orange background matching Flutter
+                        isAntiAlias = true
+                    }
+                    val cornerRadius = 32f * resources.displayMetrics.density
+                    val rectF = RectF(
+                        itemView.left.toFloat(),
+                        itemView.top.toFloat(),
+                        itemView.left.toFloat() + dX + cornerRadius,
+                        itemView.bottom.toFloat()
+                    )
+                    c.drawRoundRect(rectF, cornerRadius, cornerRadius, bgPaint)
+
+                    val iconDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_heart_filled)
+                    iconDrawable?.let { drawable ->
+                        val wrapped = DrawableCompat.wrap(drawable).mutate()
+                        DrawableCompat.setTint(wrapped, Color.parseColor("#F09B42"))
+
+                        val iconSize = (40 * resources.displayMetrics.density).toInt()
+                        val iconMarginLeft = (30 * resources.displayMetrics.density).toInt()
+                        val iconTop = itemView.top + (itemView.height - iconSize) / 2
+                        val iconLeft = itemView.left + iconMarginLeft
+                        val iconRight = iconLeft + iconSize
+                        val iconBottom = iconTop + iconSize
+
+                        if (iconLeft < itemView.left + dX) {
+                            wrapped.setBounds(iconLeft, iconTop, iconRight, iconBottom)
+                            wrapped.draw(c)
+                        }
+                    }
+                }
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
             }
         }
         ItemTouchHelper(swipeHandler).attachToRecyclerView(rvFeed)
