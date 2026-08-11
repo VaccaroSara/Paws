@@ -62,7 +62,13 @@ class PuppyDetailsFragment : Fragment() {
 
         val tvUsername = view.findViewById<TextView>(R.id.tvOwnerUsername)
         val tvPhone = view.findViewById<TextView>(R.id.tvOwnerPhone)
+        val rowPhone = view.findViewById<View>(R.id.rowOwnerPhone)
         val tvLocation = view.findViewById<TextView>(R.id.tvOwnerLocation)
+
+        // Reset details to avoid showing old or sample data while loading
+        tvUsername.text = "Loading..."
+        tvPhone.text = "Loading..."
+        tvLocation.text = "Loading..."
 
         puppyPost?.let { post ->
             tvName.text = post.name
@@ -91,10 +97,33 @@ class PuppyDetailsFragment : Fragment() {
                 if (isAdded && doc.exists()) {
                     val username = doc.getString("username") ?: doc.getString("firstName") ?: "Unknown"
                     tvUsername.text = username
-                    tvPhone.text = doc.getString("phone") ?: "N/A"
+                    val phone = doc.getString("phone") ?: ""
+                    tvPhone.text = if (phone.isNotEmpty()) phone else "N/A"
                     val city = doc.getString("city") ?: ""
                     val province = doc.getString("province") ?: ""
                     tvLocation.text = if (city.isNotEmpty() && province.isNotEmpty()) "$city ($province)" else city
+
+                    // Call confirmation on phone click
+                    val onPhoneClick = View.OnClickListener {
+                        if (phone.isNotEmpty() && phone != "N/A") {
+                            androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                                .setTitle("Vuoi chiamare il numero?")
+                                .setMessage(phone)
+                                .setPositiveButton("Chiama") { _, _ ->
+                                    val intent = android.content.Intent(android.content.Intent.ACTION_DIAL).apply {
+                                        data = android.net.Uri.parse("tel:$phone")
+                                    }
+                                    startActivity(intent)
+                                }
+                                .setNegativeButton("Annulla", null)
+                                .show()
+                        } else {
+                            Toast.makeText(requireContext(), "Telefono non disponibile", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    tvPhone.setOnClickListener(onPhoneClick)
+                    rowPhone?.setOnClickListener(onPhoneClick)
 
                     // Navigate to owner profile on click
                     tvUsername.setOnClickListener {

@@ -34,6 +34,7 @@ class AddPuppyFragment : Fragment() {
     private var filterAge: String? = null
     private var filterUserType: String? = null
     private var searchQuery: String = ""
+    private var notificationsListener: com.google.firebase.firestore.ListenerRegistration? = null
 
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -61,6 +62,7 @@ class AddPuppyFragment : Fragment() {
         val rvRecent = view.findViewById<RecyclerView>(R.id.rvRecentPosts)
         val ivBell = view.findViewById<View>(R.id.ivBellAdd)
         val ivFilter = view.findViewById<View>(R.id.ivFilterAdd)
+        val viewBadge = view.findViewById<View>(R.id.viewBadgeAdd)
         val etSearch = view.findViewById<EditText>(R.id.etSearchAdd)
         etSearch?.hint = "search for a puppy..."
 
@@ -119,9 +121,24 @@ class AddPuppyFragment : Fragment() {
                 }
             
             loadRecentPosts(currentUser.uid)
+
+            // Listen for notifications to show badge
+            notificationsListener?.remove()
+            notificationsListener = db.collection("notifications")
+                .whereEqualTo("targetUid", currentUser.uid)
+                .addSnapshotListener { snapshots, _ ->
+                    if (isAdded && snapshots != null) {
+                        viewBadge.visibility = if (snapshots.isEmpty) View.GONE else View.VISIBLE
+                    }
+                }
         }
 
         return view
+    }
+
+    override fun onDestroyView() {
+        notificationsListener?.remove()
+        super.onDestroyView()
     }
 
     private fun openGallery() {

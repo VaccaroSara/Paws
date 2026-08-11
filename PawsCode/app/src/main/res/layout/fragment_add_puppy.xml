@@ -43,12 +43,23 @@
                     android:src="@drawable/home_ic_paws_logo" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/ivBellAdd"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/ic_bell"
-                android:contentDescription="Notifications" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/ivBellAdd"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_bell"
+                    android:contentDescription="Notifications" />
+                <View
+                    android:id="@+id/viewBadgeAdd"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="top|end"
+                    android:background="@drawable/bg_orange_dot"
+                    android:visibility="gone" />
+            </FrameLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -97,6 +108,16 @@
                 android:focusable="true" />
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Puppy"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#4A3B32"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp"/>
 
     <!-- Unified Vertical Grid for "+" and Posts -->
     <androidx.recyclerview.widget.RecyclerView

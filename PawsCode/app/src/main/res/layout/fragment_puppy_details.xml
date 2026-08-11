@@ -131,7 +131,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:text="sarettavacc27"
+                        android:text="Loading..."
                         android:textColor="#4A3B32"
                         android:textSize="14sp"
                         android:textStyle="bold"
@@ -142,11 +142,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/rowOwnerPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="12dp">
+                    android:layout_marginBottom="12dp"
+                    android:clickable="true"
+                    android:focusable="true">
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
@@ -157,7 +160,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:text="+39 626 444 3333"
+                        android:text="Loading..."
                         android:textColor="#4A3B32"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -179,7 +182,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:text="Ortona (CH)"
+                        android:text="Loading..."
                         android:textColor="#4A3B32"
                         android:textSize="14sp" />
                 </LinearLayout>

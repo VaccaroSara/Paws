@@ -43,13 +43,13 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Deletion Icon (Left) -->
+    <!-- Deletion Icon (Right) -->
     <FrameLayout
         android:id="@+id/btnDeletePost"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="12dp"
         android:background="@drawable/bg_white_circle"
         android:clickable="true"
@@ -61,12 +61,12 @@
             android:src="@drawable/ic_trash" />
     </FrameLayout>
 
-    <!-- Name Overlay (Right) -->
+    <!-- Name Overlay (Left) -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
         android:layout_margin="12dp"
         android:background="@drawable/bg_profile_button"
         android:orientation="horizontal"

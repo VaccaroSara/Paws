@@ -112,7 +112,7 @@
         android:id="@+id/tvPuppiesLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Puppies for you"
+        android:text="Puppies For You"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#4A3B32"
