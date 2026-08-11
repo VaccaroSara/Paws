@@ -61,11 +61,13 @@ class PuppyDetailsFragment : Fragment() {
         val tvUsername = view.findViewById<TextView>(R.id.tvOwnerUsername)
         val tvPhone = view.findViewById<TextView>(R.id.tvOwnerPhone)
         val tvLocation = view.findViewById<TextView>(R.id.tvOwnerLocation)
+        val ivOwnerAvatar = view.findViewById<ImageView>(R.id.ivOwnerAvatar)
 
         // Reset details while loading
         tvUsername.text = "Loading..."
         tvPhone.text = "Phone: Loading..."
         tvLocation.text = "Location: Loading..."
+        ivOwnerAvatar?.setImageResource(R.drawable.sign_ic_user)
 
         puppyPost?.let { post ->
             tvName.text = post.name
@@ -94,6 +96,11 @@ class PuppyDetailsFragment : Fragment() {
             } else {
                 ivGender.setImageResource(R.drawable.ic_male)
                 containerGender.setBackgroundResource(R.drawable.bg_gender_circle)
+            }
+
+            // Load Owner Profile Picture
+            ivOwnerAvatar?.let { 
+                ProfileImageManager.loadProfileImageForUid(requireContext(), post.uid, it)
             }
 
             // Load Owner Details

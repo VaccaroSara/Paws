@@ -183,11 +183,12 @@
                         android:background="@drawable/bg_grey_capsule">
 
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:id="@+id/ivOwnerAvatar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:src="@drawable/sign_ic_user"
-                            app:tint="#4A3B32" />
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/sign_ic_user" />
                     </FrameLayout>
 
                     <LinearLayout
