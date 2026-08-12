@@ -9,8 +9,8 @@
 \contentsline {subsection}{Requisiti Non Funzionali: Kotlin (App Nativa)}{5}{section*.11}%
 \contentsline {subsection}{Requisiti Non Funzionali: Flutter (App Cross-Platform)}{5}{section*.12}%
 \contentsline {section}{Descrizione dei Casi d'Uso}{7}{section*.13}%
-\contentsline {section}{Mockup}{13}{section*.21}%
-\contentsline {section}{Verifica e Validazione del Software: Unit Tests}{14}{section*.22}%
-\contentsline {subsection}{Test Manuali}{14}{section*.23}%
-\contentsline {subsection}{Unit Test}{14}{section*.24}%
+\contentsline {section}{Mockup}{23}{section*.33}%
+\contentsline {section}{Verifica e Validazione del Software: Unit Tests}{24}{section*.34}%
+\contentsline {subsection}{Test Manuali}{24}{section*.35}%
+\contentsline {subsection}{Unit Test}{24}{section*.36}%
 \contentsfinish 
