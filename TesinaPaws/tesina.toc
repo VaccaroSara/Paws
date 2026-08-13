@@ -7,10 +7,15 @@
 \contentsline {section}{Analisi dei requisiti}{4}{section*.9}%
 \contentsline {subsection}{Requisiti Funzionali}{4}{section*.10}%
 \contentsline {subsection}{Requisiti Non Funzionali: Kotlin (App Nativa)}{5}{section*.11}%
-\contentsline {subsection}{Requisiti Non Funzionali: Flutter (App Cross-Platform)}{5}{section*.12}%
+\contentsline {subsection}{Requisiti Non Funzionali: Flutter (App Cross-Platform)}{6}{section*.12}%
 \contentsline {section}{Descrizione dei Casi d'Uso}{7}{section*.13}%
-\contentsline {section}{Mockup}{23}{section*.33}%
-\contentsline {section}{Verifica e Validazione del Software: Unit Tests}{24}{section*.34}%
-\contentsline {subsection}{Test Manuali}{24}{section*.35}%
-\contentsline {subsection}{Unit Test}{24}{section*.36}%
+\contentsline {subsection}{Area: Gestione Utente}{7}{section*.14}%
+\contentsline {subsection}{Area: Gestione Cucciolo}{14}{section*.22}%
+\contentsline {subsection}{Area: Gestione Interazioni}{19}{section*.28}%
+\contentsline {subsection}{Area: Gestione Navigazione}{24}{section*.34}%
+\contentsline {subsection}{Area: Gestione Notifiche}{27}{section*.38}%
+\contentsline {section}{Mockup}{30}{section*.43}%
+\contentsline {section}{Verifica e Validazione del Software: Unit Tests}{31}{section*.44}%
+\contentsline {subsection}{Test Manuali}{31}{section*.45}%
+\contentsline {subsection}{Unit Test}{31}{section*.46}%
 \contentsfinish 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.26)  12 AUG 2026 13:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.26)  13 AUG 2026 13:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1559,11 +1559,11 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [6]
-<./img/GestioneUtente.png, id=123, 321.62909pt x 351.41977pt>
+<./img/GestioneUtente.png, id=133, 320.52573pt x 429.20656pt>
 File: ./img/GestioneUtente.png Graphic file (type png)
 <use ./img/GestioneUtente.png>
-Package pdftex.def Info: ./img/GestioneUtente.png  used on input line 186.
-(pdftex.def)             Requested size: 452.9679pt x 494.92819pt.
+Package pdftex.def Info: ./img/GestioneUtente.png  used on input line 188.
+(pdftex.def)             Requested size: 362.37569pt x 485.27937pt.
 
 
 
@@ -1699,11 +1699,33 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [12]
-<./img/GestioneCucciolo.png, id=199, 261.49603pt x 340.38618pt>
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[13]
+<./img/GestioneCucciolo.png, id=222, 261.49603pt x 340.38618pt>
 File: ./img/GestioneCucciolo.png Graphic file (type png)
 <use ./img/GestioneCucciolo.png>
-Package pdftex.def Info: ./img/GestioneCucciolo.png  used on input line 361.
-(pdftex.def)             Requested size: 452.9679pt x 589.68062pt.
+Package pdftex.def Info: ./img/GestioneCucciolo.png  used on input line 400.
+(pdftex.def)             Requested size: 407.66833pt x 530.70944pt.
 
 
 
@@ -1726,31 +1748,9 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  [][]|
  []
 
-[13
+[14
 
  <./img/GestioneCucciolo.png (PNG copy)>]
-
-
-Overfull \hbox (34.71422pt too wide) has occurred while \output is active
-[][]|  
- []
-
-
-Overfull \hbox (34.71422pt too wide) has occurred while \output is active
- [][]|
- []
-
-
-Overfull \hbox (34.71422pt too wide) has occurred while \output is active
-[]
- []
-
-
-Overfull \hbox (34.71422pt too wide) has occurred while \output is active
- [][]|
- []
-
-[14]
 
 
 Overfull \hbox (34.71422pt too wide) has occurred while \output is active
@@ -1817,17 +1817,34 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [17]
-<./img/GestionePreferitiInterazioni.png, id=257, 586.98688pt x 276.94305pt>
-File: ./img/GestionePreferitiInterazioni.png Graphic file (type png)
-<use ./img/GestionePreferitiInterazioni.png>
-Package pdftex.def Info: ./img/GestionePreferitiInterazioni.png  used on input line 499.
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[18]
+<./img/GestioneInterazioni.png, id=284, 586.98688pt x 276.94305pt>
+File: ./img/GestioneInterazioni.png Graphic file (type png)
+<use ./img/GestioneInterazioni.png>
+Package pdftex.def Info: ./img/GestioneInterazioni.png  used on input line 545.
 (pdftex.def)             Requested size: 452.9679pt x 213.71587pt.
 
-Underfull \hbox (badness 1052) in paragraph at lines 531--532
-[]\T1/cmr/m/n/10 L'interfaccia man-tie-ne lo sta-to pre-ce-den-te del-l'i-co-na
- []
-
-
 
 
 Overfull \hbox (34.71422pt too wide) has occurred while \output is active
@@ -1849,36 +1866,9 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  [][]|
  []
 
-[18
+[19
 
- <./img/GestionePreferitiInterazioni.png (PNG copy)>]
-Underfull \hbox (badness 1052) in paragraph at lines 566--567
-[]\T1/cmr/m/n/10 L'interfaccia man-tie-ne lo sta-to pre-ce-den-te del-l'i-co-na
- []
-
-
-
-
-Overfull \hbox (34.71422pt too wide) has occurred while \output is active
-[][]|  
- []
-
-
-Overfull \hbox (34.71422pt too wide) has occurred while \output is active
- [][]|
- []
-
-
-Overfull \hbox (34.71422pt too wide) has occurred while \output is active
-[]
- []
-
-
-Overfull \hbox (34.71422pt too wide) has occurred while \output is active
- [][]|
- []
-
-[19]
+ <./img/GestioneInterazioni.png (PNG copy)>]
 
 
 Overfull \hbox (34.71422pt too wide) has occurred while \output is active
@@ -1966,17 +1956,12 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  [][]|
  []
 
-[23
-
-] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 659.
-
-
-LaTeX Font Warning: Font shape `T1/cmtt/bx/n' in size <9> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 660.
-
+[23]
+<./img/GestioneNavigazione.png, id=341, 281.35649pt x 194.19115pt>
+File: ./img/GestioneNavigazione.png Graphic file (type png)
+<use ./img/GestioneNavigazione.png>
+Package pdftex.def Info: ./img/GestioneNavigazione.png  used on input line 683.
+(pdftex.def)             Requested size: 452.9679pt x 312.6471pt.
 
 
 
@@ -2001,6 +1986,181 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 
 [24
 
+ <./img/GestioneNavigazione.png (PNG copy)>]
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[25]
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[26]
+<./img/GestioneNotifiche.png, id=377, 448.51535pt x 288.52832pt>
+File: ./img/GestioneNotifiche.png Graphic file (type png)
+<use ./img/GestioneNotifiche.png>
+Package pdftex.def Info: ./img/GestioneNotifiche.png  used on input line 766.
+(pdftex.def)             Requested size: 452.9679pt x 291.39807pt.
+
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[27
+
+ <./img/GestioneNotifiche.png (PNG copy)>]
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[28]
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[29]
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[30
+
+] (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 879.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/bx/n' in size <9> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 880.
+
+
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[31
+
 ] (./tesina.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
@@ -2013,18 +2173,18 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 70479 strings out of 473190
- 1748212 string characters out of 5715800
- 2667105 words of memory out of 5000000
- 92645 multiletter control sequences out of 15000+600000
+ 70566 strings out of 473190
+ 1749338 string characters out of 5715800
+ 2667231 words of memory out of 5000000
+ 92668 multiletter control sequences out of 15000+600000
  580655 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  89i,12n,120p,817b,1526s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0500.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on tesina.pdf (26 pages, 836105 bytes).
+Output written on tesina.pdf (33 pages, 902180 bytes).
 PDF statistics:
- 451 PDF objects out of 1000 (max. 8388607)
- 367 compressed objects within 4 object streams
- 176 named destinations out of 1000 (max. 500000)
- 281 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 574 PDF objects out of 1000 (max. 8388607)
+ 480 compressed objects within 5 object streams
+ 240 named destinations out of 1000 (max. 500000)
+ 331 words of extra memory for PDF output out of 10000 (max. 10000000)
 

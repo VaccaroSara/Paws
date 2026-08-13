@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1786533038.34528 "/Users/sara/Desktop/3-ANNO/Mobile/Paws/TesinaPaws/tesina.tex" "tesina.pdf" "tesina" 1786533041.51319 0
-  "/Users/sara/Desktop/3-ANNO/Mobile/Paws/TesinaPaws/tesina.tex" 1786533001.19764 43324 52fddaa73420dc389f6063ecefb9b882 ""
+["pdflatex"] 1786620230.54996 "/Users/sara/Desktop/3-ANNO/Mobile/Paws/TesinaPaws/tesina.tex" "tesina.pdf" "tesina" 1786620233.45895 0
+  "/Users/sara/Desktop/3-ANNO/Mobile/Paws/TesinaPaws/tesina.tex" 1786620227.50836 56111 b0c94466fcc50340e6652013bec3edfc ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -341,12 +341,14 @@
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "config.tex" 1786533037.96543 15229 1cc773ee8757f9c37e60f17ca8d1ed81 ""
   "img/GestioneCucciolo.png" 1786530814.93747 32644 8f355a9b3f63c9a2c18db964aa8bc039 ""
-  "img/GestionePreferitiInterazioni.png" 1786532405.83075 35653 ff234653f0fba435c84566c5da58f9c4 ""
-  "img/GestioneUtente.png" 1786469698.59141 39099 99206fa6defb0cd853f78afe636c74ab ""
+  "img/GestioneInterazioni.png" 1786618807.05855 35434 4c73d23f2dff5b0951d1c0fbd31510b5 ""
+  "img/GestioneNavigazione.png" 1786614254.04403 17226 46417a2f4e36d282a1588844128d343d ""
+  "img/GestioneNotifiche.png" 1786614734.67023 28628 4218c80b3268b21638ce9018045825e6 ""
+  "img/GestioneUtente.png" 1786619703.41442 46969 45abc7477863304806ae921b54f6d780 ""
   "img/univpm_logo.png" 1755853629.60692 572038 2c65ef26c2d0ad88311d8e9b99461627 ""
-  "tesina.aux" 1786533041.38644 7345 d560145a740b7cf259b19c6c16b3bc10 "pdflatex"
-  "tesina.tex" 1786533001.19764 43324 52fddaa73420dc389f6063ecefb9b882 ""
-  "tesina.toc" 1786533041.38847 994 3b1dab400f6a763252a690ec5a1388bd "pdflatex"
+  "tesina.aux" 1786620233.33049 9832 e53f658dee2e4f7d8e014bd90c35dcd0 "pdflatex"
+  "tesina.tex" 1786620227.50836 56111 b0c94466fcc50340e6652013bec3edfc ""
+  "tesina.toc" 1786620233.33286 1348 0cb9e04d394f5daac096c000441d7629 "pdflatex"
   (generated)
   "tesina.aux"
   "tesina.log"

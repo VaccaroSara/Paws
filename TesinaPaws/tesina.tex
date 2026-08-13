@@ -121,38 +121,39 @@ Nella presente sezione si analizzano in modo approfondito i requisiti del sistem
 \end{itemize}
 \newsection{Analisi dei requisiti}
 \newsubsection{Requisiti Funzionali}
-\subsection*{Area: Gestione utente}
+\subsection*{Area: Gestione Utente}
 \begin{itemize}
     \item \textbf{RF1: Registrazione utente:} il sistema deve permettere la creazione di un account inserendo email, password, nome, cognome, città, provincia, CAP, numero di telefono, username e la selezione del tipo di account (Utente Privato o Animal Shelter).
     \item \textbf{RF2: Accesso utente:} il sistema deve consentire agli utenti registrati di accedere all'applicazione inserendo le proprie credenziali.
-    \item \textbf{RF3: Modifica profilo:} il sistema deve permettere all'utente di modificare i propri dati personali, aggiornare la foto profilo, richiedere il reset della password via email e modificare la tipologia di account.
+    \item \textbf{RF3: Modifica utente:} il sistema deve permettere all'utente di modificare i propri dati personali, aggiornare la foto profilo, richiedere il reset della password via email e modificare la tipologia di account.
     \item \textbf{RF4: Logout:} il sistema deve consentire all'utente di effettuare un logout sicuro dalla sessione attiva.
-    \item \textbf{RF5: Elimina account:} il sistema deve permettere all'utente di eliminare definitivamente il proprio account.
+    \item \textbf{RF5: Elimina utente:} il sistema deve permettere all'utente di eliminare definitivamente il proprio account.
+    \item \textbf{RF6: Visualizza utente:} il sistema deve permettere all'utente di visualizzare la pagina di profilo di un altro utente consultando le informazioni pubbliche e i post pubblicati.
 \end{itemize}
-\subsection*{Area: Gestione cucciolo}
+\subsection*{Area: Gestione Cucciolo}
 \begin{itemize}
-    \item \textbf{RF6: Crea cucciolo:} il sistema deve permettere all'utente di caricare un nuovo annuncio specificando nome del cucciolo, tipo di animale (cane, gatto, uccello), sesso (maschio, femmina), età, didascalia descrittiva e foto dell'animale.
-    \item \textbf{RF7: Modifica cucciolo:} il sistema deve permettere all'autore dell'annuncio di modificare le informazioni inserite.
-    \item \textbf{RF8: Elimina cucciolo:} il sistema deve permettere all'autore dell'annuncio di eliminare definitivamente il post e la relativa immagine memorizzata nel cloud.
-    \item \textbf{RF9: Visualizza post e scheda dettaglio:} il sistema deve mostrare i post dei cuccioli pubblicati e consentire la visualizzazione delle informazioni complete dell'animale e del proprietario.
+    \item \textbf{RF7: Crea cucciolo:} il sistema deve permettere all'utente di caricare un nuovo annuncio specificando nome del cucciolo, tipo di animale (cane, gatto, uccello), sesso (maschio, femmina), età, didascalia descrittiva e foto dell'animale.
+    \item \textbf{RF8: Modifica cucciolo:} il sistema deve permettere all'autore dell'annuncio di modificare le informazioni inserite.
+    \item \textbf{RF9: Elimina cucciolo:} il sistema deve permettere all'autore dell'annuncio di eliminare definitivamente il post e la relativa immagine memorizzata nel cloud.
+    \item \textbf{RF10: Visualizza post e scheda dettaglio:} il sistema deve mostrare i post dei cuccioli pubblicati e consentire la visualizzazione delle informazioni complete dell'animale e del proprietario.
 \end{itemize}
-\subsection*{Area: Gestione preferiti e interazioni}
+\subsection*{Area: Gestione nterazioni}
 \begin{itemize}
-    \item \textbf{RF10: Aggiungi ai preferiti:} il sistema deve permettere di aggiungere un cucciolo ai preferiti effettuando uno swipe verso destra dalla home o premendo sul cuore dal profilo di un Utente o Animal Shelter.
-    \item \textbf{RF11: Rimuovi dai preferiti:} il sistema deve permettere di rimuovere un cucciolo dai preferiti premendo sul cuore nella lista dei preferiti.
-    \item \textbf{RF12: Calcolo dei mi piace:} il sistema deve calcolare e mostrare in tempo reale il numero totale di salvataggi ricevuti per ciascun post.
-    \item \textbf{RF13: Chiamata telefonica:} il sistema deve consentire di avviare una chiamata verso il numero di telefono del proprietario.
+    \item \textbf{RF11: Aggiungi ai preferiti:} il sistema deve permettere di aggiungere un cucciolo ai preferiti effettuando uno swipe verso destra dalla home o premendo sul cuore dal profilo di un Utente o Animal Shelter.
+    \item \textbf{RF12: Rimuovi dai preferiti:} il sistema deve permettere di rimuovere un cucciolo dai preferiti premendo sul cuore nella lista dei preferiti.
+    \item \textbf{RF13: Calcolo dei mi piace:} il sistema deve calcolare e mostrare in tempo reale il numero totale di salvataggi ricevuti per ciascun post.
+    \item \textbf{RF14: Chiamata telefonica:} il sistema deve consentire di avviare una chiamata verso il numero di telefono del proprietario.
 \end{itemize}
-\subsection*{Area: Gestione ricerca e filtri}
+\subsection*{Area: Gestione Navigazione}
 \begin{itemize}
-    \item \textbf{RF14: Ricerca:} il sistema deve permettere di cercare utenti o cuccioli inserendo il testo nella barra di ricerca.
-    \item \textbf{RF15: Filtraggio:} il sistema deve consentire il filtraggio degli annunci in base a età, sesso, tipo di animale e tipo di utente.
+    \item \textbf{RF15: Cerca:} il sistema deve permettere di cercare utenti o cuccioli inserendo il testo nella barra di ricerca.
+    \item \textbf{RF16: Filtra:} il sistema deve consentire il filtraggio degli annunci in base a età, sesso, tipo di animale e tipo di utente.
 \end{itemize}
-\subsection*{Area: Gestione notifiche}
+\subsection*{Area: Gestione Notifiche}
 \begin{itemize}
-    \item \textbf{RF16: Generazione notifica:} il sistema deve generare una notifica destinata al proprietario dell'annuncio quando un altro utente aggiunge/rimuove il suo cucciolo ai/dai preferiti.
-    \item \textbf{RF17: Visualizza notifiche:} il sistema deve mostrare all'utente un elenco delle notifiche ricevute.
-    \item  \textbf{RF18: Elimina notifiche:} il sistema deve permettere all'utente l'eliminazione delle notifiche.
+    \item \textbf{RF17: Genera notifica:} il sistema deve generare una notifica destinata al proprietario dell'annuncio quando un altro utente aggiunge/rimuove il suo cucciolo ai/dai preferiti.
+    \item \textbf{RF18: Visualizza notifica:} il sistema deve mostrare all'utente un elenco delle notifiche ricevute.
+    \item  \textbf{RF19: Elimina notifica:} il sistema deve permettere all'utente l'eliminazione delle notifiche.
 \end{itemize}
 
 \newsubsection{Requisiti Non Funzionali: Kotlin (App Nativa)}
@@ -179,13 +180,15 @@ Nella presente sezione si analizzano in modo approfondito i requisiti del sistem
 \clearpage
 \newsection{Descrizione dei Casi d'Uso}
 Di seguito sono descritti nel dettaglio i principali casi d’uso per l’applicazione.
-\newsubsection*{Area: Gestione utente}
+\newsubsection{Area: Gestione Utente}
+Questa area raggruppa tutti i casi d'uso relativi all'autenticazione e all'amministrazione del profilo personale. Definisce i processi tramite gli utenti possono registrarsi, accedere in modo sicuro tramite le proprie credenziali, aggiornare le informazioni anagrafiche e gestire l'intero ciclo di vita del proprio account, inclusa la disconnessione e l'eliminazione definitiva dei dati.
 \vspace{1cm}
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=1\textwidth]{GestioneUtente.png}
+    \includegraphics[width=0.8\textwidth]{GestioneUtente.png}
     \caption{Gestione Utente}
 \end{figure}
+
 % UC-1: Registrazione Utente
 \begin{table}[H]
 \vspace*{-0cm}
@@ -353,23 +356,59 @@ Di seguito sono descritti nel dettaglio i principali casi d’uso per l’applic
 \end{tabular}
 \end{table}
 
+% UC-6: Visualizza Utente
+\begin{table}[H]
+\vspace*{-0cm}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|p{3.9cm}|p{9.9cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: VisualizzaUtente}} \\ \hline
+\textbf{ID} & UC-6 \\ \hline
+\textbf{Breve descrizione} & L'Utente consulta la pagina di profilo di un altro utente visualizzarne le informazioni pubbliche e i post pubblicati. \\ \hline
+\textbf{Attori primari} & Utente registrato \\ \hline
+\textbf{Attori secondari} & Firebase Firestore, Supabase \\ \hline
+\textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item L'Utente si trova nella scheda di dettaglio di un cucciolo.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi principale} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item L'Utente seleziona il profilo del proèrietario presente nella scheda del cucciolo.
+   \item Il sistema richiede al database i dati del profilo e l'elenco dei cuccioli pubblicati da quell'utente.
+   \item Il sistema recupera con successo le informazioni.
+   \item Il sistema mostra a schermo la pagina del profilo con i relativi dettagli e post.
+\end{enumerate}\\ \hline
+\textbf{Postcondizioni} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+\item L'Utente visualizza a schermo le informazioni e i post dell'Utente selezionato.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item \texttt{If} l'Utente cerca il profilo nella barra apposita della schermata principale, allora
+   \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+       \item L'Utente seleziona il profilo desiderato dall'elenco dei risultati.
+       \item Il sistema richiede i dati al database e mostra a schermo la pagina del profilo.
+   \end{enumerate}
+\end{enumerate}\\ \hline
+\end{tabular}
+\end{table}
+
 \clearpage
-\newsubsection*{Area: Gestione cucciolo}
+\newsubsection{Area: Gestione Cucciolo}
+Quest'area raggruppa tutti i casi d'uso relativi alla gestione dei post di adozione. Definisce i processi tramite i quali gli utenti possono pubblicare nuovi post relativi ai cuccioli caricandone foto e dettagli,  modificare o rimuovere le proprie inserzioni e, infine, di consultare le schede informative degli animali disponibili.
 \vspace{1cm}
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=1\textwidth]{GestioneCucciolo.png}
+    \includegraphics[width=0.9\textwidth]{GestioneCucciolo.png}
     \caption{Gestione Cucciolo}
 \end{figure}
 
-% UC-6: Creazione Cucciolo
+% UC-7: Creazione Cucciolo
 \begin{table}[H]
 \vspace*{-0cm}
 \renewcommand{\arraystretch}{1.9}
 \begin{tabular}{|p{3.9cm}|p{9.9cm}|}
 \hline
 \multicolumn{2}{|c|}{\textbf{Caso d’uso: CreaCucciolo}} \\ \hline
-\textbf{ID} & UC-6 \\ \hline
+\textbf{ID} & UC-7 \\ \hline
 \textbf{Breve descrizione} & Un Utente registrato crea e pubblica un nuovo post relativo a un cucciolo fornendo le informazioni richieste e caricando l'immagine. \\ \hline
 \textbf{Attori primari} & Utente registrato \\ \hline
 \textbf{Attori secondari} & Cloud Storage (Supabase Storage) \\ \hline
@@ -391,14 +430,14 @@ Di seguito sono descritti nel dettaglio i principali casi d’uso per l’applic
 \end{tabular}
 \end{table}
 
-% UC-7: Modifica Cucciolo
+% UC-8: Modifica Cucciolo
 \begin{table}[H]
 \vspace*{-0cm}
 \renewcommand{\arraystretch}{1.9}
 \begin{tabular}{|p{3.9cm}|p{9.9cm}|}
 \hline
 \multicolumn{2}{|c|}{\textbf{Caso d’uso: ModificaCucciolo}} \\ \hline
-\textbf{ID} & UC-7 \\ \hline
+\textbf{ID} & UC-8 \\ \hline
 \textbf{Breve descrizione} & Un Utente registrato aggiorna le informazioni o l’immagine di un post precedentemente inserito. \\ \hline
 \textbf{Attori primari} & Utente registrato (proprietario del post) \\ \hline
 \textbf{Attori secondari} & Cloud Storage (Supabase Storage)
@@ -423,14 +462,14 @@ Di seguito sono descritti nel dettaglio i principali casi d’uso per l’applic
 \end{tabular}
 \end{table}
 
-% UC-8: Eliminazione Cucciolo
+% UC-9: Eliminazione Cucciolo
 \begin{table}[H]
 \vspace*{-0cm}
 \renewcommand{\arraystretch}{1.9}
 \begin{tabular}{|p{3.9cm}|p{9.9cm}|}
 \hline
 \multicolumn{2}{|c|}{\textbf{Caso d’uso: EliminaCucciolo}} \\ \hline
-\textbf{ID} & UC-8 \\ \hline
+\textbf{ID} & UC-9 \\ \hline
 \textbf{Breve descrizione} & Un Utente registrato rimuove in modo permanente un post di un cucciolo di sua proprietà dal sistema. \\ \hline
 \textbf{Attori primari} & Utente registrato (proprietario del post) \\ \hline
 \textbf{Attori secondari} & Cloud Storage (Supabase Storage)
@@ -460,24 +499,23 @@ Di seguito sono descritti nel dettaglio i principali casi d’uso per l’applic
 \end{tabular}
 \end{table}
 
-% UC-9: Visualizzazione Cucciolo
+% UC-10: Visualizza Cucciolo
 \begin{table}[H]
 \vspace*{-0cm}
 \renewcommand{\arraystretch}{1.9}
 \begin{tabular}{|p{3.9cm}|p{9.9cm}|}
 \hline
 \multicolumn{2}{|c|}{\textbf{Caso d’uso: VisualizzaCucciolo}} \\ \hline
-\textbf{ID} & UC-9 \\ \hline
+\textbf{ID} & UC-10 \\ \hline
 \textbf{Breve descrizione} & Un Utente consulta la scheda di dettaglio di un cucciolo per visualizzarne le informazioni e le foto. \\ \hline
 \textbf{Attori primari} & Utente registrato\\ \hline
-\textbf{Attori secondari} & Cloud Storage (Supabase Storage)
- \\ \hline
+\textbf{Attori secondari} & Supabase Storage \\ \hline
 \textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-   \item L'Utente si trova nella schermata principale, nei risultati di ricerca o nella lista dei preferiti e seleziona un cucciolo.
+   \item L'Utente si trova nella schermata principale o nel profilo di un utente.
 \end{enumerate} \\ \hline
 \textbf{Sequenza degli eventi principale} &
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-  \item L'Utente preme sulle informazioni del cucciolo (se si trova nella schermata Home) oppure sull'anteprima (se si trova nella lista dei preferiti).
+  \item L'Utente preme sulle informazioni del cucciolo.
   \item Il sistema richiede al database i dati dettagliati e i contenuti multimediali del cucciolo.
   \item Il sistema recupera con successo le informazioni.
   \item Il sistema mostra la schermata con i dettagli del cucciolo.
@@ -486,106 +524,115 @@ Di seguito sono descritti nel dettaglio i principali casi d’uso per l’applic
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
 \item L'Utente visualizza a schermo le informazioni dettagliate del cucciolo richiesto.
 \end{enumerate} \\ \hline
-\textbf{Sequenza degli eventi alternativa} & Nessuna \\ \hline
+\textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item \texttt{If} l'Utente si trova nella lista dei preferiti, allora
+   \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+       \item L'Utente preme sull'anteprima del cucciolo per accedere ai dettagli.
+       \item Il sistema richiede al database i dati
+       \item Il sistema mostra la schermata con i dettagli del cucciolo.
+   \end{enumerate}
+\end{enumerate}\\ \hline
 \end{tabular}
 \end{table}
 
 
 \clearpage
-\newsubsection*{Area: Gestione preferiti e interazioni}
+\newsubsection{Area: Gestione Interazioni}
+Quest'area raggruppa i casi d'uso relativi all'interazione con i post e con i proprietari dei cuccioli. Definisce i processi tramite i quali gli utenti possono salvare gli animali nella propria lista dei preferiti o avviare rapidamente un chiamata con altri utenti o rifugi, e infine descrive il meccanismo automatico con cui il sistema calcola e aggiorna il numero totale di "Mi piace" ricevuti da ciascun annuncio.
 \vspace{1cm}
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=1\textwidth]{GestionePreferitiInterazioni.png}
-    \caption{Gestione preferiti e interazioni}
+    \includegraphics[width=1\textwidth]{GestioneInterazioni.png}
+    \caption{Gestione Interazioni}
 \end{figure}
 
-% UC-10: Aggiunta Preferiti
+% UC-11: Aggiungi Preferiti
 \begin{table}[H]
 \vspace*{-0cm}
 \renewcommand{\arraystretch}{1.9}
 \begin{tabular}{|p{3.9cm}|p{9.9cm}|}
 \hline
-\multicolumn{2}{|c|}{\textbf{Caso d’uso: AggiuntaPreferiti}} \\ \hline
-\textbf{ID} & UC-10 \\ \hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: AggiungiPreferiti}} \\ \hline
+\textbf{ID} & UC-11 \\ \hline
 \textbf{Breve descrizione} & Un Utente registrato aggiunge un cucciolo alla propria lista dei preferiti. \\ \hline
 \textbf{Attori primari} & Utente registrato \\ \hline
-\textbf{Attori secondari} & Database Remoto (es. Firebase Firestore) \\ \hline
+\textbf{Attori secondari} & Firebase Firestore \\ \hline
 \textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-    \item L'Utente è autenticato e si trova nella scheda di dettaglio o nell'anteprima di un cucciolo non ancora salvato (icona cuore non attiva).
+    \item L'Utente è autenticato e si trova nella schermata principale.
 \end{enumerate} \\ \hline
 \textbf{Sequenza degli eventi principale} &
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-   \item L'Utente seleziona l'icona del preferito (cuore non attivo) associata al cucciolo, oppure effettua un gesto di Swipe to Favorite.
+   \item L'Utente ggiunge un cucciolo ai preferiti effettuando un gesto di scorrimento verso destra (Swipe to Favorite) sulla scheda del cucciolo.
    \item Il sistema memorizza l'associazione tra l'Utente e il cucciolo nel database.
-   \item Il sistema aggiorna l'interfaccia evidenziando l'icona del preferito (cuore attivo).
+   \item Il sistema aggiorna l'interfaccia visiva per confermare l'avvenuto salvataggio.
 \end{enumerate}\\ \hline
 \textbf{Postcondizioni} &
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
 \item Il cucciolo risulta salvato nella lista dei preferiti dell'Utente.
 \end{enumerate} \\ \hline
 \textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-   \item \texttt{If} si verifica un errore durante la comunicazione con il database, allora
+   \item \texttt{If} l'operazione viene eseguita dalla pagina di profilo di un altro Utente, allora
    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-       \item Il sistema mostra un messaggio di avviso (es. "Impossibile aggiungere ai preferiti").
-       \item L'interfaccia mantiene lo stato precedente dell'icona (cuore non attivo).
+       \item L'Utente seleziona l'icona dei preferiti (cuore) posta sull'anteprima del cucciolo.
+       \item Il sistema registra l'aggiunta ai preferiti nel database.
+       \item Il sistema aggiorna l'interfaccia attivando visivamente l'icona.
    \end{enumerate}
 \end{enumerate}\\ \hline
 \end{tabular}
 \end{table}
 
-
-% UC-11: Rimozione Preferiti
+% UC-12: Rimozione Preferiti
 \begin{table}[H]
 \vspace*{-0cm}
 \renewcommand{\arraystretch}{1.9}
 \begin{tabular}{|p{3.9cm}|p{9.9cm}|}
 \hline
-\multicolumn{2}{|c|}{\textbf{Caso d’uso: RimozionePreferiti}} \\ \hline
-\textbf{ID} & UC-11 \\ \hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: RimuoviPreferiti}} \\ \hline
+\textbf{ID} & UC-12 \\ \hline
 \textbf{Breve descrizione} & Un Utente registrato rimuove un cucciolo precedentemente salvato dalla propria lista dei preferiti. \\ \hline
 \textbf{Attori primari} & Utente registrato \\ \hline
-\textbf{Attori secondari} & Database Remoto (es. Firebase Firestore) \\ \hline
+\textbf{Attori secondari} & Firebase Firestore \\ \hline
 \textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-    \item L'Utente è autenticato e si trova nella scheda del cucciolo, nella home o nella sezione preferiti, in presenza di un cucciolo già salvato (icona cuore attiva).
+    \item L'Utente è autenticato e si trova nella sezione dei preferiti.
 \end{enumerate} \\ \hline
 \textbf{Sequenza degli eventi principale} &
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-   \item L'Utente seleziona l'icona del preferito (cuore attivo) associata al cucciolo.
-   \item Il sistema rimuove l'associazione tra l'Utente e il cucciolo dal database.
-   \item Il sistema aggiorna l'interfaccia ripristinando l'icona allo stato non attivo (o rimuove direttamente la scheda se l'Utente si trova nella schermata dei preferiti).
+   \item L'Utente rimuove un cucciolo dai preferiti selezionando l'icona del cuore sull'anteprima del cucciolo.
+   \item Il sistema rimuove l'associazione tra l'Utente e il cucciolo nel database.
+   \item Il sistema aggiorna l'interfaccia visiva per confermare l'avvenuta rimozione.
 \end{enumerate}\\ \hline
 \textbf{Postcondizioni} &
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
 \item Il cucciolo è rimosso definitivamente dalla lista dei preferiti dell'Utente.
 \end{enumerate} \\ \hline
 \textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-   \item \texttt{If} si verifica un errore durante la comunicazione con il database, allora
+   \item \texttt{If} l'operazione viene eseguita dalla pagina di profilo di un altro Utente, allora
    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-       \item Il sistema mostra un messaggio di avviso (es. "Impossibile rimuovere dai preferiti").
-       \item L'interfaccia mantiene lo stato precedente dell'icona (cuore attivo).
+       \item L'Utente seleziona l'icona dei preferiti posta sull'anteprima del cucciolo.
+       \item Il sistema registra la rimozione dai preferiti nel database.
+       \item Il sistema aggiorna l'interfaccia disattivando visivamente l'icona.
    \end{enumerate}
 \end{enumerate}\\ \hline
 \end{tabular}
 \end{table}
 
-% UC-11: Calcolo Mi Piace
+% UC-13: Calcolo Mi Piace
 \begin{table}[H]
 \vspace*{-0cm}
 \renewcommand{\arraystretch}{1.9}
 \begin{tabular}{|p{3.9cm}|p{9.9cm}|}
 \hline
 \multicolumn{2}{|c|}{\textbf{Caso d’uso: CalcoloMiPiace}} \\ \hline
-\textbf{ID} & UC-11 \\ \hline
+\textbf{ID} & UC-13 \\ \hline
 \textbf{Breve descrizione} & Il sistema calcola e aggiorna il numero totale di "Mi piace" ricevuti dal post di un cucciolo. \\ \hline
-\textbf{Attori primari} & Utente (registrato o non registrato) \\ \hline
-\textbf{Attori secondari} & Database Remoto (es. Firebase Firestore) \\ \hline
+\textbf{Attori primari} & Utente registrato \\ \hline
+\textbf{Attori secondari} & Firebase Firestore \\ \hline
 \textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-    \item L'Utente sta visualizzando il post di un cucciolo all'interno dell'applicazione.
+    \item L'Utente sta visualizzando il post di un cucciolo nella schermata principale.
 \end{enumerate} \\ \hline
 \textbf{Sequenza degli eventi principale} &
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-   \item Il sistema richiede al database il totale delle preferenze/interazioni registrate per il post.
+   \item Il sistema richiede al database il totale delle interazioni registrate per il post.
    \item Il database restituisce il conteggio aggiornato.
    \item Il sistema calcola la somma totale e la formatta per la visualizzazione.
    \item Il sistema mostra a schermo il numero totale di "Mi piace" accanto all'apposita icona.
@@ -594,50 +641,223 @@ Di seguito sono descritti nel dettaglio i principali casi d’uso per l’applic
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
 \item Il totale dei "Mi piace" viene correttamente calcolato e mostrato nell'interfaccia del post.
 \end{enumerate} \\ \hline
-\textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-   \item \texttt{If} un Utente registrato aggiunge o rimuove un "Mi piace" dal post, allora
-   \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-       \item Il sistema invia l'aggiornamento al database (+1 o -1).
-       \item Il sistema ricalcola e aggiorna in tempo reale il contatore mostrato a schermo.
-   \end{enumerate}
-\end{enumerate}\\ \hline
+\textbf{Sequenza degli eventi alternativa} & Nessuna \\ \hline
 \end{tabular}
 \end{table}
 
-% UC-12: Chiamata Telefonica
+% UC-14: Chiamata Telefonica
 \begin{table}[H]
 \vspace*{-0cm}
 \renewcommand{\arraystretch}{1.9}
 \begin{tabular}{|p{3.9cm}|p{9.9cm}|}
 \hline
 \multicolumn{2}{|c|}{\textbf{Caso d’uso: ChiamataTelefonica}} \\ \hline
-\textbf{ID} & UC-12 \\ \hline
-\textbf{Breve descrizione} & L'Utente avvia direttamente una chiamata telefonica verso il recapito del proprietario/inserzionista del cucciolo. \\ \hline
+\textbf{ID} & UC-14 \\ \hline
+\textbf{Breve descrizione} & L'Utente avvia direttamente una chiamata telefonica verso il recapito del proprietario del cucciolo. \\ \hline
 \textbf{Attori primari} & Utente \\ \hline
-\textbf{Attori secondari} & Gestore Telefonico / Dialer del Dispositivo Mobile \\ \hline
+\textbf{Attori secondari} & Firebase Firestore \\ \hline
 \textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-    \item L'Utente visualizza la scheda di dettaglio di un cucciolo in cui è presente il pulsante/recapito di contatto.
+    \item L'Utente visualizza la scheda di dettaglio di un cucciolo in cui è presente il recapito di contatto.
 \end{enumerate} \\ \hline
 \textbf{Sequenza degli eventi principale} &
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-   \item L'Utente preme il pulsante di chiamata o l'icona del telefono nella scheda del cucciolo.
+   \item L'Utente preme il numero di telefono nella scheda del cucciolo.
    \item Il sistema recupera il numero di telefono del proprietario associato al post.
-   \item Il sistema richiama le funzionalità del sistema operativo dello smartphone ed apre il dialer di chiamata preimpostando il numero.
-   \item L'Utente avvia la chiamata verso il proprietario.
+   \item Il sistema richiama le funzionalità del sistema operativo dello smartphone 
+   \item Il sistema chiede conferma per l'avvio della chiamata
 \end{enumerate}\\ \hline
 \textbf{Postcondizioni} &
 \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-\item Viene aperta l'applicazione di chiamata del dispositivo consentendo il contatto con il proprietario.
+   \item L'Utente avvia la chiamata verso il proprietario.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi alternativa} & Nessuna \\ \hline
+\end{tabular}
+\end{table}
+
+\clearpage
+\newsubsection{Area: Gestione Navigazione}
+Quest'area raggruppa le funzionalità tutti i casi d'uso relativi all'esplorazione del database dei post. Definisce i processi tramite i quali gli utenti possonoeffettuare ricerche testuali mirate tramite parole chiave e di applicare filtri avanzati per restringere i risultati mostrati a schermo, facilitando così l'individuazione del cucciolo più in linea con le proprie preferenze. 
+\vspace{1cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=1\textwidth]{GestioneNavigazione.png}
+    \caption{Gestione Navigazione}
+\end{figure}
+
+% UC-15: Cerca
+\begin{table}[H]
+\vspace*{-0cm}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|p{3.9cm}|p{9.9cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: Cerca}} \\ \hline
+\textbf{ID} & UC-15 \\ \hline
+\textbf{Breve descrizione} & L'Utente inserisce una o più parole chiave per cercare utenti o cuccioli nell'applicazione. \\ \hline
+\textbf{Attori primari} & Utente (registrato o non registrato) \\ \hline
+\textbf{Attori secondari} & Database Remoto (es. Firebase Firestore / Supabase) \\ \hline
+\textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item L'Utente si trova nella schermata principale.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi principale} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item L'Utente digita la parola chiave nella barra di ricerca.
+   \item L'Utente avvia la ricerca.
+   \item Il sistema richiede al database i dati che corrispondono al testo inserito.
+   \item Il sistema recupera i dati e mostra a schermo l'elenco dei risultati trovati.
+\end{enumerate}\\ \hline
+\textbf{Postcondizioni} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+\item L'applicazione mostra la lista degli utenti o dei cuccioli corrispondenti al testo cercato.
 \end{enumerate} \\ \hline
 \textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-   \item \texttt{If} il numero di telefono del proprietario non è disponibile o il dispositivo non supporta la funzionalità di chiamata, allora
+   \item \texttt{If} l'Utente si trova nella schermata dei propri post o nella lista dei preferiti, allora
    \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
-       \item Il sistema mostra un messaggio d'avviso (es. "Numero non disponibile" o "Funzionalità non supportata").
-       \item La chiamata non viene avviata e l'Utente rimane nella scheda del cucciolo.
+       \item L'Utente digita la parola chiave nell'apposita barra di ricerca locale.
+       \item Il sistema filtra l'elenco specifico richiedendo al database i risultati pertinenti.
+       \item Il sistema mostra a schermo l'elenco dei cuccioli filtrati.
    \end{enumerate}
 \end{enumerate}\\ \hline
 \end{tabular}
 \end{table}
+
+
+% UC-16: Filtra
+\begin{table}[H]
+\vspace*{-0cm}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|p{3.9cm}|p{9.9cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: Filtra}} \\ \hline
+\textbf{ID} & UC-16 \\ \hline
+\textbf{Breve descrizione} & L'Utente seleziona determinati parametri per restringere la lista degli utenti o cuccioli da visualizzare. \\ \hline
+\textbf{Attori primari} & Utente (registrato o non registrato) \\ \hline
+\textbf{Attori secondari} & Firebase Firestore, Supabase \\ \hline
+\textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item L'Utente è nella schermata principale ed apre il menu dei filtri.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi principale} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item L'Utente seleziona uno o più criteri di filtraggio.
+   \item L'Utente preme il pulsante per applicare i filtri.
+   \item Il sistema richiede al database unicamente i post che soddisfano tutti i parametri selezionati.
+   \item Il sistema aggiorna l'interfaccia mostrata all'Utente con la nuova lista filtrata.
+\end{enumerate}\\ \hline
+\textbf{Postcondizioni} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+\item L'elenco visualizzato contiene esclusivamente gli utenti o i cuccioli che rispettano i filtri applicati.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item \texttt{If} l'Utente si trova nella sezione dei propri post o nella lista dei preferiti, allora
+   \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+       \item L'Utente apre il menu dei filtri e seleziona i criteri desiderati.
+       \item Il sistema filtra l'elenco specifico (post personali o preferiti) richiedendo al database solo i risultati pertinenti.
+       \item Il sistema mostra a schermo l'elenco filtrato.
+   \end{enumerate}
+\end{enumerate}\\ \hline
+\end{tabular}
+\end{table}
+
+\clearpage
+\newsubsection{Area: Gestione Notifiche}
+Quest'area raggruppa i casi d'uso dedicati al sistema di comunicazione e di avvisi in tempo reale. Gestisce la generazione e l'invio automatico delle notifiche push a fronte di eventi specifici di interesse per l'utente, consentendo inoltre la consultazione della cronologia degli avvisi e l'eliminazione di quest'ultimi per mantenere pulito il proprio centro notifiche.
+\vspace{1cm}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=1\textwidth]{GestioneNotifiche.png}
+    \caption{Gestione Notifiche}
+\end{figure}
+
+% UC-17: Genera Notifica
+\begin{table}[H]
+\vspace*{-0cm}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|p{3.9cm}|p{9.9cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: GeneraNotifica}} \\ \hline
+\textbf{ID} & UC-17 \\ \hline
+\textbf{Breve descrizione} & Il sistema genera e invia automaticamente una notifica all'Utente al verificarsi di un evento di suo interesse. \\ \hline
+\textbf{Attori primari} & Sistema \\ \hline
+\textbf{Attori secondari} & Firebase Cloud Messaging \\ \hline
+\textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item Si verifica un evento nel sistema che richiede l'invio di una notifica a un Utente destinatario.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi principale} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item Il sistema rileva l'evento scatenante.
+   \item Il sistema compone il titolo, il testo e i dati della notifica.
+   \item Il sistema salva la notifica nel database dell'Utente destinatario.
+   \item Il sistema invia la notifica push al dispositivo dell'Utente tramite il servizio dedicato.
+\end{enumerate}\\ \hline
+\textbf{Postcondizioni} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+\item La notifica viene registrata nella sezione Notifiche e recapitata al suo dispositivo.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi alternativa} & Nessuna \\ \hline
+\end{tabular}
+\end{table}
+
+% UC-18: Visualizza Notifica
+\begin{table}[H]
+\vspace*{-0cm}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|p{3.9cm}|p{9.9cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: VisualizzaNotifica}} \\ \hline
+\textbf{ID} & UC-18 \\ \hline
+\textbf{Breve descrizione} & L'Utente registrato accede al centro notifiche, consulta l'elenco delle notifiche ricevute. \\ \hline
+\textbf{Attori primari} & Utente registrato \\ \hline
+\textbf{Attori secondari} & Firebase Firestore \\ \hline
+\textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item L'Utente è autenticato e seleziona la sezione "Notifiche" dell'applicazione.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi principale} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item L'Utente entra nella schermata delle notifiche.
+   \item Il sistema richiede al database la lista delle notifiche dell'Utente.
+   \item Il sistema mostra le notifiche ordinate dalla più recente.
+\end{enumerate}\\ \hline
+\textbf{Postcondizioni} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+\item L'Utente prende visualizza la notifica.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi alternativa} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item \texttt{If} non sono presenti notifiche nell'account dell'Utente, allora
+   \begin{enumerate}[label=\arabic{enumi}.\arabic*.,leftmargin=22pt,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+       \item Il sistema mostra una schermata vuota informativa.
+   \end{enumerate}
+\end{enumerate}\\ \hline
+\end{tabular}
+\end{table}
+
+% UC-19: Elimina Notifica
+\begin{table}[H]
+\vspace*{-0cm}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|p{3.9cm}|p{9.9cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Caso d’uso: EliminaNotifica}} \\ \hline
+\textbf{ID} & UC-19 \\ \hline
+\textbf{Breve descrizione} & L'Utente registrato le notifiche dal proprio elenco. \\ \hline
+\textbf{Attori primari} & Utente registrato \\ \hline
+\textbf{Attori secondari} & Firebase Firestone \\ \hline
+\textbf{Precondizioni} & \begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+    \item L'Utente è autenticato e si trova all'interno della schermata "Notifiche".
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi principale} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+   \item L'Utente seleziona l'opzione di eliminazione.
+   \item Il sistema rimuove la notifica dal database.
+   \item Il sistema aggiorna l'interfaccia rimuovendo la notifica dall'elenco.
+\end{enumerate}\\ \hline
+\textbf{Postcondizioni} &
+\begin{enumerate}[leftmargin=14pt,label=\arabic*.,labelsep=0.5em,topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt]
+\item La notifica eliminata viene cancellata permanentemente dal database dell'Utente.
+\end{enumerate} \\ \hline
+\textbf{Sequenza degli eventi alternativa} & Nessuna \\ \hline
+\end{tabular}
+\end{table}
+
+
 
 \clearpage
 \newsection{Mockup}
