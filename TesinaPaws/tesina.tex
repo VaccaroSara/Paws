@@ -857,7 +857,246 @@ Quest'area raggruppa i casi d'uso dedicati al sistema di comunicazione e di avvi
 \end{tabular}
 \end{table}
 
+\newchapter{Database e Storage}
 
+La gestione dei dati nell'applicazione \textbf{Paws} adotta un'architettura distribuita e multi-database, progettata per garantire elevata reattività, sicurezza e scalabilità. A differenza di un approccio monolitico basato su un unico motore relazionale locale o cloud, Paws integra in modo sinergico diverse tecnologie specializzate di database e storage, sia per l'ambiente nativo Android in Kotlin che per la versione cross-platform in Flutter:
+
+\begin{itemize}
+    \item \textbf{Database Cloud NoSQL (Firebase Cloud Firestore):} gestisce la persistenza dei dati di dominio in tempo reale (utenti, annunci di cuccioli, preferiti e notifiche).
+    \item \textbf{Cloud Object Storage (Supabase Storage):} gestisce l'archiviazione efficiente dei file multimediali ad alta risoluzione (immagini del profilo e foto degli annunci).
+    \item \textbf{Database di Autenticazione (Firebase Auth):} memorizza le credenziali e gestisce l'identità degli utenti generando gli identificatori univoci (\texttt{UID}).
+    \item \textbf{Local Storage (SharedPreferences):} memorizza in locale piccoli quantitativi di dati a chiave-valore per lo stato della sessione e le preferenze grafiche.
+\end{itemize}
+
+\newsection{Database Remoto NoSQL (Cloud Firestore)}
+
+Il database principale dell'applicazione è \textbf{Firebase Cloud Firestore}, un database documentale NoSQL basato su collezioni e documenti JSON-like. Firestore è stato scelto per la sua capacità di offrire la sincronizzazione in tempo reale tramite \textit{WebSocket} e \textit{Real-Time Listeners}, consentendo all'interfaccia utente di aggiornarsi istantaneamente al variare dei dati sul cloud.
+
+\noindent Il database è organizzato nelle seguenti collezioni principali:
+
+\begin{itemize}
+    \item \textbf{\texttt{users}:} contiene i profili informativi degli utenti e delle strutture di adozione (rifugi/canili). Ogni documento ha come ID il campo \texttt{uid} derivato da Firebase Auth e comprende: \texttt{name}, \texttt{surname}, \texttt{email}, \texttt{phone}, \texttt{role} (privato o rifugio), \texttt{address}, \texttt{description} e \texttt{avatarUrl}.
+    \item \textbf{\texttt{posts}:} raccoglie gli annunci dei cuccioli in cerca di casa. Ciascun documento memorizza: \texttt{postId}, \texttt{uid} (proprietario dell'annuncio), \texttt{name} del cucciolo, \texttt{type} (specie animale), \texttt{breed} (razza), \texttt{age}, \texttt{sex}, \texttt{caption} (descrizione), \texttt{imageUrl} (link Supabase) e \texttt{timestamp} di creazione.
+    \item \textbf{\texttt{favorites}:} rappresenta la relazione molti-a-molti tra gli utenti e i post salvati nei preferiti. Mantiene l'associazione \texttt{userId} -- \texttt{postId}, consentendo il recupero rapido nella schermata dedicata e supportando le gesture native di \textit{Swipe-to-Favorite}.
+    \item \textbf{\texttt{notifications}:} traccia le notifiche di sistema ed interazione inviate agli utenti. Registra l'ID del destinatario (\texttt{recipientId}), l'ID del mittente (\texttt{senderId}), il post di riferimento, il tipo di notifica, lo stato di lettura (\texttt{isRead}) e il marcatore temporale.
+\end{itemize}
+
+\newsection{Cloud Object Storage (Supabase Storage)}
+
+Per evitare l'appesantimento del database NoSQL con stringhe Base64 o oggetti binari di grandi dimensioni (BLOB), l'architettura di Paws disaccoppia la gestione dei dati testuali da quella dei contenuti multimediali affidandosi a \textbf{Supabase Storage}.
+
+\noindent Supabase mette a disposizione bucket di storage dedicati:
+\begin{itemize}
+    \item \textbf{Bucket \texttt{profiles}:} dedicato alle immagini di profilo degli utenti e dei canili.
+    \item \textbf{Bucket \texttt{puppies}:} dedicato al caricamento delle foto dei cuccioli associate agli annunci.
+\end{itemize}
+
+\noindent Quando un utente carica un'immagine (tramite la \texttt{CreatePostFragment} in Kotlin o l'equivalente in Flutter), il file binario viene inviato tramite le API REST/SDK di Supabase Storage. Supabase restituisce un URL pubblico sicuro, il quale viene poi salvato nel relativo documento Firestore (\texttt{imageUrl} o \texttt{avatarUrl}). Lato client, le librerie di visualizzazione quali \textbf{Glide} (in Android Kotlin) e \textbf{\texttt{cached\_network\_image}} (in Flutter) caricano le immagini in modo asincrono sfruttando tecniche di caching in memoria e su disco.
+
+\newsection{Local Storage (SharedPreferences)}
+
+Accanto ai database di rete cloud, l'applicazione sfrutta il meccanismo di memorizzazione locale a chiave-valore offerto da \textbf{SharedPreferences} (in Android Native) e dal pacchetto \textbf{\texttt{shared\_preferences}} (in Flutter).
+
+\noindent Questo storage locale viene impiegato principalmente per:
+\begin{itemize}
+    \item Salvare lo stato della sessione e l'ID utente corrente (\texttt{UID}) dopo il primo accesso.
+    \item Memorizzare le preferenze grafiche dell'interfaccia utente (come la scelta del tema chiaro o scuro).
+    \item Salvare temporaneamente il flag di completamento dell'onboarding.
+\end{itemize}
+
+\noindent In questo modo, all'avvio dell'applicazione è possibile determinare istantaneamente se reindirizzare l'utente alla schermata di Login o caricare la Home, evitando schermate di caricamento vuote e senza attendere l'inizializzazione dei database cloud o delle chiamate di rete.
+
+\newsection{Sincronizzazione Offline e Persistenza Locale}
+
+Una delle caratteristiche fondamentali dell'architettura multi-database di Paws è la capacità di operare anche in assenza temporanea di connettività internet. A differenza delle architetture tradizionali basate su SQL che richiedono la scrittura manuale di tabelle di sync ed attributi come \texttt{isSynced}, \textbf{Firebase Cloud Firestore} integra nativamente un motore di persistenza locale basato su cache interna.
+
+\noindent Il funzionamento del meccanismo di sincronizzazione offline segue questo comportamento:
+\begin{itemize}
+    \item \textbf{Scrittura offline:} quando l'utente crea un annuncio o aggiunge un cucciolo ai preferiti senza rete internet, lo SDK di Firestore memorizza l'operazione nel database SQLite/LevelDB locale del dispositivo e aggiorna immediatamente la UI (\textit{Optimistic UI Updates}).
+    \item \textbf{Ripristino connettività:} al rilevamento del segnale di rete, lo SDK invia in automatico le modifiche in coda ai server cloud Firebase, garantendo l'allineamento definitivo dei dati in background.
+\end{itemize}
+
+\newsection{Politiche di Sicurezza (Firestore Security Rules)}
+
+Per proteggere l'integrità dei dati salvati nei database cloud e prevenire accessi o modifiche non autorizzate, sono state configurate apposite regole di sicurezza dichiarative su Cloud Firestore (\textit{Security Rules}):
+
+\begin{scriptsize}
+\estiloPython
+\begin{lstlisting}[caption={Regole di Sicurezza Cloud Firestore}, label=lst:firestore_rules]
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Regole per la collezione utenti
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth != null && request.auth.uid == userId;
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Regole per la collezione post di adozione cuccioli
+    match /posts/{postId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.uid == request.auth.uid;
+    }
+    
+    // Regole per la collezione dei preferiti
+    match /favorites/{favoriteId} {
+      allow read, write: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+    
+    // Regole per la collezione notifiche
+    match /notifications/{notificationId} {
+      allow read, update, delete: if request.auth != null && resource.data.recipientId == request.auth.uid;
+      allow create: if request.auth != null;
+    }
+  }
+}
+\end{lstlisting}
+\end{scriptsize}
+
+\clearpage
+
+\newchapter{Progettazione e sviluppo applicazione in Kotlin}
+\newsection{Architettura del sistema}
+
+L'applicazione Android segue le linee guida di Google per l'architettura delle applicazioni moderne (Modern Android Architecture) basandosi sui principi della \textbf{Clean Architecture} e sul concetto fondamentale di \textbf{"Separation of Concerns"} (separazione delle responsabilità). Ciò consente di garantire un'elevata, manutenibilità e facilità di estensione delle componenti:
+
+\begin{itemize}
+    \item \textbf{Data Layer}: gestisce l'accesso, la persistenza e la sincronizzazione remota dei dati. Interagisce con i servizi cloud attraverso l'integrazione di \textbf{Firebase Cloud Firestore} utilizzato per la sincronizzazione asincrona di annunci, notifiche e preferiti, \textbf{Firebase Authentication} per la gestione sicura delle sessioni utente, e \textbf{Supabase Client} per il caricamento efficiente delle immagini. Include inoltre la libreria \textbf{Glide} per il caching e la resa prestazionale dei contenuti multimediali.
+    
+    \item \textbf{Domain Layer}: definisce le entità di business pure del sistema (le classi modello come \texttt{User}, \texttt{PuppyPost} e \texttt{Notification}) e racchiude la logica applicativa indipendente dalle librerie esterne. Regola le operazioni principali del dominio, quali il filtraggio degli annunci e la gestione dei preferiti.
+    
+    \item \textbf{Presentation Layer}: contiene l'interfaccia utente visiva organizzata in \textit{Activities} (\texttt{HomeActivity}, \texttt{SignInActivity}, \texttt{SignUpActivity}) e \textit{Fragments} (\texttt{HomeFragment}, \texttt{PuppyDetailsFragment}, \texttt{ProfileFragment}, \texttt{FavoritesFragment}, \texttt{AddPuppyFragment}). L'interfaccia si avvale di componenti grafici dichiarati in layout XML e di \textit{RecyclerView} affiancate da \textit{Custom Adapters} (\texttt{FeedAdapter}, \texttt{SearchAdapter}, \texttt{FavoritesAdapter}). Gestisce l'interattività dell'utente e la risposta reattiva alle gesture native, come lo \textit{Swipe-to-Favorite} implementato tramite \texttt{ItemTouchHelper}.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        node distance=1.4cm,
+        box/.style={draw=black, thick, rectangle, fill=white, minimum width=10.5cm, minimum height=1.1cm, align=center, font=\bfseries},
+        labeltext/.style={font=\small, text=black},
+        arrow/.style={<->, >=stealth, thick, color=black}
+    ]
+
+        % Nodi (Livelli)
+        \node (data) [box] {Data Layer (Firebase Auth, Firestore DB \& Supabase Storage)};
+        \node (domain) [box, below=of data] {Domain Layer (Models \& Business Logic)};
+        \node (presentation) [box, below=of domain] {Presentation Layer (Activities, Fragments \& Custom Adapters)};
+
+        % Frecce e Testi tra Data e Domain
+        \draw[arrow] (data.south) -- (domain.north);
+        \node[labeltext, left=0.2cm of $(data.south)!0.5!(domain.north)$] {Restituisce dati / Stream};
+        \node[labeltext, right=0.2cm of $(data.south)!0.5!(domain.north)$] {Richiede dati / Chiamate Cloud};
+
+        % Frecce e Testi tra Domain e Presentation
+        \draw[arrow] (domain.south) -- (presentation.north);
+        \node[labeltext, left=0.2cm of $(domain.south)!0.5!(presentation.north)$] {Notifica cambiamenti / Aggiorna UI};
+        \node[labeltext, right=0.2cm of $(domain.south)!0.5!(presentation.north)$] {Richiede azioni / Invia filtri};
+
+    \end{tikzpicture}
+    \caption{Architettura a tre livelli dell'applicazione Kotlin Paws}
+    \label{fig:architettura_paws}
+\end{figure}
+
+\clearpage
+\newsubsection{Mappa globale dell'architettura}
+
+Il diagramma riportato in Figura~\ref{fig:mappa_globale_architettura} illustra la mappa globale dell'architettura dell'applicazione Android \textbf{Paws}, evidenziando l'organizzazione strutturale dei moduli e le relazioni di dipendenza tra le diverse componenti del sistema:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{MappaGlobale.png}
+    \caption{Diagramma delle componenti e mappa delle dipendenze dell'architettura Android Paws}
+    \label{fig:mappa_globale_architettura}
+\end{figure}
+
+
+\vspace{0.5cm}
+\newsubsection{Architettura d'avvio e navigazione}
+
+L'avvio dell'applicazione è guidato dalla \texttt{SplashActivity}, la quale verifica lo stato dell'autenticazione dell'utente tramite il client di \textbf{Firebase Authentication}:
+
+\begin{itemize}
+    \item Se non viene rilevata alcuna sessione utente attiva (\texttt{currentUser == null}), il flusso viene reindirizzato alla schermata \texttt{SignInActivity}, dalla quale l'utente può eventualmente accedere alla schermata di registrazione \texttt{SignUpActivity}.
+    
+    \item Se la sessione è attiva (oppure a seguito del login/registrazione completati con successo), l'utente accede alla schermata principale \texttt{HomeActivity}.
+    
+    \item La \texttt{HomeActivity} ospita il contenitore principale dei contenuti ed abilita la navigazione tra le 4 schede della barra inferiore (\textbf{BottomNavigationView}):
+    \begin{enumerate}
+        \item \textbf{Home} (\texttt{HomeFragment}): mostra il feed globale dei cuccioli, la barra di ricerca utenti.
+        \item \textbf{Aggiungi Cucciolo} (\texttt{AddPuppyFragment}): permette la selezione dell'immagine dalla galleria nativa e l'apertura della sezione di creazione post (\texttt{CreatePostFragment}).
+        \item \textbf{Preferiti} (\texttt{FavoritesFragment}): raccoglie l'elenco dei cuccioli salvati dall'utente per la consultazione rapida.
+        \item \textbf{Profilo} (\texttt{ProfileFragment}): mostra i dettagli del profilo personale e la griglia dei post pubblicati dall'utente corrente.
+    \end{enumerate}
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{AvvioENavigazione.drawio.png}
+    \caption{Mappa dell'architettura d'avvio e del flusso di navigazione dell'applicazione Paws}
+    \label{fig:avvio_navigazione_paws}
+\end{figure}
+\clearpage
+
+\vspace{0.5cm}
+\newsubsection{Architettura gestione utente e autenticazione}
+
+Le funzionalità relative all'identità utente, alla registrazione e alla personalizzazione del profilo sono strutturate secondo il seguente schema architetturale:
+
+\begin{itemize}
+    \item \textbf{View}: le schermate \texttt{SignInActivity}, \texttt{SignUpActivity}, \texttt{ProfileFragment} e \texttt{UserProfileFragment} gestiscono l'input utente e la resa dell'interfaccia visiva.
+    \item \textbf{Handler}: \texttt{ProfileImageManager} gestisce la selezione dell'immagine dell'utente prima dell'upload.
+    \item \textbf{Repository}: \texttt{AuthRepository} gestisce la creazione dell'account e l'autenticazione remota su Firebase Auth, mentre \texttt{SupabaseManager} si occupa del caricamento sicuro dell'immagine profilo nel bucket di storage remoto.
+    \item \textbf{Model \& Database}: l'entità \texttt{User} modella i dati dell'utente, sincronizzati in tempo reale su \textbf{Cloud Firestore}.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{GestioneUtente.drawio.png}
+    \caption{Architettura e flusso dati per la Gestione Utente e Autenticazione dell'applicazione Paws}
+    \label{fig:gestione_utente_paws}
+\end{figure}
+\clearpage
+
+\vspace{0.5cm}
+\newsubsection{Architettura gestione cuccioli e annunci}
+
+La gestione degli annunci dei cuccioli rappresenta il cuore dell'applicazione e sfrutta i seguenti moduli dedicati:
+
+\begin{itemize}
+    \item \textbf{View}: \texttt{HomeFragment}, \texttt{AddPuppyFragment}, \texttt{CreatePostFragment} e \texttt{PuppyDetailsFragment} osservano i dati e reagiscono agli eventi dell'utente.
+    \item \textbf{Adapters \& Handlers}: \texttt{FeedAdapter}, \texttt{SearchAdapter}, \texttt{PostAdapter} e \texttt{GridPostAdapter} popolano le \textit{RecyclerView}. L'\texttt{ItemTouchHandler} intercetta le gesture di \textit{swipe-to-favorite} per aggiungere istantaneamente un cucciolo ai preferiti dal feed.
+    \item \textbf{Repository \& Services}: \texttt{PostRepository} esegue le query NoSQL su \textbf{Cloud Firestore} per il recupero e filtraggio degli annunci, mentre \texttt{SupabaseManager} memorizza le foto dei cuccioli.
+    \item \textbf{Model}: \texttt{PuppyPost} incapsula le informazioni del cucciolo (nome, razza, età, sesso, posizione e riferimento al proprietario).
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1.0\textwidth]{GestioneCucciolo.drawio.png}
+    \caption{Architettura e flusso dati per la Gestione Cuccioli e Annunci dell'applicazione Paws}
+    \label{fig:gestione_cucciolo_paws}
+\end{figure}
+\clearpage
+
+\vspace{0.5cm}
+\newsubsection{Architettura gestione notifiche e preferiti}
+
+La gestione dei preferiti e delle notifiche garantisce un'esperienza d'uso reattiva e sincronizzata:
+
+\begin{itemize}
+    \item \textbf{View}: \texttt{FavoritesFragment} e \texttt{NotificationsFragment} mostrano rispettivamente la lista dei cuccioli salvati e le interazioni/notifiche ricevute.
+    \item \textbf{Adapter}: \texttt{FavoritesAdapter} e \texttt{NotificationAdapter} formattano la resa grafica degli elementi. La libreria esterna \textbf{Glide} gestisce il caricamento fluido e asincrono delle immagini con caching in memoria.
+    \item \textbf{Model}: \texttt{Notification} modella le notifiche di sistema salvate su Firestore.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{GestioneNotifiche.drawio.png}
+    \caption{Architettura e flusso dati per la Gestione Cuccioli e Annunci dell'applicazione Paws}
+    \label{fig:gestione_notifiche_paws}
+\end{figure}
 
 \clearpage
 \newsection{Mockup}
