@@ -1,8 +1,8 @@
-PWD /Users/tareknaja/Desktop/Uni/Programmazione Mobile/Paws/TesinaPaws
+PWD /Users/sara/Desktop/3-ANNO/Mobile/Paws/TesinaPaws
 INPUT /usr/local/texlive/2025/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/tareknaja/Desktop/Uni/Programmazione Mobile/Paws/TesinaPaws/tesina.tex
+INPUT /Users/sara/Desktop/3-ANNO/Mobile/Paws/TesinaPaws/tesina.tex
 OUTPUT tesina.log
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/base/report.cls
@@ -701,6 +701,18 @@ INPUT ./img/avvio_navigazione_flutter.drawio.png
 INPUT ./img/avvio_navigazione_flutter.drawio.png
 INPUT ./img/avvio_navigazione_flutter.drawio.png
 INPUT ./img/avvio_navigazione_flutter.drawio.png
+INPUT ./img/gestione_utente_flutter.drawio.png
+INPUT ./img/gestione_utente_flutter.drawio.png
+INPUT ./img/gestione_utente_flutter.drawio.png
+INPUT ./img/gestione_utente_flutter.drawio.png
+INPUT ./img/Gestione_Cucciolo_flutter.drawio.drawio.png
+INPUT ./img/Gestione_Cucciolo_flutter.drawio.drawio.png
+INPUT ./img/Gestione_Cucciolo_flutter.drawio.drawio.png
+INPUT ./img/Gestione_Cucciolo_flutter.drawio.drawio.png
+INPUT ./img/gestione_notifiche_flutter.drawio.png
+INPUT ./img/gestione_notifiche_flutter.drawio.png
+INPUT ./img/gestione_notifiche_flutter.drawio.png
+INPUT ./img/gestione_notifiche_flutter.drawio.png
 INPUT tesina.aux
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb
