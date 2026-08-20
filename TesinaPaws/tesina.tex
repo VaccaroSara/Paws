@@ -1185,7 +1185,12 @@ Poiché l'attuale versione dell'applicazione è stata sviluppata sotto forma di 
 \clearpage
 
 \newsubsection{Gestione Home}
-
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{GestioneHomeDrawio.png}
+    \caption{Gestione Preferiti}
+    \label{fig:GestioneHomeDrawio}
+\end{figure}
 \clearpage
 
 \newsection{Approccio e Problematiche di Sviluppo}
@@ -1551,4 +1556,294 @@ L'applicazione Flutter segue le linee guida di Google per lo sviluppo di applica
 \label{fig:architettura_flutter_paws}
 \end{figure}
 
+\clearpage
+\newsubsection{Mappa globale dell'architettura}
+
+Il diagramma riportato in Figura~\ref{fig:mappa_globale_architettura_flutter} illustra la mappa globale dell'architettura dell'applicazione Flutter \textbf{Paws}, evidenziando l'organizzazione strutturale dei moduli e le relazioni di dipendenza tra le diverse componenti del sistema:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{architettura_flutter.drawio.png}
+    \caption{Diagramma delle componenti e mappa delle dipendenze dell'architettura Flutter Paws}
+    \label{fig:mappa_globale_architettura_flutter}
+\end{figure}
+
+\vspace{0.5cm}
+\newsubsection{Architettura d'avvio e navigazione}
+
+L'avvio dell'applicazione Flutter è guidato dal file \texttt{main.dart} e dalla schermata \texttt{SplashScreen}, la quale gestisce l'inizializzazione asincrona dei servizi cloud (\textbf{Firebase} e \textbf{Supabase}) e verifica lo stato dell'autenticazione utente tramite \textbf{Firebase Authentication}:
+
+\begin{itemize}
+    \item Se non viene rilevata alcuna sessione utente attiva (\texttt{currentUser == null}), il flusso viene reindirizzato alla schermata \texttt{SignInScreen}, dalla quale l'utente può eventualmente accedere alla schermata di registrazione \texttt{SignUpScreen}.
+    
+    \item Se la sessione è attiva (oppure a seguito del login/registrazione completati con successo), l'utente accede alla schermata principale \texttt{MainScreen}.
+    
+    \item La \texttt{MainScreen} ospita il contenitore principale dei contenuti ed abilita la navigazione reattiva tra le 4 schede della barra inferiore (\textbf{BottomNavigationBar}) tramite \texttt{IndexedStack}:
+    \begin{enumerate}
+        \item \textbf{Home} (\texttt{HomeTab}): mostra il feed globale dei cuccioli e la barra di ricerca utenti e filtri.
+        \item \textbf{Aggiungi Cucciolo} (\texttt{AddPuppyTab}): permette la selezione dell'immagine tramite Media Picker e l'apertura della sezione di creazione post (\texttt{CreatePostScreen}).
+        \item \textbf{Preferiti} (\texttt{FavoritesTab}): raccoglie l'elenco dei cuccioli salvati dall'utente per la consultazione rapida in tempo reale.
+        \item \textbf{Profilo} (\texttt{ProfileTab}): mostra i dettagli del profilo personale, la griglia dei post pubblicati dall'utente corrente e l'accesso alle notifiche.
+    \end{enumerate}
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{avvio_navigazione_flutter.drawio.png}
+    \caption{Mappa dell'architettura d'avvio e del flusso di navigazione dell'applicazione Flutter Paws}
+    \label{fig:avvio_navigazione_flutter_paws}
+\end{figure}
+
+\clearpage
+\newsubsection{Architettura gestione utente e autenticazione}
+
+Le funzionalità relative all'identità utente, alla registrazione e alla gestione del profilo nell'applicazione Flutter sono strutturate secondo il seguente schema architetturale:
+
+\begin{itemize}
+    \item \textbf{View}: le schermate \texttt{SignInScreen}, \texttt{SignUpScreen}, \texttt{ProfileTab} e \texttt{UserProfileScreen} gestiscono l'interazione visiva, la resa dello stato e l'input dell'utente tramite il widget riutilizzabile \texttt{CustomInput}.
+    \item \textbf{Utils \& Helpers}: la selezione e formattazione della foto profilo da galleria o fotocamera è affidata alla libreria \texttt{image\_picker} integrata nelle schermate di registrazione e modifica profilo.
+    \item \textbf{Services \& Data Sources}: \texttt{FirebaseService} gestisce le operazioni di login, registrazione, rilevamento della sessione attiva ed erogazione degli \texttt{Stream} di dati del profilo, mentre \texttt{SupabaseService} gestisce l'upload asincrono dell'avatar utente nel bucket di cloud storage.
+    \item \textbf{Model \& Database}: la classe \texttt{UserModel} modella l'entità utente, sincronizzata in tempo reale con la collezione \texttt{users} di \textbf{Firebase Cloud Firestore}.
+\end{itemize}
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=1\textwidth]{gestione_utente_flutter.drawio.png}
+%     \caption{Architettura e flusso dati per la Gestione Utente e Autenticazione dell'applicazione Flutter Paws}
+%     \label{fig:gestione_utente_flutter_paws}
+% \end{figure}
+
+\section{Database e Storage nella Versione Flutter}
+
+La versione cross-platform dell'applicazione \textbf{Paws}, sviluppata in framework \textbf{Flutter}, costituendo una replica funzionale e architetturale dell'applicazione Android nativa in Kotlin, condivide la medesima infrastruttura di backend distribuita in cloud:
+\begin{itemize}
+    \item \textbf{Firebase Cloud Firestore} per la gestione NoSQL in tempo reale delle collezioni del dominio (\texttt{users}, \texttt{posts}, \texttt{favorites} e \texttt{notifications});
+    \item \textbf{Firebase Auth} per l'autenticazione sicura e la generazione degli identificatori univoci (\texttt{UID});
+    \item \textbf{Supabase Storage} per l'archiviazione dei contenuti multimediali nel bucket \texttt{paws-images}.
+\end{itemize}
+
+Nonostante lo schema dati e la struttura delle collezioni rimangano identici a garanzia della totale consistenza dei dati tra le due piattaforme, lo sviluppo in ambiente Flutter ha introdotto specifiche librerie e meccanismi propri dell'ecosistema Dart per la gestione della persistenza locale e la resa prestazionale dei dati:
+
+\begin{itemize}
+    \item \textbf{Image Caching e Resa Visiva (\texttt{cached\_network\_image})}: \\
+    A differenza dell'applicazione nativa Android, che impiega la libreria Glide, la versione Flutter si avvale del pacchetto \texttt{cached\_network\_image}. Questa libreria gestisce in modo asincrono lo scaricamento delle immagini dai link pubblici di Supabase Storage, effettuando il caching multilivello sia in memoria RAM che sul disco locale del dispositivo. Ciò garantisce tempi di caricamento istantanei nelle liste degli annunci e nel profilo utente, riducendo il consumo di banda e mostrando indicatori visivi di caricamento (\textit{placeholder}) o di errore.
+
+    \item \textbf{Local Storage a Chiave-Valore (\texttt{shared\_preferences})}: \\
+    Per la memorizzazione locale sul dispositivo di piccoli quantitativi di dati, il pacchetto \texttt{shared\_preferences} fornisce un'astrazione multipiattaforma del meccanismo di archiviazione locale (corrispondente a \textit{SharedPreferences} su Android). Viene utilizzato all'avvio dell'app per verificare lo stato di autenticazione dell'utente e memorizzare l'UID di sessione attivo, consentendo di determinare immediatamente se reindirizzare l'utente alla schermata di Login o direttamente alla \texttt{MainScreen} (Home) senza attendere l'inizializzazione delle chiamate di rete.
+
+    \item \textbf{Gestione Reattiva dei Dati tramite Dart \texttt{Stream}}: \\
+    Nel codice Dart, le operazioni di lettura dei dati remoti definite all'interno del \texttt{FirebaseService} restituiscono oggetti di tipo \texttt{Stream}. Sfruttando il widget reattivo \texttt{StreamBuilder}, l'interfaccia utente si mette in ascolto continuo delle variazioni sui documenti Firestore. Ad esempio, la trasmissione dei post nei preferiti o il contatore delle notifiche non lette aggiornano istantaneamente il layout dei vari componenti visivi non appena un record viene inserito, aggiornato o rimosso.
+
+    \item \textbf{Persistenza Offline e Sincronizzazione}: \\
+    Anche la versione Flutter sfrutta il motore di persistenza locale integrato nel plugin \texttt{cloud\_firestore}. Le operazioni di scrittura effettuate offline (come l'aggiunta di un preferito o la creazione di un annuncio) vengono salvate temporaneamente nella cache locale ed applicate all'interfaccia secondo la filosofia dell'\textit{Optimistic UI}, per poi essere sincronizzate automaticamente con i server cloud al ripristino della connettività internet.
+\end{itemize}
+
+\section{Approccio e Problematiche di Sviluppo in Flutter}
+
+Durante lo sviluppo dell’applicazione cross-platform \textbf{Paws} in framework \textbf{Flutter}, l’attenzione è stata posta sull’adozione di un approccio strutturato e sull’integrazione delle tecnologie offerte dal linguaggio \textbf{Dart} e dagli SDK di Firebase e Supabase per garantire reattività dell’interfaccia utente, riusabilità dei componenti e manutenibilità del codice.
+
+\subsection{Approccio allo Sviluppo}
+L’approccio metodologico adottato per lo sviluppo della versione Flutter si basa sui principi dell’ingegneria del software moderna e della \textit{Clean Architecture}, con una progettazione guidata dai concetti di modularità e reattività visiva. Lo sviluppo è proceduto in modo iterativo e incrementale, focalizzandosi inizialmente sull’integrazione dei servizi di backend in \texttt{FirebaseService} e \texttt{SupabaseService}, per poi passare all’implementazione della logica di stato e alla realizzazione dell’interfaccia utente basata sull'albero dei \textit{Widget} (organizzata in \textit{Screens} come \texttt{MainScreen}, \texttt{SignUpScreen}, \texttt{UserProfileScreen} e \textit{Tabs} quali \texttt{HomeTab}, \texttt{AddPuppyTab}, \texttt{FavoritesTab}, \texttt{ProfileTab}). Questo disaccoppiamento rigido dei livelli ha facilitato sia il testing delle schermate sia la gestione reattiva dello stato visivo mediante \texttt{StatefulWidget} e costruttori asincroni.
+
+\subsection{Tecnologie e Funzionalità Chiave}
+
+\subsubsection{Caricamento Immagini su Cloud Storage}
+Una funzionalità critica del profilo utente e della creazione dei post dei cuccioli è il caricamento delle immagini (foto dell'animale ed avatar utente). L'immagine selezionata dalla galleria o fotocamera tramite il pacchetto \texttt{image\_picker} viene convertita in un flusso ottimizzato ed inviata in background su \textbf{Firebase Storage} (o Supabase Storage). Una volta completato il caricamento asincrono, l'applicazione recupera l'URL pubblico sicuro e lo salva all'interno del relativo documento nel database \textbf{Firebase Cloud Firestore}.
+
+\subsubsection{Gestione dell’Asincronia e Ascolto in Tempo Reale con Stream}
+Tutti gli accessi ai dati remoti e le operazioni di sincronizzazione vengono gestiti tramite la programmazione reattiva di Dart. Sfruttando gli \texttt{Stream<List<PuppyPost>>} ed il widget \texttt{StreamBuilder}, i dati dell’elenco dei cuccioli, dei preferiti e delle notifiche vengono ascoltati in tempo reale. Questo approccio consente di aggiornare istantaneamente i widget ed i layout della UI non appena un documento viene inserito, modificato o rimosso da Cloud Firestore.
+
+\subsection{Problematiche Risolte}
+
+\subsubsection{Inconsistenze di Stato e Gestione dei Caricamenti Asincroni}
+Durante la fase di pubblicazione o modifica di un post, l'esecuzione sequenziale dell'upload dell'immagine multimediale e del successivo salvataggio dei metadati su Cloud Firestore ha introdotto il rischio di \textit{race condition} o invii duplicati in caso di interazioni ripetute da parte dell'utente. Per risolvere questa problematica, il flusso è stato incapsulato nel metodo del form: durante l'operazione gli elementi di input vengono disabilitati, il pulsante viene sostituito da un indicatore di caricamento (\texttt{CircularProgressIndicator}) ed il salvataggio su Firestore viene eseguito esclusivamente al completamento con successo dell'upload dell'immagine, garantendo il feedback visivo e l'atomicità dell'azione.
+
+\subsection{Librerie di Terze Parti}
+Per lo sviluppo dell’applicazione Paws in versione Flutter, sono stati integrati diversi pacchetti della community (\texttt{pub.dev}) per gestire la comunicazione di rete, la persistenza dei dati, la visualizzazione di immagini remote e le interazioni native:
+
+\begin{itemize}
+    \item \textbf{Firebase Core (v3.12.0), Auth (v5.5.1) \& Cloud Firestore (v5.6.5)}: Pacchetti ufficiali Google per l'autenticazione utente, la gestione delle sessioni e la sincronizzazione NoSQL in tempo reale delle collezioni \texttt{users}, \texttt{posts}, \texttt{favorites} e \texttt{notifications}. \\
+    \textit{Dipendenza Pubspec}: \texttt{firebase\_core}, \texttt{firebase\_auth}, \texttt{cloud\_firestore}
+    
+    \item \textbf{Supabase Flutter (v2.8.4)}: Client SDK per l'integrazione dei servizi di Supabase Storage dedicati all'archiviazione e gestione dei bucket multimediali. \\
+    \textit{Dipendenza Pubspec}: \texttt{supabase\_flutter}
+    
+    \item \textbf{Cached Network Image (v3.4.1)}: Libreria avanzata per lo scaricamento asincrono, ridimensionamento e caching in memoria e su disco delle immagini dei cuccioli e degli avatar utente. \\
+    \textit{Dipendenza Pubspec}: \texttt{cached\_network\_image}
+    
+    \item \textbf{Shared Preferences (v2.5.3)}: Plugin per la memorizzazione locale a chiave-valore per la gestione dello stato della sessione utente e dell'UID attivo. \\
+    \textit{Dipendenza Pubspec}: \texttt{shared\_preferences}
+    
+    \item \textbf{Image Picker (v1.1.2)}: Libreria per consentire all'utente di acquisire o selezionare le foto dalla fotocamera o dalla galleria del dispositivo. \\
+    \textit{Dipendenza Pubspec}: \texttt{image\_picker}
+    
+    \item \textbf{Url Launcher (v6.3.1)}: Pacchetto utilizzato per l'integrazione con il dialer telefonico nativo del dispositivo mobile (\texttt{tel:}) per avviare le chiamate agli inserzionisti. \\
+    \textit{Dipendenza Pubspec}: \texttt{url\_launcher}
+    
+    \item \textbf{Flutter SVG (v2.0.17)}: Libreria per il rendering ad alta definizione ed efficiente delle icone vettoriali all'interno dell'interfaccia utente. \\
+    \textit{Dipendenza Pubspec}: \texttt{flutter\_svg}
+\end{itemize}
+
+\subsection{Descrizione Componenti}
+
+\subsubsection{MainScreen}
+\texttt{class MainScreen extends StatefulWidget}
+\begin{itemize}
+    \item \texttt{int \_currentIndex = 0}
+    \item \texttt{final List<Widget> \_tabs = [HomeTab(), AddPuppyTab(), FavoritesTab(), ProfileTab()]}
+    \item \texttt{build()}: Esegue il rendering dello \texttt{Scaffold} principale contenente la \texttt{BottomNavigationBar}. Gestisce lo stato della navigazione attiva alternando l'indicizzazione dei quattro tab principali dell'applicazione (\textit{Home}, \textit{Aggiungi Cucciolo}, \textit{Preferiti}, \textit{Profilo}).
+\end{itemize}
+
+\subsubsection{SignInScreen}
+\texttt{class SignInScreen extends StatefulWidget}
+\begin{itemize}
+    \item \texttt{final TextEditingController \_emailController = TextEditingController()}
+    \item \texttt{final TextEditingController \_passwordController = TextEditingController()}
+    \item \texttt{\_signIn()}: Valida le credenziali immesse nei campi di testo ed effettua l'autenticazione tramite \texttt{FirebaseAuth.instance.signInWithEmailAndPassword()}. In caso di esito positivo reindirizza l'utente alla \texttt{MainScreen}, altrimenti mostra un messaggio d'errore visivo (\texttt{SnackBar}). Contiene inoltre il collegamento per la navigazione alla \texttt{SignUpScreen}.
+\end{itemize}
+
+\subsubsection{SignUpScreen}
+\texttt{class SignUpScreen extends StatefulWidget}
+\begin{itemize}
+    \item Controllers dedicati per Nome, Cognome, Città, Provincia, CAP, Username, Email, Password, Telefono e Tipo Account (\textit{Private User} / \textit{Animal Shelter}).
+    \item \texttt{\_signUp()}: Richiama il metodo \texttt{createUserWithEmailAndPassword()} di Firebase Auth. Se la registrazione ha esito positivo, invoca \texttt{FirebaseService.saveUserData()} per memorizzare le informazioni del profilo utente su Cloud Firestore nella collezione \texttt{"users"} e reindirizza alla \texttt{MainScreen}.
+\end{itemize}
+
+\subsubsection{HOME: HomeTab}
+\texttt{class HomeTab extends StatefulWidget}
+\begin{itemize}
+    \item \texttt{String? \_filterAge, \_filterGender, \_filterType, \_filterUserType}
+    \item \texttt{build()}: Costruisce il layout della schermata principale avvalendosi del widget reattivo \texttt{StreamBuilder<List<PuppyPost>>} collegato a \texttt{FirebaseService.globalFeedStream()}. Ascolta in tempo reale le modifiche alla collezione \texttt{"posts"} su Firestore aggiornando automaticamente la lista delle card dei cuccioli ed il badge delle notifiche.
+    \item \texttt{\_showFilterDialog()} \& \texttt{\_showSubFilterDialog()}: Gestiscono la visualizzazione dei dialog modali di scelta per affinare l'elenco in base a Età, Genere, Tipo Animale (\textit{Dog, Cat, Bird}) e Tipo Utente.
+\end{itemize}
+
+\subsubsection{CREA POST: AddPuppyTab}
+\texttt{class AddPuppyTab extends StatefulWidget}
+\begin{itemize}
+    \item State e controller per Nome, Età, Genere, Tipo Animale (\textit{Dog, Cat, Bird}), Descrizione, Tipo Utente ed Immagine selezionata (\texttt{File? \_selectedImage}).
+    \item \texttt{\_pickImage()}: Consente all'utente di acquisire o scegliere la foto del cucciolo tramite il pacchetto \texttt{image\_picker}.
+    \item \texttt{\_createPost()}: Valida i campi obbligatori del modulo; esegue l'upload dell'immagine in background su Firebase Storage (o Supabase Storage), recupera l'URL di download pubblico ed inserisce il nuovo documento nella collezione \texttt{"posts"} di Cloud Firestore.
+\end{itemize}
+
+\subsubsection{PREFERITI: FavoritesTab}
+\texttt{class FavoritesTab extends StatefulWidget}
+\begin{itemize}
+    \item \texttt{build()}: Utilizza una combinazione reattiva di \texttt{StreamBuilder<Set<String>>} (collegato a \texttt{FirebaseService.favoritesIdsStream()}) e \texttt{StreamBuilder<List<PuppyPost>>} per recuperare e mostrare a schermo l'elenco dei post dei cuccioli salvati tra i preferiti dall'utente corrente, aggiornando la vista in tempo reale.
+\end{itemize}
+
+\subsubsection{PROFILO: ProfileTab}
+\texttt{class ProfileTab extends StatefulWidget}
+\begin{itemize}
+    \item \texttt{build()}: Interroga in tempo reale il documento dell'utente corrente dalla collezione \texttt{"users"} su Firestore, popolando le righe informative del profilo (Nome, Cognome, Città, Provincia, CAP, Username, Email, Telefono, Tipo Account).
+    \item \texttt{\_editSingleFieldDialog()}: Mostra un dialogo di input per aggiornare un singolo campo del profilo su Firestore (es. numero di Telefono o Username).
+    \item Gestisce il pulsante di \textbf{Logout} (\texttt{FirebaseAuth.instance.signOut()}) per terminare la sessione e reindirizzare alla schermata di Login, ed il pulsante \textbf{Delete Account} per la rimozione del profilo dal database.
+\end{itemize}
+
+\subsubsection{PROFILO ALTRO UTENTE: UserProfileScreen}
+\texttt{class UserProfileScreen extends StatefulWidget}
+\begin{itemize}
+    \item Riceve come parametro l'UID dell'utente proprietario di un post e ne mostra le informazioni pubbliche assieme alla griglia dei cuccioli pubblicati.
+    \item \texttt{\_makeCall(String phone)}: Gestisce l'avvio della chiamata telefonica verso l'inserzionista sfruttando il plugin \texttt{url\_launcher} con lo schema \texttt{tel:}.
+\end{itemize}
+
+\subsubsection{DETTAGLIO CUCCIOLO: PuppyDetailsScreen}
+\texttt{class PuppyDetailsScreen extends StatelessWidget}
+\begin{itemize}
+    \item \texttt{build()}: Mostra la scheda dettagliata del cucciolo selezionato (immagine ad alta risoluzione resa tramite \texttt{CachedNetworkImage}, nome, razza, età, genere, tipo animale, descrizione completa, dati del proprietario e pulsante di contatto telefonico).
+\end{itemize}
+
+\subsubsection{NOTIFICHE: NotificationsScreen}
+\texttt{class NotificationsScreen extends StatelessWidget}
+\begin{itemize}
+    \item \texttt{build()}: Si avvale di \texttt{StreamBuilder<List<NotificationItem>>} per ascoltare in tempo reale la collezione \texttt{"notifications"} di Firestore filtrando i record destinati all'utente attivo (\texttt{targetUid}). Popola l'elenco delle notifiche e permette la rimozione delle notifiche lette tramite \texttt{FirebaseService.clearAllNotifications()}.
+\end{itemize}
+
+\subsubsection{SERVIZI BACKEND (Services)}
+
+\paragraph{FirebaseService}
+\texttt{class FirebaseService} \\
+Classe di servizio che incapsula i metodi statici per le interazioni con Firebase Auth e Cloud Firestore:
+\begin{itemize}
+    \item \texttt{globalFeedStream(String query)}: Restituisce uno \texttt{Stream} di post per la Home.
+    \item \texttt{favoritesIdsStream(String uid)}: Restituisce lo \texttt{Stream} degli ID dei post preferiti dell'utente.
+    \item \texttt{notificationsStream(String uid)}: Restituisce lo \texttt{Stream} delle notifiche dell'utente.
+    \item \texttt{toggleFavoritePost(PuppyPost post)}: Aggiunge o rimuove un post dai preferiti e genera la notifica per il proprietario.
+\end{itemize}
+
+\paragraph{SupabaseService}
+\texttt{class SupabaseService} \\
+Classe di servizio dedicata alle operazioni di upload delle immagini multimediali sui bucket di Supabase Storage (\texttt{paws-images}).
+
+\subsubsection{MODELLI DATI (Data Classes)}
+
+\paragraph{PuppyPost}
+\texttt{class PuppyPost} \\
+Classe modello che definisce la struttura di un post relativo a un cucciolo:
+\begin{itemize}
+    \item \texttt{final String id} (ID univoco del post)
+    \item \texttt{final String uid} (ID dell'utente proprietario)
+    \item \texttt{final String name} (Nome del cucciolo)
+    \item \texttt{final String type} (Tipo animale: Dog, Cat, Bird)
+    \item \texttt{final String age} (Età)
+    \item \texttt{final String gender} (Genere: male, female)
+    \item \texttt{final String caption} (Descrizione)
+    \item \texttt{final String imageUrl} (URL dell'immagine su Cloud Storage)
+    \item \texttt{final String userType} (Tipo utente inserzionista: Private User / Animal Shelter)
+    \item \texttt{final Timestamp timestamp} (Timestamp di creazione)
+\end{itemize}
+
+\paragraph{User}
+\texttt{class User} \\
+Classe modello che definisce la struttura dei dati dell'utente registrato:
+\begin{itemize}
+    \item \texttt{final String uid} (UID dell'utente autenticato)
+    \item \texttt{final String firstName} (Nome)
+    \item \texttt{final String lastName} (Cognome)
+    \item \texttt{final String username} (Nome utente)
+    \item \texttt{final String email} (Indirizzo Email)
+    \item \texttt{final String phone} (Numero di Telefono)
+    \item \texttt{final String city} (Città)
+    \item \texttt{final String province} (Provincia)
+    \item \texttt{final String cap} (Codice Avviamento Postale)
+    \item \texttt{final String accountType} (Tipo account: Private User / Animal Shelter)
+\end{itemize}
+
+\paragraph{NotificationItem}
+\texttt{class NotificationItem} \\
+Classe modello che definisce la struttura delle notifiche di sistema:
+\begin{itemize}
+    \item \texttt{final String id} (ID univoco della notifica)
+    \item \texttt{final String targetUid} (UID del destinatario)
+    \item \texttt{final String text} (Testo della notifica)
+    \item \texttt{final String postImageUrl} (URL dell'immagine associata al post)
+    \item \texttt{final Timestamp timestamp} (Timestamp di invio)
+\end{itemize}
+
+\section{Conclusioni e Sviluppi Futuri}
+
+\subsection{Conclusioni}
+Lo sviluppo dell’applicazione \textbf{Paws} ha permesso di analizzare e confrontare direttamente le peculiarità dello sviluppo mobile nativo (\textbf{Android con Kotlin}, \textit{Fragments} e \textit{Layout XML}) con quello cross-platform (\textbf{Flutter con Dart}).
+
+L’approccio nativo in Kotlin si è dimostrato altamente performante in termini di integrazione con il sistema operativo Android, reattività dell'interfaccia utente nella gestione di liste complesse mediante \texttt{RecyclerView} e \texttt{FeedAdapter}, e gestione avanzata delle risorse multimediali tramite la libreria \texttt{Glide}. L'utilizzo di componenti dell'architettura Jetpack e la struttura a \textit{Fragment} hanno garantito un disaccoppiamento pulito della logica di navigazione e delle viste.
+
+D’altra parte, lo sviluppo in Flutter ha evidenziato IL vantaggio della condivisione del codice (\textit{Single Codebase}) per coprire contemporaneamente le piattaforme Android e iOS, unito alla velocità di prototipazione fornita dal meccanismo di \textit{Hot Reload}. Grazie all'architettura reattiva dei \textit{Widget} ed all'impiego degli \texttt{StreamBuilder}, Flutter si è rivelata una soluzione produttiva e snella per la gestione delle interazioni in tempo reale e della sincronizzazione dei dati.
+
+L’integrazione combinata dei servizi di backend in cloud (\textbf{Firebase Auth} per l'autenticazione, \textbf{Firebase Cloud Firestore} per il database NoSQL in tempo reale e \textbf{Supabase Storage} per l'archiviazione dei contenuti multimediali) ha unificato la gestione dei dati per entrambe le piattaforme. Questa architettura ha ridotto drasticamente i tempi di implementazione della logica server-side, garantendo una perfetta consistenza dei dati tra le due applicazioni.
+\subsection{Sviluppi Futuri}
+Nonostante le due versioni di Paws offrano già un set completo di funzionalità (gestione annunci cuccioli, preferiti, notifiche in tempo reale, filtri di ricerca e contatto telefonico diretto), sono stati individuati alcuni sviluppi futuri ad alto valore aggiunto per potenziare entrambe le piattaforme mobile:
+\subsubsection{Sviluppi Futuri per l’App Kotlin}
+\paragraph{Integrazione delle Mappe e Geolocalizzazione (Google Maps \& Retrofit)}
+Nell’ottica di migliorare l’esperienza degli utenti e facilitare le adozioni locali, uno sviluppo futuro di rilievo consiste nell’integrazione delle mappe interattive tramite \textit{Google Maps SDK} e l'uso della libreria \texttt{Retrofit} per interrogare API REST geografiche. Questa funzionalità consentirà agli utenti di visualizzare sulla mappa la posizione esatta dei rifugi per animali e dei cuccioli in adozione nelle proprie vicinanze, calcolando la distanza in chilometri.
+\paragraph{Persistenza Offline Avanzata con Room e WorkManager}
+Un'altra evoluzione cruciale prevede l'affiancamento a Cloud Firestore di una base dati locale strutturata basata su \textbf{Room Database} e gestita in background da \textbf{WorkManager}. Questo modulo si occuperà di monitorare lo stato della connettività ed eseguire la sincronizzazione automatica ed atomica di post, preferiti e bozze creati in assenza di rete internet al ripristino del segnale.
+\subsubsection{Sviluppi Futuri per l’App Flutter}
+\paragraph{Integrazione di un Database Locale Relazionale (Drift / Sqflite)}
+Allo stato attuale, l’applicazione cross-platform Flutter si affida a \texttt{shared\_preferences} per memorizzare le impostazioni locali ed i dati di sessione. Uno sviluppo futuro chiave consiste nell’introdurre un database locale relazionale (mediante pacchetti come \texttt{drift} o \texttt{sqflite}) per memorizzare in locale i dati strutturati (annunci, notifiche e preferiti). In questo modo, l'utente potrà fruire di tutte le funzionalità dell'app anche in modalità totalmente offline, sincronizzando le modifiche verso il cloud al ritorno della connettività.
+\paragraph{Integrazione di una Chat in Tempo Reale (In-App Messaging con Dio)}
+In modo da offrire un'alternativa moderna al contatto telefonico diretto, uno sviluppo futuro per l'app Flutter prevede l'integrazione di una chat di messaggistica istantanea in-app tra gli utenti privati ed i rifugi. Sfruttando il client HTTP \texttt{Dio} accoppiato ai servizi di messaggistica in tempo reale, gli utenti potranno scambiarsi messaggi, informazioni aggiuntive ed ulteriori foto dei cuccioli direttamente all'interno dell'applicazione.
+
 \end{document}
+
+
+
+

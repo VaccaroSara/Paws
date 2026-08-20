@@ -33,30 +33,69 @@
 \contentsline {subsection}{Gestione Cucciolo}{44}{section*.72}%
 \contentsline {subsection}{Gestione Preferiti}{46}{section*.74}%
 \contentsline {subsection}{Gestione Home}{47}{section*.76}%
-\contentsline {section}{Approccio e Problematiche di Sviluppo}{48}{section*.77}%
-\contentsline {subsection}{Approccio allo Sviluppo}{48}{section*.78}%
-\contentsline {subsection}{Tecnologie e Funzionalità Chiave}{48}{section*.79}%
-\contentsline {paragraph}{Caricamento Immagini su Firebase Storage}{48}{section*.79}%
-\contentsline {paragraph}{Gestione dell'Asincronia e Ascolto in Tempo Reale con Firestore}{48}{section*.79}%
-\contentsline {subsection}{Problematiche Risolte}{48}{section*.80}%
-\contentsline {subsection}{Librerie di Terze Parti}{48}{section*.82}%
-\contentsline {section}{Descrizione Componenti}{50}{section*.83}%
-\contentsline {subsection}{MainActivity}{50}{section*.84}%
-\contentsline {subsection}{SignInActivity}{50}{section*.85}%
-\contentsline {subsection}{SignUpActivity}{50}{section*.86}%
-\contentsline {subsection}{HOME: HomeFragment}{50}{section*.87}%
-\contentsline {subsection}{FeedAdapter}{51}{section*.88}%
-\contentsline {subsection}{CREA POST: CreatePostFragment}{51}{section*.89}%
-\contentsline {subsection}{PREFERITI: FavoritesFragment}{51}{section*.90}%
-\contentsline {subsection}{FavoritesAdapter}{52}{section*.91}%
-\contentsline {subsection}{PROFILO: ProfileFragment}{52}{section*.92}%
-\contentsline {subsection}{PROFILO ALTRO UTENTE: UserProfileFragment}{52}{section*.93}%
-\contentsline {subsection}{DETTAGLIO CUCCIOLO: PuppyDetailsFragment}{52}{section*.94}%
-\contentsline {subsection}{NOTIFICHE: NotificationsFragment}{52}{section*.95}%
-\contentsline {subsection}{MODELLI DATI (Data Classes)}{53}{section*.96}%
-\contentsline {section}{Unit Testing dell'Applicazione Android}{54}{section*.97}%
-\contentsline {subsection}{Validazione delle Credenziali e dei Moduli (ValidationUnitTest)}{54}{section*.98}%
-\contentsline {subsection}{Filtraggio dei Post dei Cuccioli (PostFilterUnitTest)}{54}{section*.99}%
-\contentsline {chapter}{Progettazione e Sviluppo App Flutter}{56}{chapter*.101}%
-\contentsline {section}{Architettura del sistema}{56}{section*.102}%
+\contentsline {section}{Approccio e Problematiche di Sviluppo}{48}{section*.78}%
+\contentsline {subsection}{Approccio allo Sviluppo}{48}{section*.79}%
+\contentsline {subsection}{Tecnologie e Funzionalità Chiave}{48}{section*.80}%
+\contentsline {paragraph}{Caricamento Immagini su Firebase Storage}{48}{section*.80}%
+\contentsline {paragraph}{Gestione dell'Asincronia e Ascolto in Tempo Reale con Firestore}{48}{section*.80}%
+\contentsline {subsection}{Problematiche Risolte}{48}{section*.81}%
+\contentsline {subsection}{Librerie di Terze Parti}{48}{section*.83}%
+\contentsline {section}{Descrizione Componenti}{50}{section*.84}%
+\contentsline {subsection}{MainActivity}{50}{section*.85}%
+\contentsline {subsection}{SignInActivity}{50}{section*.86}%
+\contentsline {subsection}{SignUpActivity}{50}{section*.87}%
+\contentsline {subsection}{HOME: HomeFragment}{50}{section*.88}%
+\contentsline {subsection}{FeedAdapter}{51}{section*.89}%
+\contentsline {subsection}{CREA POST: CreatePostFragment}{51}{section*.90}%
+\contentsline {subsection}{PREFERITI: FavoritesFragment}{51}{section*.91}%
+\contentsline {subsection}{FavoritesAdapter}{52}{section*.92}%
+\contentsline {subsection}{PROFILO: ProfileFragment}{52}{section*.93}%
+\contentsline {subsection}{PROFILO ALTRO UTENTE: UserProfileFragment}{52}{section*.94}%
+\contentsline {subsection}{DETTAGLIO CUCCIOLO: PuppyDetailsFragment}{52}{section*.95}%
+\contentsline {subsection}{NOTIFICHE: NotificationsFragment}{52}{section*.96}%
+\contentsline {subsection}{MODELLI DATI (Data Classes)}{53}{section*.97}%
+\contentsline {section}{Unit Testing dell'Applicazione Android}{54}{section*.98}%
+\contentsline {subsection}{Validazione delle Credenziali e dei Moduli (ValidationUnitTest)}{54}{section*.99}%
+\contentsline {subsection}{Filtraggio dei Post dei Cuccioli (PostFilterUnitTest)}{54}{section*.100}%
+\contentsline {chapter}{Progettazione e Sviluppo App Flutter}{56}{chapter*.102}%
+\contentsline {section}{Architettura del sistema}{56}{section*.103}%
+\contentsline {subsection}{Mappa globale dell'architettura}{57}{section*.105}%
+\contentsline {subsection}{Architettura d'avvio e navigazione}{57}{section*.107}%
+\contentsline {subsection}{Architettura gestione utente e autenticazione}{59}{section*.109}%
+\contentsline {section}{\numberline {1}Database e Storage nella Versione Flutter}{59}{section.0.1}%
+\contentsline {section}{\numberline {2}Approccio e Problematiche di Sviluppo in Flutter}{60}{section.0.2}%
+\contentsline {subsection}{\numberline {2.1}Approccio allo Sviluppo}{60}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {2.2}Tecnologie e Funzionalità Chiave}{60}{subsection.0.2.2}%
+\contentsline {subsubsection}{Caricamento Immagini su Cloud Storage}{60}{subsection.0.2.2}%
+\contentsline {subsubsection}{Gestione dell’Asincronia e Ascolto in Tempo Reale con Stream}{60}{subsection.0.2.2}%
+\contentsline {subsection}{\numberline {2.3}Problematiche Risolte}{60}{subsection.0.2.3}%
+\contentsline {subsubsection}{Inconsistenze di Stato e Gestione dei Caricamenti Asincroni}{60}{subsection.0.2.3}%
+\contentsline {subsection}{\numberline {2.4}Librerie di Terze Parti}{61}{subsection.0.2.4}%
+\contentsline {subsection}{\numberline {2.5}Descrizione Componenti}{61}{subsection.0.2.5}%
+\contentsline {subsubsection}{MainScreen}{61}{subsection.0.2.5}%
+\contentsline {subsubsection}{SignInScreen}{61}{subsection.0.2.5}%
+\contentsline {subsubsection}{SignUpScreen}{62}{subsection.0.2.5}%
+\contentsline {subsubsection}{HOME: HomeTab}{62}{subsection.0.2.5}%
+\contentsline {subsubsection}{CREA POST: AddPuppyTab}{62}{subsection.0.2.5}%
+\contentsline {subsubsection}{PREFERITI: FavoritesTab}{62}{subsection.0.2.5}%
+\contentsline {subsubsection}{PROFILO: ProfileTab}{62}{subsection.0.2.5}%
+\contentsline {subsubsection}{PROFILO ALTRO UTENTE: UserProfileScreen}{63}{subsection.0.2.5}%
+\contentsline {subsubsection}{DETTAGLIO CUCCIOLO: PuppyDetailsScreen}{63}{subsection.0.2.5}%
+\contentsline {subsubsection}{NOTIFICHE: NotificationsScreen}{63}{subsection.0.2.5}%
+\contentsline {subsubsection}{SERVIZI BACKEND (Services)}{63}{subsection.0.2.5}%
+\contentsline {paragraph}{FirebaseService}{63}{subsection.0.2.5}%
+\contentsline {paragraph}{SupabaseService}{63}{subsection.0.2.5}%
+\contentsline {subsubsection}{MODELLI DATI (Data Classes)}{63}{subsection.0.2.5}%
+\contentsline {paragraph}{PuppyPost}{63}{subsection.0.2.5}%
+\contentsline {paragraph}{User}{64}{subsection.0.2.5}%
+\contentsline {paragraph}{NotificationItem}{64}{subsection.0.2.5}%
+\contentsline {section}{\numberline {3}Conclusioni e Sviluppi Futuri}{64}{section.0.3}%
+\contentsline {subsection}{\numberline {3.1}Conclusioni}{64}{subsection.0.3.1}%
+\contentsline {subsection}{\numberline {3.2}Sviluppi Futuri}{64}{subsection.0.3.2}%
+\contentsline {subsubsection}{Sviluppi Futuri per l’App Kotlin}{65}{subsection.0.3.2}%
+\contentsline {paragraph}{Integrazione delle Mappe e Geolocalizzazione (Google Maps \& Retrofit)}{65}{subsection.0.3.2}%
+\contentsline {paragraph}{Persistenza Offline Avanzata con Room e WorkManager}{65}{subsection.0.3.2}%
+\contentsline {subsubsection}{Sviluppi Futuri per l’App Flutter}{65}{subsection.0.3.2}%
+\contentsline {paragraph}{Integrazione di un Database Locale Relazionale (Drift / Sqflite)}{65}{subsection.0.3.2}%
+\contentsline {paragraph}{Integrazione di una Chat in Tempo Reale (In-App Messaging con Dio)}{65}{subsection.0.3.2}%
 \contentsfinish 

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" modified="2026-08-20T12:31:00.000Z" agent="Mozilla/5.0" version="21.6.8" type="device">
+  <diagram id="flutter-paws-user-mgmt" name="Gestione Utente e Autenticazione Flutter Paws">
+    <mxGraphModel dx="1200" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1150" pageHeight="750" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frame_outer" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#99B898;strokeWidth=1.5;verticalAlign=top;align=left;" parent="1" vertex="1">
+          <mxGeometry x="30" y="30" width="1080" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="badge_user" value="GESTIONE UTENTE E AUTENTICAZIONE" style="shape=label;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontStyle=1;fontSize=11;fontColor=#000000;align=center;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="30" y="30" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="node_signin" value="Class&#10;SignInScreen&#10;(Form Auth Login)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="60" y="90" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="node_signup" value="Class&#10;SignUpScreen&#10;(Form Registrazione Utente)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="260" y="90" width="180" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="node_profile_tab" value="Class&#10;ProfileTab&#10;(Profilo Utente &amp; Miei Post)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="480" y="90" width="180" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="node_user_profile" value="Class&#10;UserProfileScreen&#10;(Profilo Altri Utenti)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="700" y="90" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="node_custom_input" value="Util&#10;CustomInput&#10;(Input con Validazione)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="160" y="200" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="node_media_picker" value="Util&#10;ImagePicker&#10;(Selezione Foto Profilo)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="370" y="200" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="node_data_firebase" value="Data&#10;FirebaseService&#10;(Auth &amp; User Profile Streams)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="140" y="310" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="node_data_supabase" value="Data&#10;SupabaseService&#10;(Upload Foto Avatar)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#000000;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="450" y="310" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="node_user_model" value="Model&#10;UserModel&#10;(id, name, email, phone, photoUrl)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5F5E3;strokeColor=#27AE60;fontColor=#000000;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="310" y="440" width="250" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="node_firebase_auth" value="FirebaseAuth&#10;(Login / Registrazione / Token)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#000000;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="80" y="560" width="220" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="node_firestore_users" value="Firestore DB&#10;(Collezione &quot;users&quot;)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#000000;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="360" y="560" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="node_supabase_storage" value="Supabase Storage&#10;(Bucket &quot;avatars&quot;)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#000000;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="610" y="560" width="210" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_signin" target="node_custom_input">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_signup" target="node_custom_input">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_signup" target="node_media_picker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_profile_tab" target="node_media_picker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_signin" target="node_data_firebase">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_signup" target="node_data_firebase">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_signup" target="node_data_supabase">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_profile_tab" target="node_data_firebase">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_profile_tab" target="node_data_supabase">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_user_profile" target="node_data_firebase">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_data_firebase" target="node_user_model">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_data_firebase" target="node_firebase_auth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_data_firebase" target="node_firestore_users">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endWidth=6;endSize=6;strokeColor=#000000;strokeWidth=1;fontSize=10;" parent="1" edge="1" source="node_data_supabase" target="node_supabase_storage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.26)  18 AUG 2026 21:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.26)  20 AUG 2026 13:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/sara/Desktop/3-ANNO/Mobile/Paws/TesinaPaws/tesina.tex
-(/Users/sara/Desktop/3-ANNO/Mobile/Paws/TesinaPaws/tesina.tex
+**"/Users/tareknaja/Desktop/Uni/Programmazione Mobile/Paws/TesinaPaws/tesina.tex"
+(/Users/tareknaja/Desktop/Uni/Programmazione Mobile/Paws/TesinaPaws/tesina.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/report.cls
@@ -1566,7 +1566,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [6]
-<./img/GestioneUtente.png, id=223, 320.52573pt x 429.20656pt>
+<./img/GestioneUtente.png, id=269, 320.52573pt x 429.20656pt>
 File: ./img/GestioneUtente.png Graphic file (type png)
 <use ./img/GestioneUtente.png>
 Package pdftex.def Info: ./img/GestioneUtente.png  used on input line 188.
@@ -1728,7 +1728,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [13]
-<./img/GestioneCucciolo.png, id=311, 261.49603pt x 340.38618pt>
+<./img/GestioneCucciolo.png, id=358, 261.49603pt x 340.38618pt>
 File: ./img/GestioneCucciolo.png Graphic file (type png)
 <use ./img/GestioneCucciolo.png>
 Package pdftex.def Info: ./img/GestioneCucciolo.png  used on input line 400.
@@ -1846,7 +1846,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [18]
-<./img/GestioneInterazioni.png, id=373, 586.98688pt x 276.94305pt>
+<./img/GestioneInterazioni.png, id=419, 586.98688pt x 276.94305pt>
 File: ./img/GestioneInterazioni.png Graphic file (type png)
 <use ./img/GestioneInterazioni.png>
 Package pdftex.def Info: ./img/GestioneInterazioni.png  used on input line 545.
@@ -1964,7 +1964,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [23]
-<./img/GestioneNavigazione.png, id=430, 281.35649pt x 194.19115pt>
+<./img/GestioneNavigazione.png, id=477, 281.35649pt x 194.19115pt>
 File: ./img/GestioneNavigazione.png Graphic file (type png)
 <use ./img/GestioneNavigazione.png>
 Package pdftex.def Info: ./img/GestioneNavigazione.png  used on input line 683.
@@ -2038,7 +2038,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [26]
-<./img/GestioneNotifiche.png, id=467, 448.51535pt x 288.52832pt>
+<./img/GestioneNotifiche.png, id=513, 448.51535pt x 288.52832pt>
 File: ./img/GestioneNotifiche.png Graphic file (type png)
 <use ./img/GestioneNotifiche.png>
 Package pdftex.def Info: ./img/GestioneNotifiche.png  used on input line 766.
@@ -2141,7 +2141,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [30
 
 ]
-<./img/MappaGlobale.png, id=512, 1411.2725pt x 1430.34375pt>
+<./img/MappaGlobale.png, id=558, 1411.2725pt x 1430.34375pt>
 File: ./img/MappaGlobale.png Graphic file (type png)
 <use ./img/MappaGlobale.png>
 Package pdftex.def Info: ./img/MappaGlobale.png  used on input line 909.
@@ -2171,7 +2171,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [31
 
  <./img/MappaGlobale.png>]
-<./img/AvvioENavigazione.drawio.png, id=519, 975.645pt x 498.86375pt>
+<./img/AvvioENavigazione.drawio.png, id=566, 975.645pt x 498.86375pt>
 File: ./img/AvvioENavigazione.drawio.png Graphic file (type png)
 <use ./img/AvvioENavigazione.drawio.png>
 Package pdftex.def Info: ./img/AvvioENavigazione.drawio.png  used on input line 936.
@@ -2203,7 +2203,7 @@ Overfull \hbox (4.41266pt too wide) in paragraph at lines 948--949
 []\T1/cmr/bx/n/10 View\T1/cmr/m/n/10 : le scher-ma-te \T1/cmtt/m/n/10 SignInActivity\T1/cmr/m/n/10 , \T1/cmtt/m/n/10 SignUpActivity\T1/cmr/m/n/10 , \T1/cmtt/m/n/10 ProfileFragment \T1/cmr/m/n/10 e \T1/cmtt/m/n/10 UserProfileFragment
  []
 
-<./img/GestioneUtente.drawio.png, id=530, 845.1575pt x 555.07375pt>
+<./img/GestioneUtente.drawio.png, id=577, 845.1575pt x 555.07375pt>
 File: ./img/GestioneUtente.drawio.png Graphic file (type png)
 <use ./img/GestioneUtente.drawio.png>
 Package pdftex.def Info: ./img/GestioneUtente.drawio.png  used on input line 956.
@@ -2233,7 +2233,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [33
 
  <./img/GestioneUtente.drawio.png>]
-<./img/GestioneCucciolo.drawio.png, id=537, 895.345pt x 604.2575pt>
+<./img/GestioneCucciolo.drawio.png, id=584, 895.345pt x 604.2575pt>
 File: ./img/GestioneCucciolo.drawio.png Graphic file (type png)
 <use ./img/GestioneCucciolo.drawio.png>
 Package pdftex.def Info: ./img/GestioneCucciolo.drawio.png  used on input line 976.
@@ -2263,7 +2263,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [34
 
  <./img/GestioneCucciolo.drawio.png>]
-<./img/GestioneNotifiche.drawio.png, id=545, 845.1575pt x 503.8825pt>
+<./img/GestioneNotifiche.drawio.png, id=592, 845.1575pt x 503.8825pt>
 File: ./img/GestioneNotifiche.drawio.png Graphic file (type png)
 <use ./img/GestioneNotifiche.drawio.png>
 Package pdftex.def Info: ./img/GestioneNotifiche.drawio.png  used on input line 995.
@@ -2344,12 +2344,12 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [37]
-<./img/Signup.jpg, id=561, 1084.05pt x 2409.0pt>
+<./img/Signup.jpg, id=607, 1084.05pt x 2409.0pt>
 File: ./img/Signup.jpg Graphic file (type jpg)
 <use ./img/Signup.jpg>
 Package pdftex.def Info: ./img/Signup.jpg  used on input line 1064.
 (pdftex.def)             Requested size: 217.42265pt x 483.15154pt.
-<./img/Signin.jpg, id=562, 1084.05pt x 2409.0pt>
+<./img/Signin.jpg, id=608, 1084.05pt x 2409.0pt>
 File: ./img/Signin.jpg Graphic file (type jpg)
 <use ./img/Signin.jpg>
 Package pdftex.def Info: ./img/Signin.jpg  used on input line 1070.
@@ -2379,12 +2379,12 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [38
 
  <./img/Signup.jpg> <./img/Signin.jpg>]
-<./img/Home.jpg, id=568, 1084.05pt x 2409.0pt>
+<./img/Home.jpg, id=614, 1084.05pt x 2409.0pt>
 File: ./img/Home.jpg Graphic file (type jpg)
 <use ./img/Home.jpg>
 Package pdftex.def Info: ./img/Home.jpg  used on input line 1083.
 (pdftex.def)             Requested size: 217.42265pt x 483.15154pt.
-<./img/Post.jpg, id=569, 1084.05pt x 2409.0pt>
+<./img/Post.jpg, id=615, 1084.05pt x 2409.0pt>
 File: ./img/Post.jpg Graphic file (type jpg)
 <use ./img/Post.jpg>
 Package pdftex.def Info: ./img/Post.jpg  used on input line 1089.
@@ -2414,12 +2414,12 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [39
 
  <./img/Home.jpg> <./img/Post.jpg>]
-<./img/Favorites.jpg, id=575, 1084.05pt x 2409.0pt>
+<./img/Favorites.jpg, id=621, 1084.05pt x 2409.0pt>
 File: ./img/Favorites.jpg Graphic file (type jpg)
 <use ./img/Favorites.jpg>
 Package pdftex.def Info: ./img/Favorites.jpg  used on input line 1102.
 (pdftex.def)             Requested size: 217.42265pt x 483.15154pt.
-<./img/Profile.jpg, id=576, 1084.05pt x 2409.0pt>
+<./img/Profile.jpg, id=622, 1084.05pt x 2409.0pt>
 File: ./img/Profile.jpg Graphic file (type jpg)
 <use ./img/Profile.jpg>
 Package pdftex.def Info: ./img/Profile.jpg  used on input line 1108.
@@ -2449,12 +2449,12 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [40
 
  <./img/Favorites.jpg> <./img/Profile.jpg>]
-<./img/Info.jpg, id=583, 1084.05pt x 2409.0pt>
+<./img/Info.jpg, id=629, 1084.05pt x 2409.0pt>
 File: ./img/Info.jpg Graphic file (type jpg)
 <use ./img/Info.jpg>
 Package pdftex.def Info: ./img/Info.jpg  used on input line 1121.
 (pdftex.def)             Requested size: 217.42265pt x 483.15154pt.
-<./img/Notifications.jpg, id=584, 1084.05pt x 2409.0pt>
+<./img/Notifications.jpg, id=630, 1084.05pt x 2409.0pt>
 File: ./img/Notifications.jpg Graphic file (type jpg)
 <use ./img/Notifications.jpg>
 Package pdftex.def Info: ./img/Notifications.jpg  used on input line 1127.
@@ -2484,12 +2484,12 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [41
 
  <./img/Info.jpg> <./img/Notifications.jpg>]
-<./img/Search.jpg, id=590, 1084.05pt x 2409.0pt>
+<./img/Search.jpg, id=636, 1084.05pt x 2409.0pt>
 File: ./img/Search.jpg Graphic file (type jpg)
 <use ./img/Search.jpg>
 Package pdftex.def Info: ./img/Search.jpg  used on input line 1140.
 (pdftex.def)             Requested size: 217.42265pt x 483.15154pt.
-<./img/UserProfile.jpg, id=591, 1084.05pt x 2409.0pt>
+<./img/UserProfile.jpg, id=637, 1084.05pt x 2409.0pt>
 File: ./img/UserProfile.jpg Graphic file (type jpg)
 <use ./img/UserProfile.jpg>
 Package pdftex.def Info: ./img/UserProfile.jpg  used on input line 1146.
@@ -2519,7 +2519,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [42
 
  <./img/Search.jpg> <./img/UserProfile.jpg>]
-<./img/GestioneUtenteDraw.png, id=597, 1565.85pt x 2958.05125pt>
+<./img/GestioneUtenteDraw.png, id=643, 1565.85pt x 2958.05125pt>
 File: ./img/GestioneUtenteDraw.png Graphic file (type png)
 <use ./img/GestioneUtenteDraw.png>
 Package pdftex.def Info: ./img/GestioneUtenteDraw.png  used on input line 1159.
@@ -2549,11 +2549,15 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [43
 
  <./img/GestioneUtenteDraw.png>]
-<./img/GestioneCuccioloDrawio.png, id=604, 2188.175pt x 4172.58875pt>
+<./img/GestioneCuccioloDrawio.png, id=650, 2189.17876pt x 4704.57625pt>
 File: ./img/GestioneCuccioloDrawio.png Graphic file (type png)
 <use ./img/GestioneCuccioloDrawio.png>
 Package pdftex.def Info: ./img/GestioneCuccioloDrawio.png  used on input line 1170.
-(pdftex.def)             Requested size: 317.07614pt x 604.59604pt.
+(pdftex.def)             Requested size: 317.07614pt x 681.39235pt.
+
+
+LaTeX Warning: Float too large for page by 2.88548pt on input line 1173.
+
 
 
 
@@ -2601,7 +2605,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [45 <./img/GestioneCuccioloDrawio.png>]
-<./img/GestionePreferitiDrawio.png, id=615, 2134.97626pt x 2549.525pt>
+<./img/GestionePreferitiDrawio.png, id=661, 2134.97626pt x 2549.525pt>
 File: ./img/GestionePreferitiDrawio.png Graphic file (type png)
 <use ./img/GestionePreferitiDrawio.png>
 Package pdftex.def Info: ./img/GestionePreferitiDrawio.png  used on input line 1180.
@@ -2631,6 +2635,12 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [46
 
  <./img/GestionePreferitiDrawio.png>]
+<./img/GestioneHomeDrawio.png, id=669, 2029.5825pt x 2325.68875pt>
+File: ./img/GestioneHomeDrawio.png Graphic file (type png)
+<use ./img/GestioneHomeDrawio.png>
+Package pdftex.def Info: ./img/GestioneHomeDrawio.png  used on input line 1190.
+(pdftex.def)             Requested size: 317.07614pt x 363.317pt.
+
 
 
 Overfull \hbox (34.71422pt too wide) has occurred while \output is active
@@ -2654,7 +2664,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 
 [47
 
-]
+ <./img/GestioneHomeDrawio.png>]
 
 
 Overfull \hbox (34.71422pt too wide) has occurred while \output is active
@@ -2679,12 +2689,12 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [48
 
 ]
-Overfull \hbox (13.27563pt too wide) in paragraph at lines 1222--1223
+Overfull \hbox (13.27563pt too wide) in paragraph at lines 1227--1228
 \T1/cmr/m/it/10 Dipendenza Grad-le (\T1/cmtt/m/it/10 libs.versions.toml\T1/cmr/m/it/10 ): \T1/cmtt/m/n/10 com.google.firebase:firebase-bom\T1/cmr/m/n/10 , \T1/cmtt/m/n/10 firebase-auth-
  []
 
 
-Overfull \hbox (5.32205pt too wide) in paragraph at lines 1241--1243
+Overfull \hbox (5.32205pt too wide) in paragraph at lines 1246--1248
 \T1/cmr/m/it/10 Dipendenza Grad-le: \T1/cmtt/m/n/10 androidx.constraintlayout:constraintlayout\T1/cmr/m/n/10 , \T1/cmtt/m/n/10 androidx.core:core-ktx\T1/cmr/m/n/10 ,
  []
 
@@ -2711,7 +2721,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [49]
-Overfull \hbox (7.84238pt too wide) in paragraph at lines 1253--1254
+Overfull \hbox (7.84238pt too wide) in paragraph at lines 1258--1259
 []\T1/cmtt/m/n/10 onCreate()\T1/cmr/m/n/10 : Ese-gue l'in-fla-te del lay-out tra-mi-te View-Bin-ding ed ini-zia-liz-za la \T1/cmtt/m/n/10 BottomNavigationView
  []
 
@@ -2740,22 +2750,22 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 [50
 
 ]
-Overfull \hbox (129.63983pt too wide) in paragraph at lines 1289--1291
+Overfull \hbox (129.63983pt too wide) in paragraph at lines 1294--1296
 \T1/cmtt/m/n/10 class FeedAdapter(private var postList: List<PuppyPost>) : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() 
  []
 
 
-Overfull \hbox (25.31033pt too wide) in paragraph at lines 1292--1293
+Overfull \hbox (25.31033pt too wide) in paragraph at lines 1297--1298
 []\T1/cmtt/m/n/10 onCreateViewHolder()\T1/cmr/m/n/10 : Ese-gue l'in-fla-te del lay-out per il sin-go-lo item del-la ri-ga (\T1/cmtt/m/n/10 item_puppy_card.xml\T1/cmr/m/n/10 ). 
  []
 
 
-Overfull \hbox (45.58316pt too wide) in paragraph at lines 1295--1296
+Overfull \hbox (45.58316pt too wide) in paragraph at lines 1300--1301
 []\T1/cmtt/m/n/10 updatePosts(newPosts: List<PuppyPost>)\T1/cmr/m/n/10 : Ag-gior-na la li-sta dei da-ti e chia-ma \T1/cmtt/m/n/10 notifyDataSetChanged()
  []
 
 
-Overfull \hbox (7.62021pt too wide) in paragraph at lines 1315--1316
+Overfull \hbox (7.62021pt too wide) in paragraph at lines 1320--1321
 []\T1/cmtt/m/n/10 onCreateView()\T1/cmr/m/n/10 : Ef-fet-tua l'in-fla-te del lay-out \T1/cmtt/m/n/10 fragment_favorites.xml\T1/cmr/m/n/10 , ini-zia-liz-za la \T1/cmtt/m/n/10 RecyclerView
  []
 
@@ -2782,7 +2792,7 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [51]
-Overfull \hbox (208.3706pt too wide) in paragraph at lines 1320--1322
+Overfull \hbox (208.3706pt too wide) in paragraph at lines 1325--1327
 \T1/cmtt/m/n/10 class FavoritesAdapter(private var favorites: List<PuppyPost>) : RecyclerView.Adapter<FavoritesAdapter.FavoriteViewHolder>() 
  []
 
@@ -2831,11 +2841,11 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [53]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 1400.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 1405.
 
 
 LaTeX Font Warning: Font shape `T1/cmtt/bx/n' in size <9> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1401.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1406.
 
 
 
@@ -2884,12 +2894,12 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
  []
 
 [55]
-Overfull \hbox (19.87823pt too wide) in paragraph at lines 1513--1514
+Overfull \hbox (19.87823pt too wide) in paragraph at lines 1518--1519
 []\T1/cmr/bx/n/10 Presentation Layer\T1/cmr/m/n/10 : con-tie-ne l'in-ter-fac-cia uten-te vi-si-va e reat-ti-va or-ga-niz-za-ta in \T1/cmr/m/it/10 Screens \T1/cmr/m/n/10 (\T1/cmtt/m/n/10 MainScreen\T1/cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (13.51733pt too wide) in paragraph at lines 1513--1514
+Overfull \hbox (13.51733pt too wide) in paragraph at lines 1518--1519
 \T1/cmtt/m/n/10 SignUpScreen\T1/cmr/m/n/10 , \T1/cmtt/m/n/10 UserProfileScreen\T1/cmr/m/n/10 , \T1/cmtt/m/n/10 PuppyDetailsScreen\T1/cmr/m/n/10 , \T1/cmtt/m/n/10 NotificationsScreen\T1/cmr/m/n/10 ) e \T1/cmr/m/it/10 Tabs \T1/cmr/m/n/10 (\T1/cmtt/m/n/10 HomeTab\T1/cmr/m/n/10 ,
  []
 
@@ -2917,7 +2927,250 @@ Overfull \hbox (34.71422pt too wide) has occurred while \output is active
 
 [56
 
-] (./tesina.aux)
+]
+<./img/architettura_flutter.drawio.png, id=817, 1076.02pt x 604.2575pt>
+File: ./img/architettura_flutter.drawio.png Graphic file (type png)
+<use ./img/architettura_flutter.drawio.png>
+Package pdftex.def Info: ./img/architettura_flutter.drawio.png  used on input line 1566.
+(pdftex.def)             Requested size: 452.9679pt x 254.3673pt.
+<./img/avvio_navigazione_flutter.drawio.png, id=818, 1146.2825pt x 734.745pt>
+File: ./img/avvio_navigazione_flutter.drawio.png Graphic file (type png)
+<use ./img/avvio_navigazione_flutter.drawio.png>
+Package pdftex.def Info: ./img/avvio_navigazione_flutter.drawio.png  used on input line 1592.
+(pdftex.def)             Requested size: 452.9679pt x 290.35002pt.
+
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[57
+
+ <./img/architettura_flutter.drawio.png>]
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[58 <./img/avvio_navigazione_flutter.drawio.png>]
+Overfull \hbox (33.94711pt too wide) in paragraph at lines 1631--1633
+\T1/cmr/m/n/10 Per la me-mo-riz-za-zio-ne lo-ca-le sul di-spo-si-ti-vo di pic-co-li quan-ti-ta-ti-vi di da-ti, il pac-chet-to \T1/cmtt/m/n/10 shared_preferences
+ []
+
+
+Overfull \hbox (9.2587pt too wide) in paragraph at lines 1637--1639
+\T1/cmr/m/n/10 Anche la ver-sio-ne Flut-ter sfrut-ta il mo-to-re di per-si-sten-za lo-ca-le in-te-gra-to nel plu-gin \T1/cmtt/m/n/10 cloud_firestore\T1/cmr/m/n/10 .
+ []
+
+
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[59
+
+]
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[60]
+Overfull \hbox (7.67575pt too wide) in paragraph at lines 1693--1694
+[]\T1/cmtt/m/n/10 final List<Widget> _tabs = [HomeTab(), AddPuppyTab(), FavoritesTab(), ProfileTab()] 
+ []
+
+
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[61]
+Overfull \hbox (100.4031pt too wide) in paragraph at lines 1716--1717
+[]\T1/cmtt/m/n/10 build()\T1/cmr/m/n/10 : Co-strui-sce il lay-out del-la scher-ma-ta prin-ci-pa-le av-va-len-do-si del wid-get reat-ti-vo \T1/cmtt/m/n/10 StreamBuilder<List<PuppyPost>>
+ []
+
+
+Overfull \hbox (154.75095pt too wide) in paragraph at lines 1731--1732
+[]\T1/cmtt/m/n/10 build()\T1/cmr/m/n/10 : Uti-liz-za una com-bi-na-zio-ne reat-ti-va di \T1/cmtt/m/n/10 StreamBuilder<Set<String>> \T1/cmr/m/n/10 (col-le-ga-to a \T1/cmtt/m/n/10 FirebaseService.favoritesIdsStream()\T1/cmr/m/n/10 )
+ []
+
+
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[62]
+Overfull \hbox (127.702pt too wide) in paragraph at lines 1758--1759
+\T1/cmr/m/n/10 Po-po-la l'e-len-co del-le no-ti-fi-che e per-met-te la ri-mo-zio-ne del-le no-ti-fi-che let-te tra-mi-te \T1/cmtt/m/n/10 FirebaseService.clearAllNotifications()\T1/cmr/m/n/10 . 
+ []
+
+
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[63]
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[64]
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[][]|  
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (34.71422pt too wide) has occurred while \output is active
+ [][]|
+ []
+
+[65] (./tesina.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -2929,18 +3182,18 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 70993 strings out of 473190
- 1758522 string characters out of 5715800
- 2757543 words of memory out of 5000000
- 92923 multiletter control sequences out of 15000+600000
+ 71090 strings out of 473190
+ 1760431 string characters out of 5715800
+ 2758753 words of memory out of 5000000
+ 92991 multiletter control sequences out of 15000+600000
  581656 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,13n,120p,1014b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,13n,120p,1099b,2776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfit1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0500.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on tesina.pdf (59 pages, 9537941 bytes).
+Output written on tesina.pdf (68 pages, 11315553 bytes).
 PDF statistics:
- 1076 PDF objects out of 1200 (max. 8388607)
- 911 compressed objects within 10 object streams
- 413 named destinations out of 1000 (max. 500000)
- 733 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1272 PDF objects out of 1440 (max. 8388607)
+ 1088 compressed objects within 11 object streams
+ 442 named destinations out of 1000 (max. 500000)
+ 988 words of extra memory for PDF output out of 10000 (max. 10000000)
 
