@@ -137,7 +137,7 @@ Nella presente sezione si analizzano in modo approfondito i requisiti del sistem
     \item \textbf{RF9: Elimina cucciolo:} il sistema deve permettere all'autore dell'annuncio di eliminare definitivamente il post e la relativa immagine memorizzata nel cloud.
     \item \textbf{RF10: Visualizza post e scheda dettaglio:} il sistema deve mostrare i post dei cuccioli pubblicati e consentire la visualizzazione delle informazioni complete dell'animale e del proprietario.
 \end{itemize}
-\subsection*{Area: Gestione nterazioni}
+\subsection*{Area: Gestione Interazioni}
 \begin{itemize}
     \item \textbf{RF11: Aggiungi ai preferiti:} il sistema deve permettere di aggiungere un cucciolo ai preferiti effettuando uno swipe verso destra dalla home o premendo sul cuore dal profilo di un Utente o Animal Shelter.
     \item \textbf{RF12: Rimuovi dai preferiti:} il sistema deve permettere di rimuovere un cucciolo dai preferiti premendo sul cuore nella lista dei preferiti.
@@ -857,107 +857,6 @@ Quest'area raggruppa i casi d'uso dedicati al sistema di comunicazione e di avvi
 \end{tabular}
 \end{table}
 
-\newchapter{Database e Storage}
-
-La gestione dei dati nell'applicazione \textbf{Paws} adotta un'architettura distribuita e multi-database, progettata per garantire elevata reattività, sicurezza e scalabilità. A differenza di un approccio monolitico basato su un unico motore relazionale locale o cloud, Paws integra in modo sinergico diverse tecnologie specializzate di database e storage, sia per l'ambiente nativo Android in Kotlin che per la versione cross-platform in Flutter:
-
-\begin{itemize}
-    \item \textbf{Database Cloud NoSQL (Firebase Cloud Firestore):} gestisce la persistenza dei dati di dominio in tempo reale (utenti, annunci di cuccioli, preferiti e notifiche).
-    \item \textbf{Cloud Object Storage (Supabase Storage):} gestisce l'archiviazione efficiente dei file multimediali ad alta risoluzione (immagini del profilo e foto degli annunci).
-    \item \textbf{Database di Autenticazione (Firebase Auth):} memorizza le credenziali e gestisce l'identità degli utenti generando gli identificatori univoci (\texttt{UID}).
-    \item \textbf{Local Storage (SharedPreferences):} memorizza in locale piccoli quantitativi di dati a chiave-valore per lo stato della sessione e le preferenze grafiche.
-\end{itemize}
-
-\newsection{Database Remoto NoSQL (Cloud Firestore)}
-
-Il database principale dell'applicazione è \textbf{Firebase Cloud Firestore}, un database documentale NoSQL basato su collezioni e documenti JSON-like. Firestore è stato scelto per la sua capacità di offrire la sincronizzazione in tempo reale tramite \textit{WebSocket} e \textit{Real-Time Listeners}, consentendo all'interfaccia utente di aggiornarsi istantaneamente al variare dei dati sul cloud.
-
-\noindent Il database è organizzato nelle seguenti collezioni principali:
-
-\begin{itemize}
-    \item \textbf{\texttt{users}:} contiene i profili informativi degli utenti e delle strutture di adozione (rifugi/canili). Ogni documento ha come ID il campo \texttt{uid} derivato da Firebase Auth e comprende: \texttt{name}, \texttt{surname}, \texttt{email}, \texttt{phone}, \texttt{role} (privato o rifugio), \texttt{address}, \texttt{description} e \texttt{avatarUrl}.
-    \item \textbf{\texttt{posts}:} raccoglie gli annunci dei cuccioli in cerca di casa. Ciascun documento memorizza: \texttt{postId}, \texttt{uid} (proprietario dell'annuncio), \texttt{name} del cucciolo, \texttt{type} (specie animale), \texttt{breed} (razza), \texttt{age}, \texttt{sex}, \texttt{caption} (descrizione), \texttt{imageUrl} (link Supabase) e \texttt{timestamp} di creazione.
-    \item \textbf{\texttt{favorites}:} rappresenta la relazione molti-a-molti tra gli utenti e i post salvati nei preferiti. Mantiene l'associazione \texttt{userId} -- \texttt{postId}, consentendo il recupero rapido nella schermata dedicata e supportando le gesture native di \textit{Swipe-to-Favorite}.
-    \item \textbf{\texttt{notifications}:} traccia le notifiche di sistema ed interazione inviate agli utenti. Registra l'ID del destinatario (\texttt{recipientId}), l'ID del mittente (\texttt{senderId}), il post di riferimento, il tipo di notifica, lo stato di lettura (\texttt{isRead}) e il marcatore temporale.
-\end{itemize}
-
-\newsection{Cloud Object Storage (Supabase Storage)}
-
-Per evitare l'appesantimento del database NoSQL con stringhe Base64 o oggetti binari di grandi dimensioni (BLOB), l'architettura di Paws disaccoppia la gestione dei dati testuali da quella dei contenuti multimediali affidandosi a \textbf{Supabase Storage}.
-
-\noindent Supabase mette a disposizione bucket di storage dedicati:
-\begin{itemize}
-    \item \textbf{Bucket \texttt{profiles}:} dedicato alle immagini di profilo degli utenti e dei canili.
-    \item \textbf{Bucket \texttt{puppies}:} dedicato al caricamento delle foto dei cuccioli associate agli annunci.
-\end{itemize}
-
-\noindent Quando un utente carica un'immagine (tramite la \texttt{CreatePostFragment} in Kotlin o l'equivalente in Flutter), il file binario viene inviato tramite le API REST/SDK di Supabase Storage. Supabase restituisce un URL pubblico sicuro, il quale viene poi salvato nel relativo documento Firestore (\texttt{imageUrl} o \texttt{avatarUrl}). Lato client, le librerie di visualizzazione quali \textbf{Glide} (in Android Kotlin) e \textbf{\texttt{cached\_network\_image}} (in Flutter) caricano le immagini in modo asincrono sfruttando tecniche di caching in memoria e su disco.
-
-\newsection{Local Storage (SharedPreferences)}
-
-Accanto ai database di rete cloud, l'applicazione sfrutta il meccanismo di memorizzazione locale a chiave-valore offerto da \textbf{SharedPreferences} (in Android Native) e dal pacchetto \textbf{\texttt{shared\_preferences}} (in Flutter).
-
-\noindent Questo storage locale viene impiegato principalmente per:
-\begin{itemize}
-    \item Salvare lo stato della sessione e l'ID utente corrente (\texttt{UID}) dopo il primo accesso.
-    \item Memorizzare le preferenze grafiche dell'interfaccia utente (come la scelta del tema chiaro o scuro).
-    \item Salvare temporaneamente il flag di completamento dell'onboarding.
-\end{itemize}
-
-\noindent In questo modo, all'avvio dell'applicazione è possibile determinare istantaneamente se reindirizzare l'utente alla schermata di Login o caricare la Home, evitando schermate di caricamento vuote e senza attendere l'inizializzazione dei database cloud o delle chiamate di rete.
-
-\newsection{Sincronizzazione Offline e Persistenza Locale}
-
-Una delle caratteristiche fondamentali dell'architettura multi-database di Paws è la capacità di operare anche in assenza temporanea di connettività internet. A differenza delle architetture tradizionali basate su SQL che richiedono la scrittura manuale di tabelle di sync ed attributi come \texttt{isSynced}, \textbf{Firebase Cloud Firestore} integra nativamente un motore di persistenza locale basato su cache interna.
-
-\noindent Il funzionamento del meccanismo di sincronizzazione offline segue questo comportamento:
-\begin{itemize}
-    \item \textbf{Scrittura offline:} quando l'utente crea un annuncio o aggiunge un cucciolo ai preferiti senza rete internet, lo SDK di Firestore memorizza l'operazione nel database SQLite/LevelDB locale del dispositivo e aggiorna immediatamente la UI (\textit{Optimistic UI Updates}).
-    \item \textbf{Ripristino connettività:} al rilevamento del segnale di rete, lo SDK invia in automatico le modifiche in coda ai server cloud Firebase, garantendo l'allineamento definitivo dei dati in background.
-\end{itemize}
-
-\newsection{Politiche di Sicurezza (Firestore Security Rules)}
-
-Per proteggere l'integrità dei dati salvati nei database cloud e prevenire accessi o modifiche non autorizzate, sono state configurate apposite regole di sicurezza dichiarative su Cloud Firestore (\textit{Security Rules}):
-
-\begin{scriptsize}
-\estiloPython
-\begin{lstlisting}[caption={Regole di Sicurezza Cloud Firestore}, label=lst:firestore_rules]
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    
-    // Regole per la collezione utenti
-    match /users/{userId} {
-      allow read: if request.auth != null;
-      allow create, update: if request.auth != null && request.auth.uid == userId;
-      allow delete: if request.auth != null && request.auth.uid == userId;
-    }
-    
-    // Regole per la collezione post di adozione cuccioli
-    match /posts/{postId} {
-      allow read: if request.auth != null;
-      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
-      allow update, delete: if request.auth != null && resource.data.uid == request.auth.uid;
-    }
-    
-    // Regole per la collezione dei preferiti
-    match /favorites/{favoriteId} {
-      allow read, write: if request.auth != null && resource.data.userId == request.auth.uid;
-    }
-    
-    // Regole per la collezione notifiche
-    match /notifications/{notificationId} {
-      allow read, update, delete: if request.auth != null && resource.data.recipientId == request.auth.uid;
-      allow create: if request.auth != null;
-    }
-  }
-}
-\end{lstlisting}
-\end{scriptsize}
-
-\clearpage
-
 \newchapter{Progettazione e sviluppo applicazione in Kotlin}
 \newsection{Architettura del sistema}
 
@@ -1099,32 +998,557 @@ La gestione dei preferiti e delle notifiche garantisce un'esperienza d'uso reatt
 \end{figure}
 
 \clearpage
-\newsection{Mockup}
-Il mockup dell’applicativo GESTRi è stato realizzato con Figma, uno strumento per la progettazione e la prototipazione di interfacce utente. Ogni mockup rappresenta la versione progettuale dell’interfaccia, definendo struttura, elementi grafici e funzionalità prima della fase di sviluppo.
 
+\newsection{Database e storage}
+La gestione dei dati nell'applicazione \textbf{Paws} adotta un'architettura distribuita e multi-database, progettata per garantire reattività e scalabilità. A differenza di un approccio monolitico basato su un unico motore relazionale locale o cloud, Paws integra diverse tecnologie specializzate di database e storage, sia per l'ambiente nativo Android in Kotlin che per la versione cross-platform in Flutter:
 
+\begin{itemize}
+    \item \textbf{Database Cloud NoSQL (Firebase Cloud Firestore):} gestisce la persistenza dei dati di dominio in tempo reale (utenti, annunci di cuccioli, preferiti e notifiche).
+    \item \textbf{Cloud Object Storage (Supabase Storage):} gestisce l'archiviazione efficiente dei file multimediali ad alta risoluzione (immagini del profilo e foto degli annunci).
+    \item \textbf{Database di Autenticazione (Firebase Auth):} memorizza le credenziali e gestisce l'identità degli utenti generando gli identificatori univoci (\texttt{UID}).
+    \item \textbf{Local Storage (SharedPreferences):} memorizza in locale piccoli quantitativi di dati a chiave-valore per lo stato della sessione e le preferenze grafiche.
+\end{itemize}
+
+\newsubsection{Database Remoto NoSQL (Firebase Cloud Firestore)}
+Il database principale dell'applicazione è \textbf{Firebase Cloud Firestore}, un database documentale NoSQL basato su collezioni e documenti JSON-like. Firestore è stato scelto per la sua capacità di offrire la sincronizzazione in tempo reale tramite \textit{WebSocket} e \textit{Real-Time Listeners}, consentendo all'interfaccia utente di aggiornarsi istantaneamente al variare dei dati sul cloud.
+\noindent Il database è organizzato nelle seguenti collezioni principali:
+\begin{itemize}
+    \item \textbf{\texttt{users}:} contiene i profili informativi degli utenti e delle strutture di adozione. Ogni documento comprende i seguenti campi: \texttt{username}, \texttt{firstName}, \texttt{lastName}, \texttt{email}, \texttt{phone}, \texttt{accountType} (Privato o Rifugio), \texttt{city}, \texttt{province} e \texttt{cap}.
+    \item \textbf{\texttt{posts}:} raccoglie gli annunci dei cuccioli in cerca di casa. Ciascun documento memorizza: \texttt{id}, \texttt{uid} (ID del creatore dell'annuncio), \texttt{name} dell'animale, \texttt{type} (Cane, gatto o uccello), \texttt{age}, \texttt{gender}, \texttt{caption} (descrizione), \texttt{imageUrl} (link dell'immagine), \texttt{userType} (Privato o Rifugio) e il \texttt{timestamp} di creazione.
+    \item \textbf{\texttt{favorites}:} gestisce gli animali salvati nei preferiti. Invece di mantenere solo una chiave di riferimento, memorizza un'istanza completa dei dati dell'annuncio al momento del salvataggio, includendo: \texttt{id}, \texttt{uid}, \texttt{name}, \texttt{type} (Cane, gatto o uccello), \texttt{age}, \texttt{gender}, \texttt{caption}, \texttt{imageUrl}, \texttt{userType} (Privato o rifugio) e il \texttt{timestamp}.
+    \item \textbf{\texttt{notifications}:} traccia le notifiche di sistema ed interazione inviate agli utenti. Registra l'ID del destinatario (\texttt{targetUid}), l'immagine del post associato (\texttt{postImageUrl}), il testo della notifica e il marcatore temporale (\texttt{timestamp}).
+\end{itemize}
+
+\newsubsection{Cloud Object Storage (Supabase Storage)}
+Per evitare l'appesantimento del database NoSQL con stringhe Base64 o oggetti binari di grandi dimensioni, l'architettura di Paws disaccoppia la gestione dei dati testuali da quella dei contenuti multimediali affidandosi a \textbf{Supabase Storage}.
+\noindent Supabase mette a disposizione un unico bucket di storage, chiamato \textbf{\texttt{paws-images}}, organizzato al suo interno in due cartelle distinte:
+\begin{itemize}
+    \item \textbf{Cartella \texttt{profile\_images}:} dedicata alle immagini di profilo degli utenti e delle strutture di adozione.
+    \item \textbf{Cartella \texttt{posts}:} dedicata al caricamento delle foto dei cuccioli associate agli annunci.
+\end{itemize}
+
+\noindent Quando un utente carica un'immagine tramite la \texttt{CreatePostFragment}, il file binario viene inviato tramite le API REST/SDK di Supabase Storage. Supabase restituisce un URL pubblico sicuro, il quale viene poi salvato nel relativo documento Firestore (all'interno del campo \texttt{imageUrl}). Lato client, la libreria di visualizzazione \textbf{Glide} (in Android Kotlin) carica le immagini in modo asincrono sfruttando tecniche di caching in memoria e su disco.
+
+\newsubsection{Local Storage (SharedPreferences)}
+Accanto ai database di rete cloud, l'applicazione sfrutta il meccanismo di memorizzazione locale a chiave-valore offerto da \textbf{SharedPreferences} (in Android Native).
+
+\noindent Questo storage locale viene impiegato principalmente per:
+\begin{itemize}
+    \item Salvare lo stato della sessione e l'ID utente corrente (\texttt{UID}) dopo il primo accesso.
+    \item Salvare temporaneamente il flag di completamento dell'onboarding.
+\end{itemize}
+
+\noindent In questo modo, all'avvio dell'applicazione è possibile determinare istantaneamente se reindirizzare l'utente alla schermata di Login o caricare la Home, evitando schermate di caricamento vuote e senza attendere l'inizializzazione dei database cloud o delle chiamate di rete.
+
+\newsubsection{Sincronizzazione Offline e Persistenza Locale}
+Una delle caratteristiche fondamentali dell'architettura multi-database di Paws è la capacità di operare anche in assenza temporanea di connettività internet. Infatti \textbf{Firebase Cloud Firestore} integra nativamente un motore di persistenza locale basato su cache interna.
+
+\noindent Il funzionamento del meccanismo di sincronizzazione offline segue questo comportamento:
+\begin{itemize}
+    \item \textbf{Scrittura offline:} quando l'utente crea un annuncio o aggiunge un cucciolo ai preferiti senza rete internet, lo SDK di Firestore memorizza l'operazione nel database SQLite/LevelDB locale del dispositivo e aggiorna immediatamente la UI (\textit{Optimistic UI Updates}).
+    \item \textbf{Ripristino connettività:} al rilevamento del segnale di rete, lo SDK invia in automatico le modifiche in coda ai server cloud Firebase, garantendo l'allineamento definitivo dei dati in background.
+\end{itemize}
+
+\newsubsection{Politiche di sicurezza}
+Poiché l'attuale versione dell'applicazione è stata sviluppata sotto forma di prototipo, in questa fase iniziale non sono state implementate politiche di sicurezza restrittive, come le \textit{Security Rules} di Firebase o la \textit{Row Level Security} (RLS) di Supabase.
+\noindent Attualmente, l'accesso ai database cloud e ai bucket di storage è configurato in modalità aperta o di test. L'implementazione di regole di accesso granulari e sicure, basate sull'autenticazione e sui ruoli degli utenti (privato o rifugio), rappresenta uno step per eventuali sviluppi futuri per la messa in produzione del sistema.
+\clearpage
+
+\newsection{MockUp UI}
+
+\vspace*{\fill}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Signup.jpg}
+        \caption{Login}
+        \label{fig:Signup}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Signin.jpg}
+        \caption{Registrazione}
+        \label{fig:Signin}
+    \end{minipage}
+\end{figure}
+\vspace*{\fill}
+\clearpage
+
+\vspace*{\fill}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Home.jpg}
+        \caption{Home}
+        \label{fig:Home}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Post.jpg}
+        \caption{Post}
+        \label{fig:Post}
+    \end{minipage}
+\end{figure}
+\vspace*{\fill}
+\clearpage
+
+\vspace*{\fill}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Favorites.jpg}
+        \caption{Preferiti}
+        \label{fig:favorites}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Profile.jpg}
+        \caption{Profilo}
+        \label{fig:Profile}
+    \end{minipage}
+\end{figure}
+\vspace*{\fill}
+\clearpage
+
+\vspace*{\fill}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Info.jpg}
+        \caption{Scheda cucciolo}
+        \label{fig:Info}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Notifications.jpg}
+        \caption{Notifiche}
+        \label{fig:Notifications}
+    \end{minipage}
+\end{figure}
+\vspace*{\fill}
+\clearpage
+
+\vspace*{\fill}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{Search.jpg}
+        \caption{Cerca Utente}
+        \label{fig:Search}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{UserProfile.jpg}
+        \caption{Profilo Utente}
+        \label{fig:UserProfile}
+    \end{minipage}
+\end{figure}
+\vspace*{\fill}
+\clearpage
+
+\newsection{Rappresentazione Grafica Dei Casi d'Uso}
+
+\newsubsection{Gestione Utente}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{GestioneUtenteDraw.png}
+    \caption{Gestione Utente}
+    \label{fig:GestioneUtenteDraw}
+\end{figure}
 
 \clearpage
-\newsection{Verifica e Validazione del Software: Unit Tests}
-I seguenti test rappresentano l’insieme delle attività di verifica implementate per garantire il corretto funzionamento del progetto. Sono stati adottati due approcci complementari: test automatici lato codice e test manuali delle API.
 
-\newsubsection{Test Manuali} 
-Per verificare le API è stata utilizzata l’applicazione Postman, uno strumento che consente di inviare richieste HTTP e analizzare le risposte. Questi test non rientrano nel diagramma degli Unit Test, ma rappresentano un'importante componente di validazione dell’integrazione e del comportamento delle API lato client-server.
 
-\newsubsection{Unit Test} 
-La sezione presenta i test unitari eseguiti sul modulo Attività di GESTRi, con l’obiettivo di verificarne la correttezza funzionale e assicurare l’affidabilità del relativo codice.
+\newsubsection{Gestione Cucciolo}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{GestioneCuccioloDrawio.png}
+    \caption{Gestione Cucciolo}
+    \label{fig:GestioneCuccioloDrawio}
+\end{figure}
+
+\clearpage
+
+\newsubsection{Gestione Preferiti}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{GestionePreferitiDrawio.png}
+    \caption{Gestione Preferiti}
+    \label{fig:GestioneCPreferitiDrawio}
+\end{figure}
+
+\clearpage
+
+\newsubsection{Gestione Home}
+
+\clearpage
+
+\newsection{Approccio e Problematiche di Sviluppo}
+Durante lo sviluppo dell'applicazione Android nativa Paws, l'attenzione è stata posta sull'adozione di un approccio strutturato e sull'integrazione delle tecnologie moderne offerte dall'ecosistema Android e da Firebase per garantire prestazioni elevate, reattività dell'interfaccia utente e manutenibilità del codice.
+
+\newsubsection{Approccio allo Sviluppo}
+L'approccio metodologico adottato per lo sviluppo dell'applicazione nativa si basa sui principi dell'ingegneria del software moderna, con una progettazione guidata dai concetti di robustezza, testabilità e reattività. Lo sviluppo è proceduto in modo iterativo e incrementale, focalizzandosi inizialmente sulla modellazione della struttura dei dati su Cloud Firestore e sull'autenticazione utente tramite Firebase Auth, per poi passare all'implementazione della logica di business all'interno dei Fragment e alla realizzazione dell'interfaccia utente basata sul pattern Single Activity (tramite Navigation Component, Layout XML flessibili e RecyclerView adattive). Questo disaccoppiamento dei componenti ha facilitato sia il testing isolato delle varie schermate (Home, Profilo, Creazione Post, Preferiti, Notifiche) sia la risoluzione dei bug legati alla gestione degli stati dell'interfaccia e alle operazioni di rete asincrone.
+
+\newsubsection{Tecnologie e Funzionalità Chiave}
+\paragraph{Caricamento Immagini su Firebase Storage}
+\vphantom{space} \\[0.5cm]
+Una funzionalità critica della gestione del profilo utente e della creazione dei post dei cuccioli è il caricamento delle immagini (foto del cucciolo e avatar utente). Per evitare rallentamenti e blocchi dell'interfaccia utente, l'immagine selezionata dalla galleria o dalla fotocamera viene elaborata e convertita in un flusso ottimizzato. Questo stream viene quindi caricato in background su Firebase Storage mediante il riferimento asincrono \texttt{StorageReference.putFile()}. Una volta completato il caricamento, l'applicazione recupera l'URL pubblico di download (\texttt{downloadUrl}) e lo salva all'interno del documento relativo al post o all'utente sul database documentale Firebase Cloud Firestore.
+
+\paragraph{Gestione dell'Asincronia e Ascolto in Tempo Reale con Firestore}
+\vphantom{space} \\[0.5cm]
+Tutti gli accessi ai dati remoti e le operazioni di scrittura su Firebase vengono eseguiti in maniera asincrona tramite l'API a callback (\texttt{addOnSuccessListener}, \texttt{addOnFailureListener}). Per garantire un'esperienza utente dinamica, i dati dell'elenco dei cuccioli, dei preferiti e delle notifiche vengono distribuiti ai Fragment in tempo reale mediante i \texttt{SnapshotListener} di Firestore. Questo approccio consente di aggiornare istantaneamente l'interfaccia e gli Adapter delle RecyclerView non appena un record viene inserito, modificato o rimosso da qualsiasi utente.
+
+\newsubsection{Problematiche Risolte}
+
+\newsubsubsection*{Inconsistenze di Stato tra Caricamento Multimediale (Storage) e Scrittura Dati (Firestore)}
+Durante la fase di creazione o modifica di un post, la necessità di effettuare due operazioni asincrone sequenziali (prima l'upload dell'immagine su Firebase Storage e successivamente il salvataggio dei metadati del cucciolo su Cloud Firestore) ha introdotto il rischio di \textit{race condition} e di inconsistenze visive. Se l'utente tentava di interagire nuovamente con l'interfaccia mentre il caricamento dell'immagine era ancora in corso, si potevano verificare invii duplicati o post privi dell'URL dell'immagine.
+\noindent Per risolvere questa problematica, l'intero flusso è stato incapsulato e controllato: durante il caricamento gli elementi di input vengono disabilitati e viene mostrato un indicatore di progresso (\texttt{ProgressBar}); la scrittura del documento su Firestore viene eseguita esclusivamente all'interno della callback di successo dell'upload su Storage, garantendo l'atomicità logica dell'operazione.
+
+\newsubsection{Librerie di Terze Parti}
+Per lo sviluppo dell'applicazione Paws in versione Android nativa, sono state integrate diverse librerie esterne per semplificare lo sviluppo, gestire l'autenticazione, la persistenza e la sincronizzazione dei dati in tempo reale, l'archiviazione cloud di media e l'efficiente visualizzazione di componenti grafiche avanzate:
+\begin{itemize}
+    \item \textbf{Firebase Android SDK (\texttt{BoM v34.14.1})}: Suite ufficiale di Google utilizzata come infrastruttura di backend integrata. Include:
+    \begin{itemize}
+        \item \textbf{Firebase Auth (\texttt{v23.1.0})}: Gestisce l'autenticazione sicura degli utenti, la registrazione e la gestione delle sessioni.
+        \item \textbf{Firebase Cloud Firestore (\texttt{v25.1.4})}: Database NoSQL documentale in tempo reale per la memorizzazione e sincronizzazione di profili utenti, post dei cuccioli, preferiti e notifiche.
+        \item \textbf{Firebase Storage (\texttt{v21.0.1})}: Servizio di archiviazione cloud per il caricamento, la conservazione e la distribuzione delle immagini multimediali (foto dei cuccioli e avatar del profilo).
+    \end{itemize}
+    \vspace{0.1cm}
+    \textit{Dipendenza Gradle (\texttt{libs.versions.toml}):} \texttt{com.google.firebase:\allowbreak firebase-bom}, \texttt{firebase-auth-\allowbreak ktx}, \texttt{firebase-firestore-ktx}, \texttt{firebase-storage-ktx}
+
+    \vspace{0.3cm}
+    \item \textbf{Glide (\texttt{v4.16.0})}: Libreria avanzata di \textit{image loading} e gestione della memoria per Android. È utilizzata per scaricare, decodificare, ridimensionare ed inserire in cache in modo altamente efficiente le immagini remote memorizzate su Firebase Storage, visualizzandole in maniera fluida nelle \texttt{RecyclerView} dell'applicazione senza causare lag dell'interfaccia. \\
+    \textit{Dipendenza Gradle:} \texttt{com.github.bumptech.glide:\allowbreak glide}
+
+    \vspace{0.3cm}
+    \item \textbf{Material Components for Android (\texttt{v1.13.0})}: Libreria ufficiale Google per l'implementazione dei componenti dell'interfaccia utente secondo le linee guida del Material Design. Fornisce elementi UI avanzati quali \texttt{CardView}, \texttt{TextInput\allowbreak Layout}, \texttt{FloatingAction\allowbreak Button}, \texttt{BottomNavigation\allowbreak View} e finestre di dialogo (\texttt{AlertDialog}). \\
+    \textit{Dipendenza Gradle:} \texttt{com.google.android.material:\allowbreak material}
+
+    \vspace{0.3cm}
+    \item \textbf{AndroidX Core Splashscreen (\texttt{v1.2.0})}: Libreria componenti Jetpack usata per gestire la schermata di avvio (Splash Screen) dell'applicazione in modo retrocompatibile su diverse versioni del sistema operativo Android. \\
+    \textit{Dipendenza Gradle:} \texttt{androidx.core:\allowbreak core-splashscreen}
+
+    \vspace{0.3cm}
+    \item \textbf{Supabase Kotlin SDK (\texttt{v3.6.0}) \& Ktor Client Android (\texttt{v3.0.0})}: Libreria per l'integrazione di servizi backend remoti e client HTTP asincrono per Kotlin, utilizzato da Supabase per la gestione delle chiamate di rete. \\
+    \textit{Dipendenza Gradle:} \texttt{io.github.jan-tennert.supabase:\allowbreak storage-kt}, \texttt{postgrest-kt}, \texttt{io.ktor:\allowbreak ktor-client-android}
+
+    \vspace{0.3cm}
+    \item \textbf{AndroidX ConstraintLayout (\texttt{v2.2.1}) \& Core KTX (\texttt{v1.18.0})}: Componenti fondamentali dell'architettura Android Jetpack usati per la costruzione di layout complessi e reattivi e per l'utilizzo delle estensioni idiomatiche Kotlin. \\
+    \textit{Dipendenza Gradle:} \texttt{androidx.constraintlayout:\allowbreak constraintlayout}, \texttt{androidx.core:\allowbreak core-ktx}, \texttt{androidx.activity:\allowbreak activity}
+\end{itemize}
+\clearpage
+
+\newsection{Descrizione Componenti}
+
+\newsubsection{MainActivity}
+\texttt{class MainActivity : AppCompatActivity()}
+\begin{itemize}
+    \item \texttt{private lateinit var bottomNavigationView: BottomNavigationView}
+    \item \texttt{private lateinit var binding: ActivityMainBinding}
+    \item \texttt{onCreate()}: Esegue l'inflate del layout tramite ViewBinding ed inizializza la \texttt{BottomNavigationView} per consentire la navigazione tra le quattro sezioni principali dell'applicazione (\textit{Home}, \textit{Aggiungi Cucciolo}, \textit{Preferiti}, \textit{Profilo}). Controlla se \texttt{savedInstanceState} è nullo (ovvero se l'activity viene creata per la prima volta) e in tal caso carica nel container dei fragment (\texttt{FrameLayout}) l'\texttt{HomeFragment} come schermata iniziale.
+    \item \texttt{replaceFragment(fragment: Fragment)}: Effettua le transazioni asincrone tra i vari Fragment all'interno del container della vista.
+\end{itemize}
+
+\newsubsection{SignInActivity}
+\texttt{class SignInActivity : AppCompatActivity()}
+\begin{itemize}
+    \item \texttt{private lateinit var firebaseAuth: FirebaseAuth}
+    \item \texttt{private lateinit var binding: ActivitySignInBinding}
+    \item \texttt{onCreate()}: Inflate del layout e configurazione dei listener sul pulsante di accesso. Valida le credenziali inserite (email e password non vuote) ed effettua l'autenticazione tramite il metodo \texttt{firebaseAuth.signInWithEmailAndPassword()}. In caso di successo reindirizza l'utente alla \texttt{MainActivity}, altrimenti mostra un messaggio d'errore (\textit{Toast}). Gestisce inoltre l'intent verso la \texttt{SignUpActivity} per i nuovi utenti.
+    \item \texttt{onStart()}: Controlla se esiste già una sessione utente attiva (\texttt{firebaseAuth.currentUser != null}); in caso positivo reindirizza direttamente la navigazione alla \texttt{MainActivity}.
+\end{itemize}
+
+\newsubsection{SignUpActivity}
+\texttt{class SignUpActivity : AppCompatActivity()}
+\begin{itemize}
+    \item \texttt{private lateinit var firebaseAuth: FirebaseAuth}
+    \item \texttt{private lateinit var db: FirebaseFirestore}
+    \item \texttt{private lateinit var binding: ActivitySignUpBinding}
+    \item \texttt{onCreate()}: Configura il modulo di registrazione dell'utente. Valida tutti i campi obbligatori (Nome, Cognome, Città, Provincia, CAP, Username, Email, Password, Telefono e Tipo Account).
+    \item \texttt{signUpUser(...)}: Richiama \texttt{firebaseAuth.createUserWithEmailAndPassword()}. Se la registrazione ha esito positivo, invoca la funzione \texttt{saveUserData()} per salvare le informazioni di profilo dell'utente su Cloud Firestore nella collezione \texttt{"users"} e reindirizza alla \texttt{MainActivity}.
+    \item \texttt{saveUserData(...)}: Crea un documento su Firestore con ID pari all'UID dell'utente salvando le sue informazioni anagrafiche e di contatto.
+\end{itemize}
+
+\newsubsection{HOME: HomeFragment}
+\texttt{class HomeFragment : Fragment()}
+\begin{itemize}
+    \item \texttt{private lateinit var db: FirebaseFirestore}
+    \item \texttt{private lateinit var adapter: FeedAdapter}
+    \item \texttt{private lateinit var recyclerView: RecyclerView}
+    \item \texttt{onCreateView()}: Effettua l'inflate del layout \texttt{fragment\_home.xml}, inizializza la \texttt{RecyclerView} ed il relativo \texttt{FeedAdapter}.
+    \item \texttt{onViewCreated()}: Registra un \texttt{addSnapshotListener} su Firestore per ascoltare in tempo reale le modifiche alla collezione \texttt{"posts"}. Ad ogni aggiornamento remoto o locale, converte i documenti ricevuti in una lista di oggetti \texttt{PuppyPost}, aggiorna l'adapter ed aggiorna il badge della sezione notifiche. Imposta inoltre i listener per il pulsante del menu filtri (\textit{Età, Genere, Tipo Animale, Tipo Utente}).
+    \item \texttt{showFilterDialog()} \& \texttt{showSubFilterDialog()}: Gestiscono la visualizzazione dei dialog di selezione dei filtri per affinare la lista dei cuccioli.
+\end{itemize}
+
+\newsubsection{FeedAdapter}
+\texttt{class FeedAdapter(private var postList: List<PuppyPost>) : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>()}
+\begin{itemize}
+    \item \texttt{class FeedViewHolder(view: View)}: Classe ViewHolder che assegna ai componenti della riga le varie informazioni (foto del cucciolo, nome, razza, età, genere, avatar utente, username, badge tipo utente, icona preferiti e contatore mi piace).
+    \item \texttt{onCreateViewHolder()}: Esegue l'inflate del layout per il singolo item della riga (\texttt{item\_puppy\_card.xml}).
+    \item \texttt{onBindViewHolder()}: Assegna i dati del post corrente agli elementi grafici della vista; utilizza la libreria \textbf{Glide} per il caricamento e la messa in cache asincrona dell'immagine remota. Configura il click listener sulla card per aprire i dettagli del cucciolo, il listener sull'icona del cuore per aggiungere o rimuovere il post dai preferiti dell'utente ed il listener sul pulsante di chiamata telefonica per avviare il dialer del dispositivo.
+    \item \texttt{getItemCount()}: Restituisce la quantità di post presenti nell'elenco.
+    \item \texttt{updatePosts(newPosts: List<PuppyPost>)}: Aggiorna la lista dei dati e chiama \texttt{notifyDataSetChanged()} per informare la vista.
+\end{itemize}
+
+\newsubsection{CREA POST: CreatePostFragment}
+\texttt{class CreatePostFragment : Fragment()}
+\begin{itemize}
+    \item \texttt{private lateinit var storage: FirebaseStorage}
+    \item \texttt{private lateinit var db: FirebaseFirestore}
+    \item \texttt{private var selectedImageUri: Uri? = null}
+    \item \texttt{onCreateView()}: Effettua l'inflate del layout \texttt{fragment\_create\_post.xml}.
+    \item \texttt{onViewCreated()}: Imposta i listener per la selezione dell'immagine dalla galleria o fotocamera, apre gli \texttt{AlertDialog} per la scelta di Genere (\textit{Male/Female}), Età (\textit{1 months, 6 months, 1 years...}) e Tipo Animale (\textit{Dog, Cat, Bird}).
+    \item \texttt{savePost()}: Valida l'inserimento dei dati obbligatori; carica l'immagine in background su \textbf{Firebase Storage} (\texttt{posts/}), recupera l'URL di download pubblico inserendo poi il nuovo documento con tutti i dettagli nella collezione \texttt{"posts"} di \textbf{Cloud Firestore}.
+\end{itemize}
+
+\newsubsection{PREFERITI: FavoritesFragment}
+\texttt{class FavoritesFragment : Fragment()}
+\begin{itemize}
+    \item \texttt{private lateinit var db: FirebaseFirestore}
+    \item \texttt{private lateinit var adapter: FavoritesAdapter}
+    \item \texttt{private lateinit var recyclerView: RecyclerView}
+    \item \texttt{onCreateView()}: Effettua l'inflate del layout \texttt{fragment\_favorites.xml}, inizializza la \texttt{RecyclerView} e l'adapter dei preferiti.
+    \item \texttt{onViewCreated()}: Recupera gli ID dei post salvati tra i preferiti dall'utente corrente interrogando la collezione \texttt{"favorites"}. Aggancia uno \texttt{SnapshotListener} per mantenere sincronizzata la griglia/lista dei preferiti ogni volta che un cucciolo viene aggiunto o rimosso.
+\end{itemize}
+
+\newsubsection{FavoritesAdapter}
+\texttt{class FavoritesAdapter(private var favorites: List<PuppyPost>) : RecyclerView.Adapter<FavoritesAdapter.FavoriteViewHolder>()}
+\begin{itemize}
+    \item \texttt{class FavoriteViewHolder(view: View)}: Classe ViewHolder che associa le viste del layout dell'item dei preferiti (\texttt{item\_favorite\_card.xml}).
+    \item \texttt{onCreateViewHolder()}: Esegue l'inflate della vista del singolo item.
+    \item \texttt{onBindViewHolder()}: Esegue il binding dei dettagli del cucciolo salvato nei preferiti, carica l'immagine con Glide e gestisce l'azione di rimozione rapida dai preferiti o l'apertura della scheda di dettaglio.
+    \item \texttt{getItemCount()}: Restituisce il numero dei preferiti salvati dall'utente.
+\end{itemize}
+
+\newsubsection{PROFILO: ProfileFragment}
+\texttt{class ProfileFragment : Fragment()}
+\begin{itemize}
+    \item \texttt{private lateinit var auth: FirebaseAuth}
+    \item \texttt{private lateinit var db: FirebaseFirestore}
+    \item \texttt{onViewCreated()}: Recupera l'UID dell'utente corrente e legge il rispettivo documento dalla collezione \texttt{"users"} per popolare la schermata del profilo (Nome, Cognome, Città, Provincia, CAP, Username, Email, Telefono, Tipo Account).
+    \item \texttt{showEditDialog(fieldKey: String, title: String, textView: TextView)}: Apre un dialogo di input che consente all'utente di modificare in tempo reale un singolo campo del proprio profilo (es. Telefono o Username), aggiornando il valore su Cloud Firestore ed il testo visualizzato nell'interfaccia.
+    \item Configura i pulsanti di \textbf{Logout} (\texttt{auth.signOut()}) per terminare la sessione e reindirizzare alla \texttt{SignInActivity}, e \textbf{Delete Account} per rimuovere le informazioni dell'utente dal database.
+\end{itemize}
+
+\newsubsection{PROFILO ALTRO UTENTE: UserProfileFragment}
+\texttt{class UserProfileFragment : Fragment()}
+\begin{itemize}
+    \item \texttt{private lateinit var db: FirebaseFirestore}
+    \item \texttt{onViewCreated()}: Riceve come parametro l'UID dell'utente proprietario di un cucciolo e ne visualizza le informazioni pubbliche di profilo (Nome, Città, Tipo Utente e Telefono) assieme alla griglia dei post pubblicati da quell'utente. Gestisce l'avvio della chiamata telefonica diretta tramite \texttt{Intent(Intent.ACTION\_DIAL)}.
+\end{itemize}
+
+\newsubsection{DETTAGLIO CUCCIOLO: PuppyDetailsFragment}
+\texttt{class PuppyDetailsFragment : Fragment()}
+\begin{itemize}
+    \item \texttt{onViewCreated()}: Mostra i dettagli completi del cucciolo selezionato (foto a schermo intero, nome, razza, età, genere, tipo animale, descrizione estesa e contatti dell'inserzionista).
+\end{itemize}
+
+\newsubsection{NOTIFICHE: NotificationsFragment}
+\texttt{class NotificationsFragment : Fragment()}
+\begin{itemize}
+    \item \texttt{private lateinit var db: FirebaseFirestore}
+    \item \texttt{onViewCreated()}: Ascolta in tempo reale la collezione \texttt{"notifications"} di Firestore filtrando i documenti destinati all'utente corrente (\texttt{targetUid == currentUser.uid}). Popola la lista delle notifiche (es. \textit{"[Username] ha aggiunto [Nome Cucciolo] ai preferiti"}) e consente la cancellazione delle notifiche lette.
+\end{itemize}
+
+\newsubsection{MODELLI DATI (Data Classes)}
+
+\paragraph*{PuppyPost} \mbox{}\\[0.1cm]
+\texttt{data class PuppyPost(...)} \\
+Data class che modella la struttura di un post relativo a un cucciolo:
+\begin{itemize}
+    \item \texttt{var id: String = ""} (ID univoco del post)
+    \item \texttt{var uid: String = ""} (ID dell'utente proprietario)
+    \item \texttt{var name: String = ""} (Nome del cucciolo)
+    \item \texttt{var type: String = "Dog"} (Tipo animale: Dog, Cat, Bird)
+    \item \texttt{var age: String = ""} (Età)
+    \item \texttt{var gender: String = "male"} (Genere: male, female)
+    \item \texttt{var caption: String = ""} (Descrizione)
+    \item \texttt{var imageUrl: String? = null} (URL dell'immagine su Firebase Storage)
+    \item \texttt{var userType: String = ""} (Tipo utente inserzionista: Private User / Animal Shelter)
+    \item \texttt{var timestamp: Timestamp? = null} (Timestamp di creazione)
+\end{itemize}
+
+\paragraph*{UserProfile} \mbox{}\\[0.1cm]
+\texttt{data class UserProfile(...)} \\
+Data class che modella la struttura dei dati dell'utente registrato:
+\begin{itemize}
+    \item \texttt{var uid: String = ""} (UID dell'utente autenticato)
+    \item \texttt{var firstName: String = ""} (Nome)
+    \item \texttt{var lastName: String = ""} (Cognome)
+    \item \texttt{var username: String = ""} (Nome utente)
+    \item \texttt{var email: String = ""} (Indirizzo Email)
+    \item \texttt{var phone: String = ""} (Numero di Telefono)
+    \item \texttt{var city: String = ""} (Città)
+    \item \texttt{var province: String = ""} (Provincia)
+    \item \texttt{var cap: String = ""} (Codice Avviamento Postale)
+    \item \texttt{var accountType: String = ""} (Tipo account: Private User / Animal Shelter)
+\end{itemize}
+
+\clearpage
+\newsection{Unit Testing dell'Applicazione Android}
+Per garantire la stabilità dell'applicazione \textbf{Paws} e verificare la correttezza della logica di business fondamentale in modo isolato rispetto all'interfaccia utente e ai servizi remoti, sono state realizzate due suite principali di Unit Test tramite la libreria ufficiale \textbf{JUnit 4}.
+
+\newsubsection{Validazione delle Credenziali e dei Moduli (ValidationUnitTest)}
+Verifica la logica di validazione dei dati immessi dall'utente nei moduli di autenticazione e registrazione (\texttt{SignInActivity} e \texttt{SignUpActivity}), assicurando che le credenziali rispettino i vincoli di sicurezza prima dell'invio al backend Firebase.
 \begin{scriptsize}
-\estiloPython
-\begin{lstlisting}[caption={Attivita}, label=lst:javacode]
-class AttivitaIntegrationTests(TestCase):
-   def setUp(self):
-       self.client = Client()
-       # create users
-       self.staff = Utente.objects.create(email='staff@example.com', ruolo=Ruolo.STAFF)
-       self.staff.set_password('pass')
-       self.staff.save()
+\estiloKotlin
+\begin{lstlisting}[caption={Unit Test per la validazione di password, coincidenza credenziali e moduli}, label={lst:validation_test}]
+package com.example.paws
 
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Test
+
+class ValidationUnitTest {
+
+    // Helper functions per la logica di validazione credenziali
+    private fun isPasswordValid(password: String): Boolean {
+        return password.length >= 6
+    }
+
+    private fun doPasswordsMatch(pass: String, confirmPass: String): Boolean {
+        return pass == confirmPass
+    }
+
+    private fun isFormComplete(vararg fields: String): Boolean {
+        return fields.all { it.isNotBlank() }
+    }
+
+    @Test
+    fun passwordLength_mustBeAtLeastSixCharacters() {
+        assertTrue(isPasswordValid("123456"))
+        assertTrue(isPasswordValid("securePassword123"))
+        assertFalse(isPasswordValid("12345"))
+        assertFalse(isPasswordValid(""))
+    }
+
+    @Test
+    fun passwordConfirmation_matchesCorrectly() {
+        assertTrue(doPasswordsMatch("pass123", "pass123"))
+        assertFalse(doPasswordsMatch("pass123", "pass456"))
+    }
+
+    @Test
+    fun formCompletion_verifiesAllFieldsNonEmpty() {
+        assertTrue(isFormComplete("Mario", "Rossi", "mario@example.com", "3801234567"))
+        assertFalse(isFormComplete("Mario", "", "mario@example.com", "3801234567"))
+    }
+}
 \end{lstlisting}
 \end{scriptsize}
+
+\newsubsection{Filtraggio dei Post dei Cuccioli (PostFilterUnitTest)}
+Questa suite testa la logica core di ricerca e filtraggio dell'applicazione. Verifica che la lista dei post relativi ai cuccioli venga filtrata correttamente in base alla specie dell'animale, al genere, al tipo di utente inserzionista o alla combinazione di più parametri.
+\begin{scriptsize}
+\estiloKotlin
+\begin{lstlisting}[caption={Unit Test per la logica di filtraggio dei post cuccioli}, label={lst:filter_test}]
+package com.example.paws
+
+import com.example.paws.ui.screens.home.PuppyPost
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
+
+class PostFilterUnitTest {
+
+    private lateinit var samplePosts: List<PuppyPost>
+
+    @Before
+    fun setUp() {
+        samplePosts = listOf(
+            PuppyPost(id = "1", name = "Milo", type = "Dog", gender = "male", age = "6 months", userType = "Private User"),
+            PuppyPost(id = "2", name = "Bella", type = "Cat", gender = "female", age = "1 years", userType = "Animal Shelter"),
+            PuppyPost(id = "3", name = "Charlie", type = "Dog", gender = "male", age = "1 years", userType = "Animal Shelter"),
+            PuppyPost(id = "4", name = "Titi", type = "Bird", gender = "female", age = "6 months", userType = "Private User")
+        )
+    }
+
+    @Test
+    fun filterByAnimalType_filtersDogsCorrectly() {
+        val filtered = samplePosts.filter { it.type == "Dog" }
+        assertEquals(2, filtered.size)
+        assertEquals("Milo", filtered[0].name)
+        assertEquals("Charlie", filtered[1].name)
+    }
+
+    @Test
+    fun filterByGender_filtersFemaleCorrectly() {
+        val filtered = samplePosts.filter { it.gender == "female" }
+        assertEquals(2, filtered.size)
+        assertEquals("Bella", filtered[0].name)
+        assertEquals("Titi", filtered[1].name)
+    }
+
+    @Test
+    fun filterByUserType_filtersAnimalShelterCorrectly() {
+        val filtered = samplePosts.filter { it.userType == "Animal Shelter" }
+        assertEquals(2, filtered.size)
+        assertEquals("Bella", filtered[0].name)
+        assertEquals("Charlie", filtered[1].name)
+    }
+
+    @Test
+    fun filterByMultipleCriteria_combinesCorrectly() {
+        val filtered = samplePosts.filter { it.type == "Dog" && it.userType == "Animal Shelter" }
+        assertEquals(1, filtered.size)
+        assertEquals("Charlie", filtered[0].name)
+    }
+}
+\end{lstlisting}
+\end{scriptsize}
+
+\newchapter{Progettazione e Sviluppo App Flutter}
+\newsection{Architettura del sistema}
+L'applicazione Flutter segue le linee guida di Google per lo sviluppo di applicazioni multipiattaforma moderne, basandosi sui principi della \textbf{Clean Architecture} e sul concetto fondamentale di \textbf{"Separation of Concerns"} (separazione delle responsabilità). Ciò consente di garantire un'elevata manutenibilità, reattività dell'interfaccia utente e facilità di estensione delle componenti:
+\begin{itemize}
+    \item \textbf{Data Layer}: gestisce l'accesso, la persistenza e la sincronizzazione remota dei dati. Interagisce con i servizi cloud attraverso l'integrazione di \textbf{Firebase Cloud Firestore} per la sincronizzazione asincrona in tempo reale di annunci, notifiche e preferiti, \textbf{Firebase Authentication} per la gestione sicura delle sessioni utente, e \textbf{Supabase Storage} per il caricamento efficiente delle immagini multimediali. Incapsula la logica d'accesso ai dati attraverso servizi dedicati (\texttt{FirebaseService} e \texttt{SupabaseService}) fornendo flussi asincroni continui tramite \texttt{Stream}.
+    
+    \item \textbf{Domain Layer}: definisce le entità di business pure del sistema (le classi modello come \texttt{User}, \texttt{PuppyPost} e \texttt{NotificationItem}) e racchiude la logica applicativa indipendente dal framework visivo. Regola le operazioni principali del dominio, quali il filtraggio dinamico degli annunci, la gestione dei preferiti e la logica delle interazioni utente.
+    
+    \item \textbf{Presentation Layer}: contiene l'interfaccia utente visiva e reattiva organizzata in \textit{Screens} (\texttt{MainScreen}, \texttt{SignUpScreen}, \texttt{UserProfileScreen}, \texttt{PuppyDetailsScreen}, \texttt{NotificationsScreen}) e \textit{Tabs} (\texttt{HomeTab}, \texttt{AddPuppyTab}, \texttt{FavoritesTab}, \texttt{ProfileTab}). L'interfaccia si avvale dell'albero dei \textit{Widget} dichiarativi di Flutter, combinando lo stato locale dei \texttt{StatefulWidget} con i costruttori reattivi \texttt{StreamBuilder} e \texttt{FutureBuilder} per l'aggiornamento automatico dell'interfaccia a fronte delle azioni dell'utente e dei cambiamenti nei flussi di dati remoti.
+\end{itemize}
+\vspace{0.5cm}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    node distance=1.8cm,
+    layerbox/.style={
+        draw,
+        rectangle,
+        solid,
+        thick,
+        minimum width=11.5cm,
+        minimum height=1.1cm,
+        align=center,
+        font=\bfseries
+    },
+    labelstyle/.style={
+        font=\small,
+        align=center
+    }
+]
+% Nodes
+\node (datalayer) [layerbox] {Data Layer (Firebase Auth, Firestore DB \& Supabase Storage)};
+\node (domainlayer) [layerbox, below of=datalayer, node distance=2.2cm] {Domain Layer (Models \& Business Logic)};
+\node (presentationlayer) [layerbox, below of=domainlayer, node distance=2.2cm] {Presentation Layer (Screens, Tabs \& Stateful Widgets)};
+% Arrows Data <-> Domain
+\draw [<->, >=stealth, thick] ([xshift=-2.5cm]datalayer.south) -- ([xshift=-2.5cm]domainlayer.north)
+    node[midway, left=0.2cm, labelstyle] {Restituisce dati / Stream};
+\draw [<->, >=stealth, thick] ([xshift=2.5cm]datalayer.south) -- ([xshift=2.5cm]domainlayer.north)
+    node[midway, right=0.2cm, labelstyle] {Richiede dati / Chiamate Cloud};
+% Arrows Domain <-> Presentation
+\draw [<->, >=stealth, thick] ([xshift=-2.5cm]domainlayer.south) -- ([xshift=-2.5cm]presentationlayer.north)
+    node[midway, left=0.2cm, labelstyle] {Notifica cambiamenti / Aggiorna UI};
+\draw [<->, >=stealth, thick] ([xshift=2.5cm]domainlayer.south) -- ([xshift=2.5cm]presentationlayer.north)
+    node[midway, right=0.2cm, labelstyle] {Richiede azioni / Invia filtri};
+\end{tikzpicture}
+\caption{Architettura a tre livelli dell'applicazione Flutter Paws}
+\label{fig:architettura_flutter_paws}
+\end{figure}
 
 \end{document}

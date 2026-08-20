@@ -205,7 +205,7 @@ class FavoritesFragment : Fragment() {
                 when (which) {
                     0 -> showSubFilterDialog("Age", arrayOf("All", "1 months", "6 months", "1 years", "2 years", "3 years", "5+ years"))
                     1 -> showSubFilterDialog("Gender", arrayOf("All", "Male", "Female"))
-                    2 -> showSubFilterDialog("Animal Type", arrayOf("All", "Dog", "Cat", "Bird", "Other"))
+                    2 -> showSubFilterDialog("Animal Type", arrayOf("All", "Dog", "Cat", "Bird"))
                     3 -> showSubFilterDialog("User Type", arrayOf("All", "Private User", "Animal Shelter"))
                     4 -> {
                         filterAge = null

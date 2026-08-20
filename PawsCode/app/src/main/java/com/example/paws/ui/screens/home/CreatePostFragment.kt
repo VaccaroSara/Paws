@@ -218,7 +218,7 @@ class CreatePostFragment : Fragment() {
         }
 
         containerType.setOnClickListener {
-            val types = arrayOf("Dog", "Cat", "Bird", "Other")
+            val types = arrayOf("Dog", "Cat", "Bird")
             android.app.AlertDialog.Builder(requireContext())
                 .setTitle("Select Type")
                 .setItems(types) { _, which ->
@@ -229,8 +229,7 @@ class CreatePostFragment : Fragment() {
                     when (selectedType) {
                         "Cat" -> ivTypeIcon?.setImageResource(R.drawable.cat)
                         "Bird" -> ivTypeIcon?.setImageResource(R.drawable.bird)
-                        "Dog" -> ivTypeIcon?.setImageResource(R.drawable.dog)
-                        else -> ivTypeIcon?.setImageResource(R.drawable.home_ic_paws_logo)
+                        else -> ivTypeIcon?.setImageResource(R.drawable.dog)
                     }
                 }
                 .show()

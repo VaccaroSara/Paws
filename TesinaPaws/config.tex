@@ -483,3 +483,36 @@
     escapeinside={\%*}{*)},
     morekeywords={self, setUp, Client, objects, create} % aggiungi altre keyword Django/Python
 }}
+
+\lstdefinelanguage{Kotlin}{
+  morekeywords={package, import, class, fun, val, var, return, true, false, private, public, protected, internal, interface, object, typealias, override},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  morestring=[s]{"""*}{*"""}
+}
+
+\newcommand{\estiloKotlin}{
+\lstset{
+  language=Kotlin,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{keywordviolet}\bfseries,
+  stringstyle=\color{stringorange},
+  commentstyle=\color{commentgreen},
+  morecomment=[s][\color{docstringblue}]{"""}{"""},
+  extendedchars=true,
+  showspaces=false,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  backgroundcolor=\color{lightgraybg},
+  breakautoindent=true,
+  captionpos=b,
+  xleftmargin=0pt,
+  tabsize=2,
+  escapeinside={\%*}{*)},
+  morekeywords={@Test, assertTrue, assertFalse} % Parole chiave extra per JUnit
+}
+}

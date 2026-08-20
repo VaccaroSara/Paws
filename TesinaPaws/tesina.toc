@@ -14,21 +14,49 @@
 \contentsline {subsection}{Area: Gestione Interazioni}{19}{section*.28}%
 \contentsline {subsection}{Area: Gestione Navigazione}{24}{section*.34}%
 \contentsline {subsection}{Area: Gestione Notifiche}{27}{section*.38}%
-\contentsline {chapter}{Database e Storage}{30}{chapter*.44}%
-\contentsline {section}{Database Remoto NoSQL (Cloud Firestore)}{30}{section*.45}%
-\contentsline {section}{Cloud Object Storage (Supabase Storage)}{30}{section*.46}%
-\contentsline {section}{Local Storage (SharedPreferences)}{31}{section*.47}%
-\contentsline {section}{Sincronizzazione Offline e Persistenza Locale}{31}{section*.48}%
-\contentsline {section}{Politiche di Sicurezza (Firestore Security Rules)}{31}{section*.49}%
-\contentsline {chapter}{Progettazione e sviluppo applicazione in Kotlin}{33}{chapter*.51}%
-\contentsline {section}{Architettura del sistema}{33}{section*.52}%
-\contentsline {subsection}{Mappa globale dell'architettura}{34}{section*.54}%
-\contentsline {subsection}{Architettura d'avvio e navigazione}{34}{section*.56}%
-\contentsline {subsection}{Architettura gestione utente e autenticazione}{36}{section*.58}%
-\contentsline {subsection}{Architettura gestione cuccioli e annunci}{37}{section*.60}%
-\contentsline {subsection}{Architettura gestione notifiche e preferiti}{38}{section*.62}%
-\contentsline {section}{Mockup}{39}{section*.64}%
-\contentsline {section}{Verifica e Validazione del Software: Unit Tests}{40}{section*.65}%
-\contentsline {subsection}{Test Manuali}{40}{section*.66}%
-\contentsline {subsection}{Unit Test}{40}{section*.67}%
+\contentsline {chapter}{Progettazione e sviluppo applicazione in Kotlin}{30}{chapter*.44}%
+\contentsline {section}{Architettura del sistema}{30}{section*.45}%
+\contentsline {subsection}{Mappa globale dell'architettura}{31}{section*.47}%
+\contentsline {subsection}{Architettura d'avvio e navigazione}{31}{section*.49}%
+\contentsline {subsection}{Architettura gestione utente e autenticazione}{33}{section*.51}%
+\contentsline {subsection}{Architettura gestione cuccioli e annunci}{34}{section*.53}%
+\contentsline {subsection}{Architettura gestione notifiche e preferiti}{35}{section*.55}%
+\contentsline {section}{Database e storage}{36}{section*.57}%
+\contentsline {subsection}{Database Remoto NoSQL (Firebase Cloud Firestore)}{36}{section*.58}%
+\contentsline {subsection}{Cloud Object Storage (Supabase Storage)}{36}{section*.59}%
+\contentsline {subsection}{Local Storage (SharedPreferences)}{37}{section*.60}%
+\contentsline {subsection}{Sincronizzazione Offline e Persistenza Locale}{37}{section*.61}%
+\contentsline {subsection}{Politiche di sicurezza}{37}{section*.62}%
+\contentsline {section}{MockUp UI}{38}{section*.63}%
+\contentsline {section}{Rappresentazione Grafica Dei Casi d'Uso}{43}{section*.69}%
+\contentsline {subsection}{Gestione Utente}{43}{section*.70}%
+\contentsline {subsection}{Gestione Cucciolo}{44}{section*.72}%
+\contentsline {subsection}{Gestione Preferiti}{46}{section*.74}%
+\contentsline {subsection}{Gestione Home}{47}{section*.76}%
+\contentsline {section}{Approccio e Problematiche di Sviluppo}{48}{section*.77}%
+\contentsline {subsection}{Approccio allo Sviluppo}{48}{section*.78}%
+\contentsline {subsection}{Tecnologie e Funzionalità Chiave}{48}{section*.79}%
+\contentsline {paragraph}{Caricamento Immagini su Firebase Storage}{48}{section*.79}%
+\contentsline {paragraph}{Gestione dell'Asincronia e Ascolto in Tempo Reale con Firestore}{48}{section*.79}%
+\contentsline {subsection}{Problematiche Risolte}{48}{section*.80}%
+\contentsline {subsection}{Librerie di Terze Parti}{48}{section*.82}%
+\contentsline {section}{Descrizione Componenti}{50}{section*.83}%
+\contentsline {subsection}{MainActivity}{50}{section*.84}%
+\contentsline {subsection}{SignInActivity}{50}{section*.85}%
+\contentsline {subsection}{SignUpActivity}{50}{section*.86}%
+\contentsline {subsection}{HOME: HomeFragment}{50}{section*.87}%
+\contentsline {subsection}{FeedAdapter}{51}{section*.88}%
+\contentsline {subsection}{CREA POST: CreatePostFragment}{51}{section*.89}%
+\contentsline {subsection}{PREFERITI: FavoritesFragment}{51}{section*.90}%
+\contentsline {subsection}{FavoritesAdapter}{52}{section*.91}%
+\contentsline {subsection}{PROFILO: ProfileFragment}{52}{section*.92}%
+\contentsline {subsection}{PROFILO ALTRO UTENTE: UserProfileFragment}{52}{section*.93}%
+\contentsline {subsection}{DETTAGLIO CUCCIOLO: PuppyDetailsFragment}{52}{section*.94}%
+\contentsline {subsection}{NOTIFICHE: NotificationsFragment}{52}{section*.95}%
+\contentsline {subsection}{MODELLI DATI (Data Classes)}{53}{section*.96}%
+\contentsline {section}{Unit Testing dell'Applicazione Android}{54}{section*.97}%
+\contentsline {subsection}{Validazione delle Credenziali e dei Moduli (ValidationUnitTest)}{54}{section*.98}%
+\contentsline {subsection}{Filtraggio dei Post dei Cuccioli (PostFilterUnitTest)}{54}{section*.99}%
+\contentsline {chapter}{Progettazione e Sviluppo App Flutter}{56}{chapter*.101}%
+\contentsline {section}{Architettura del sistema}{56}{section*.102}%
 \contentsfinish 
