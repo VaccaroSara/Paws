@@ -1056,6 +1056,7 @@ Poiché l'attuale versione dell'applicazione è stata sviluppata sotto forma di 
 
 \newsection{MockUp UI}
 
+\newsubsection{Registrazione e Login}
 \vspace*{\fill}
 \begin{figure}[h!]
     \centering
@@ -1075,6 +1076,7 @@ Poiché l'attuale versione dell'applicazione è stata sviluppata sotto forma di 
 \vspace*{\fill}
 \clearpage
 
+\newsubsection{Home e Post}
 \vspace*{\fill}
 \begin{figure}[h!]
     \centering
@@ -1094,6 +1096,7 @@ Poiché l'attuale versione dell'applicazione è stata sviluppata sotto forma di 
 \vspace*{\fill}
 \clearpage
 
+\newsubsection{Preferiti e Profilo}
 \vspace*{\fill}
 \begin{figure}[h!]
     \centering
@@ -1113,6 +1116,7 @@ Poiché l'attuale versione dell'applicazione è stata sviluppata sotto forma di 
 \vspace*{\fill}
 \clearpage
 
+\newsubsection{Scheda Cucciolo e Notifiche}
 \vspace*{\fill}
 \begin{figure}[h!]
     \centering
@@ -1132,6 +1136,7 @@ Poiché l'attuale versione dell'applicazione è stata sviluppata sotto forma di 
 \vspace*{\fill}
 \clearpage
 
+\newsubsection{Cerca Utente e Profilo Utente}
 \vspace*{\fill}
 \begin{figure}[h!]
     \centering
@@ -1167,7 +1172,7 @@ Poiché l'attuale versione dell'applicazione è stata sviluppata sotto forma di 
 \newsubsection{Gestione Cucciolo}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{GestioneCuccioloDrawio.png}
+    \includegraphics[width=0.5\textwidth]{GestioneCuccioloDrawio.png}
     \caption{Gestione Cucciolo}
     \label{fig:GestioneCuccioloDrawio}
 \end{figure}
@@ -1188,7 +1193,7 @@ Poiché l'attuale versione dell'applicazione è stata sviluppata sotto forma di 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{GestioneHomeDrawio.png}
-    \caption{Gestione Preferiti}
+    \caption{Gestione Home}
     \label{fig:GestioneHomeDrawio}
 \end{figure}
 \clearpage
@@ -1659,12 +1664,149 @@ Nonostante lo schema dati e la struttura delle collezioni rimangano identici a g
     Anche la versione Flutter sfrutta il motore di persistenza locale integrato nel plugin \texttt{cloud\_firestore}. Le operazioni di scrittura effettuate offline (come l'aggiunta di un preferito o la creazione di un annuncio) vengono salvate temporaneamente nella cache locale ed applicate all'interfaccia secondo la filosofia dell'\textit{Optimistic UI}, per poi essere sincronizzate automaticamente con i server cloud al ripristino della connettività internet.
 \end{itemize}
 
-
+\clearpage
 \newsection{MockUp UI}
+\newsubsection{Registrazione e Login}
+\vspace*{\fill}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{SignUpFlutter.jpeg}
+        \caption{Login}
+        \label{fig:Signup}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{SignInFlutter.jpeg}
+        \caption{Registrazione}
+        \label{fig:Signin}
+    \end{minipage}
+\end{figure}
+\vspace*{\fill}
+\clearpage
+
+\newsubsection{Home e Post}
+\vspace*{\fill}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{HomeFlutter.jpeg}
+        \caption{Home}
+        \label{fig:Home}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{PostFlutter.jpeg}
+        \caption{Post}
+        \label{fig:Post}
+    \end{minipage}
+\end{figure}
+\vspace*{\fill}
+\clearpage
+
+\newsubsection{Preferiti e Profilo}
+\vspace*{\fill}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{PreferitiFlutter.jpeg}
+        \caption{Preferiti}
+        \label{fig:favorites}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{ImpostazioniFlutter.jpeg}
+        \caption{Profilo}
+        \label{fig:Profile}
+    \end{minipage}
+\end{figure}
+\vspace*{\fill}
+\clearpage
+
+\newsubsection{Scheda Cucciolo e Notifiche}
+\vspace*{\fill}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{SchedaDettaglioFlutter.jpeg}
+        \caption{Scheda cucciolo}
+        \label{fig:Info}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{NotificheFlutter.jpeg}
+        \caption{Notifiche}
+        \label{fig:Notifications}
+    \end{minipage}
+\end{figure}
+\vspace*{\fill}
+\clearpage
+
+\newsubsection{Cerca Utente e Profilo Utente}
+\vspace*{\fill}
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{CercaFlutter.jpeg}
+        \caption{Cerca Utente}
+        \label{fig:Search}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{ProfiloUserFlutter.jpeg}
+        \caption{Profilo Utente}
+        \label{fig:UserProfile}
+    \end{minipage}
+\end{figure}
+\vspace*{\fill}
+\clearpage
 
 \newsection{Rappresentazione Grafica Dei Casi d’Uso}
 
+\newsubsection{Gestione Utente}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{GestioneUtenteDrawFlu.png}
+    \caption{Gestione Utente}
+    \label{fig:GestioneUtenteDraw}
+\end{figure}
 
+\clearpage
+
+
+\newsubsection{Gestione Cucciolo}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{GestioneCuccioloDrawioFlu.drawio.png}
+    \caption{Gestione Cucciolo}
+    \label{fig:GestioneCuccioloDrawio}
+\end{figure}
+
+\clearpage
+
+\newsubsection{Gestione Preferiti}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{GestionePreferitiFlu.drawio.png}
+    \caption{Gestione Preferiti}
+    \label{fig:GestioneCPreferitiDrawio}
+\end{figure}
+
+\clearpage
+
+\newsubsection{Gestione Home}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{GestioneHomeFlu.drawio.png}
+    \caption{Gestione Home}
+    \label{fig:GestioneHomeDrawio}
+\end{figure}
+\clearpage
 
 \newsection{Approccio e Problematiche di Sviluppo in Flutter}
 
